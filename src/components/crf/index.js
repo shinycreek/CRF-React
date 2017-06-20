@@ -6,12 +6,13 @@ import {
 
 import styles from './styles';
 
-const BasinMap = () => (
+const CRF = () => (
   <View style={styles.container}>
     <WebView
-      source={{ uri: 'http://catawba.maps.arcgis.com/apps/webappviewer/index.html?id=86a805d54d5546d2b99a73d60b16a19d' }}
+      source={{ uri: 'http://www.catawbariverkeeper.org/' }}
+      style={{ marginTop: 50 }}
     />
   </View>
 );
 
-export default BasinMap;
+export default CRF;

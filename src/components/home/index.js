@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 import styles from './styles';
 
 const Home = () => (
@@ -15,7 +17,7 @@ const Home = () => (
         <Text style={styles.textStyle}>Trash Logger</Text>
       </View>
 
-      <TouchableOpacity onPress={() => alert('Basin Map')} style={[styles.box, styles.coral]}>
+      <TouchableOpacity onPress={() => Actions.basinMap()} style={[styles.box, styles.coral]}>
         <View>
           <Text style={styles.textStyle}>Basin Map</Text>
         </View>
@@ -35,7 +37,7 @@ const Home = () => (
         <Text style={styles.textStyle}>Pollution Reporter</Text>
       </View>
 
-      <TouchableOpacity onPress={() => alert('Basin Map1')} style={[styles.box, styles.lightseagreen]}>
+      <TouchableOpacity onPress={() => Actions.basinMap()} style={[styles.box, styles.lightseagreen]}>
         <View><Text style={styles.textStyle}>CRF Website</Text></View>
       </TouchableOpacity>
 
