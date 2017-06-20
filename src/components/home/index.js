@@ -37,7 +37,7 @@ const Home = () => (
         <Text style={styles.textStyle}>Pollution Reporter</Text>
       </View>
 
-      <TouchableOpacity onPress={() => Actions.basinMap()} style={[styles.box, styles.lightseagreen]}>
+      <TouchableOpacity onPress={() => Actions.crf()} style={[styles.box, styles.lightseagreen]}>
         <View><Text style={styles.textStyle}>CRF Website</Text></View>
       </TouchableOpacity>
 

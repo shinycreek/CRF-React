@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Router, Scene } from 'react-native-router-flux';
 import Home from './components/home/';
-import BasinMap from './components/basinMap/';
-import CRF from './components/crf/';
+import BasinMap from './containers/basinMap/';
+import CRF from './containers/crf/';
 import { closeLogo } from './constants/images';
 
 const RouterWithRedux = connect()(Router);

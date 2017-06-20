@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
-import home from './home';
+import { combineReducers } from 'redux-immutable';
+import basinMap from './basinMap';
+import crf from './crf';
 
 const rootReducer = combineReducers({
-  home,
+  basinMap,
+  crf,
 });
 
 export default rootReducer;
