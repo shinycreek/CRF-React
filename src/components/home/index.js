@@ -8,9 +8,10 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 import styles from './styles';
+import mainStyles from '../../assets/css/mainStyles';
 
 const Home = () => (
-  <View style={styles.container}>
+  <View style={[mainStyles.container, styles.container]}>
 
     <View style={{ flex: 1, padding: 10 }}>
       <View style={[styles.box, styles.mediumpurple]}>

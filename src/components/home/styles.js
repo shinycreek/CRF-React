@@ -2,10 +2,9 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#272b71',
     flexDirection: 'row',
   },
+
   box: {
     flex: 1,
     margin: 10,
