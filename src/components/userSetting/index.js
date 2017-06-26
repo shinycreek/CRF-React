@@ -5,7 +5,7 @@ import {
   TextInput,
   Picker,
 } from 'react-native';
-
+import PropTypes from 'prop-types';
 import Button from 'apsl-react-native-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Field, reduxForm } from 'redux-form/immutable';
@@ -13,14 +13,16 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import validator from 'validator';
-
+import { bindActionCreators } from 'redux';
+import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
 import mainStyles from '../../assets/css/mainStyles';
+import normalizePhone from '../../utils/normalizePhone';
 import styles from './styles';
 
 const validate = (values) => {
   const errors = {};
-  const firstName = values.get('firstName');
-  const lastName = values.get('lastName');
+  const firstName = values.get('first_name');
+  const lastName = values.get('last_name');
   const email = values.get('email');
   const phone = values.get('phone');
   const address = values.get('address');
@@ -29,15 +31,15 @@ const validate = (values) => {
   const zip = values.get('zip');
 
   if (!firstName) {
-    errors.firstName = 'Required';
+    errors.first_name = 'Required';
   } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
-    errors.firstName = 'Alphabets only';
+    errors.first_name = 'Alphabets only';
   }
 
   if (!lastName) {
-    errors.lastName = 'Required';
+    errors.last_name = 'Required';
   } else if (!/^[A-Za-z\s]+$/.test(lastName)) {
-    errors.lastName = 'Alphabets only';
+    errors.last_name = 'Alphabets only';
   }
 
   if (!email) {
@@ -64,6 +66,8 @@ const validate = (values) => {
 
   if (!zip) {
     errors.zip = 'Required';
+  } else if (!/^[0-9]+$/.test(zip)) {
+    errors.zip = 'Numbers only';
   }
 
   return errors;
@@ -113,13 +117,18 @@ class UserSetting extends React.Component {
     );
   }
 
-  onSubmit(values, dispatch) {
-    debugger
+  onSubmit(values) {
+    const formValues = values.set('phone_id', this.props.userSetting.get('phoneId')).toJS();
 
+    if (this.props.userSetting.get('record')) {
+      this.props.actions.updateUserSetting(formValues);
+    } else {
+      this.props.actions.createUserSetting(formValues);
+    }
   }
 
   render() {
-    const { handleSubmit, submitting, countries } = this.props;
+    const { handleSubmit, countries } = this.props;
     return (
       <View style={[mainStyles.container, styles.container]}>
         <KeyboardAwareScrollView>
@@ -131,7 +140,7 @@ class UserSetting extends React.Component {
               <View style={{ flex: 1 }}>
                 <Text style={styles.label}>First Name </Text>
                 <Field
-                  name="firstName"
+                  name="first_name"
                   component={this.renderInputField}
                   style={{ marginRight: 5 }}
                 />
@@ -139,7 +148,7 @@ class UserSetting extends React.Component {
               <View style={{ flex: 1 }}>
                 <Text style={styles.label}>Last Name </Text>
                 <Field
-                  name="lastName"
+                  name="last_name"
                   component={this.renderInputField}
                 />
               </View>
@@ -158,6 +167,7 @@ class UserSetting extends React.Component {
               <Field
                 name="phone"
                 component={this.renderInputField}
+                normalize={normalizePhone}
               />
             </View>
 
@@ -204,6 +214,7 @@ class UserSetting extends React.Component {
               <Field
                 name="zip"
                 component={this.renderInputField}
+                options={{ maxLength: 20, keyboardType: 'numeric' }}
               />
             </View>
           </View>
@@ -229,9 +240,33 @@ UserSetting.defaultProps = {
   countries: ['Mecklenburg', 'Gaston', 'Cabarrus', 'Lincoln'],
 };
 
+UserSetting.propTypes = {
+  actions: PropTypes.shape({
+    createUserSetting: PropTypes.func.isRequired,
+    updateUserSetting: PropTypes.func.isRequired,
+  }).isRequired,
+  userSetting: PropTypes.instanceOf(Object).isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  countries: PropTypes.arrayOf(PropTypes.string),
+};
+
+
+const mapStateToProps = state => (
+  {
+    userSetting: state.get('userSetting'),
+    initialValues: state.getIn(['userSetting', 'record']),
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    actions: bindActionCreators({ createUserSetting, updateUserSetting }, dispatch),
+  }
+);
+
 const UserSettingForm = reduxForm({
   form: 'userSettingForm', // a unique identifier for this form
   validate,
 })(UserSetting);
 
-export default connect(null, null)(UserSettingForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSettingForm);

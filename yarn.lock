@@ -3929,6 +3929,10 @@ react-devtools@^2.3.1:
     react-devtools-core "^2.3.3"
     update-notifier "^2.1.0"
 
+react-native-device-info@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.2.tgz#350cd68ed43839022ddea0a3a423439f16fa4fba"
+
 react-native-experimental-navigation@0.28.x:
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/react-native-experimental-navigation/-/react-native-experimental-navigation-0.28.0.tgz#561298190320cd336dc5b00c2e8bc2435cfb4909"
