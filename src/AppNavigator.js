@@ -4,7 +4,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import Home from './components/home/';
 import BasinMap from './containers/basinMap/';
 import CRF from './containers/crf/';
-import UserSetting from './components/userSetting/';
+import UserSetting from './containers/userSetting/';
 import { closeLogo } from './constants/images';
 import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
