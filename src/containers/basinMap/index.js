@@ -31,9 +31,8 @@ class BasinMap extends React.Component {
 
 BasinMap.propTypes = {
   actions: PropTypes.func.isRequired,
-  basinMapUrl: PropTypes.oneOfType([null, PropTypes.string]).isRequired,
+  basinMapUrl: PropTypes.string,
 };
-
 
 function mapStateToProps(state) {
   return {

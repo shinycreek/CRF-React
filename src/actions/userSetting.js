@@ -3,7 +3,6 @@ import * as types from '../constants/types';
 
 export const getUserSetting = phoneId => (
   (dispatch) => {
-    console.log("========getUserSetting phoneID", phoneId)
     dispatch({ type: types.START_GET_USER_SETTING, phoneId });
     axios.post('/api/v1/user_settings/show.json',
       {

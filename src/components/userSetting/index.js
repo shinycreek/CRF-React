@@ -50,6 +50,8 @@ const validate = (values) => {
 
   if (!phone) {
     errors.phone = 'Required';
+  } else if (phone.length !== 12) {
+    errors.phone = 'Invalid Phone Number';
   }
 
   if (!address) {

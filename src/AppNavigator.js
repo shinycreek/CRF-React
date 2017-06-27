@@ -6,7 +6,7 @@ import BasinMap from './containers/basinMap/';
 import CRF from './containers/crf/';
 import UserSetting from './components/userSetting/';
 import { closeLogo } from './constants/images';
-import { renderRightButton } from './components/navbarComponent/';
+import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
 const RouterWithRedux = connect()(Router);
 
@@ -27,16 +27,14 @@ const AppNavigator = () => (
         hideNavBar={false}
         component={CRF}
         backButtonImage={closeLogo}
-        leftButtonIconStyle={{ height: 28, width: 30 }}
         renderRightButton={() => renderRightButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
       />
       <Scene
         key="userSetting"
         hideNavBar={false}
         component={UserSetting}
-        backButtonImage={closeLogo}
-        leftButtonIconStyle={{ height: 28, width: 30 }}
-        direction="fade"
+        renderBackButton={() => renderHomeButton()}
         title="Settings"
       />
     </Scene>
