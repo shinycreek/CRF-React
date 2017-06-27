@@ -31,7 +31,7 @@ class CRF extends React.Component {
 
 CRF.propTypes = {
   actions: PropTypes.func.isRequired,
-  crfUrl: PropTypes.oneOfType([null, PropTypes.string]).isRequired,
+  crfUrl: PropTypes.PropTypes.string,
 };
 
 

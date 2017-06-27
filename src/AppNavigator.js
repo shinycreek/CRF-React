@@ -4,7 +4,9 @@ import { Router, Scene } from 'react-native-router-flux';
 import Home from './components/home/';
 import BasinMap from './containers/basinMap/';
 import CRF from './containers/crf/';
+import UserSetting from './containers/userSetting/';
 import { closeLogo } from './constants/images';
+import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
 const RouterWithRedux = connect()(Router);
 
@@ -18,13 +20,22 @@ const AppNavigator = () => (
         component={BasinMap}
         backButtonImage={closeLogo}
         leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
       />
       <Scene
         key="crf"
         hideNavBar={false}
         component={CRF}
         backButtonImage={closeLogo}
+        renderRightButton={() => renderRightButton()}
         leftButtonIconStyle={{ height: 28, width: 30 }}
+      />
+      <Scene
+        key="userSetting"
+        hideNavBar={false}
+        component={UserSetting}
+        renderBackButton={() => renderHomeButton()}
+        title="Settings"
       />
     </Scene>
   </RouterWithRedux>
