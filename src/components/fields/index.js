@@ -7,9 +7,10 @@ import {
 
 import PropTypes from 'prop-types';
 import mainStyles from '../../assets/css/mainStyles';
+import styles from './styles';
 
 export const renderInputField = ({
-  input: { onChange, ...restInput }, style, meta: { touched, error }, options,
+  input: { onChange, ...restInput }, style, meta: { touched, error }, options, label,
 }) => {
   const arrStyles = [style];
   if (touched && error) {
@@ -17,6 +18,7 @@ export const renderInputField = ({
   }
   return (
     <View>
+      <Text style={styles.label}> {label} </Text>
       <TextInput
         onChangeText={onChange}
         {...restInput}
@@ -36,4 +38,5 @@ renderInputField.propTypes = {
   input: PropTypes.instanceOf(Object),
   meta: PropTypes.instanceOf(Object),
   options: PropTypes.instanceOf(Object),
+  label: PropTypes.string,
 };

@@ -118,17 +118,17 @@ class UserSetting extends React.Component {
           <View style={[styles.box, styles.middle]}>
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>First Name </Text>
                 <Field
                   name="first_name"
                   component={renderInputField}
+                  label="First Name"
                   style={[styles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>Last Name </Text>
                 <Field
                   name="last_name"
+                  label="Last Name"
                   component={renderInputField}
                   style={[styles.inputField]}
                 />
@@ -136,18 +136,18 @@ class UserSetting extends React.Component {
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Email </Text>
               <Field
                 name="email"
+                label="Email"
                 component={renderInputField}
                 style={[styles.inputField]}
               />
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Phone Number: </Text>
               <Field
                 name="phone"
+                label="Phone Number:"
                 component={renderInputField}
                 normalize={normalizePhone}
                 style={[styles.inputField]}
@@ -166,9 +166,9 @@ class UserSetting extends React.Component {
 
           <View style={[styles.box, styles.bottom]}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Address </Text>
               <Field
                 name="address"
+                label="Address"
                 component={renderInputField}
                 style={[styles.inputField]}
               />
@@ -176,17 +176,17 @@ class UserSetting extends React.Component {
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>City </Text>
                 <Field
                   name="city"
+                  label="City"
                   component={renderInputField}
                   style={[styles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>State </Text>
                 <Field
                   name="state"
+                  label="State"
                   component={renderInputField}
                   options={{ maxLength: 2 }}
                   style={[styles.inputField]}
@@ -195,9 +195,9 @@ class UserSetting extends React.Component {
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Zip </Text>
               <Field
                 name="zip"
+                label="Zip"
                 component={renderInputField}
                 options={{ maxLength: 20, keyboardType: 'numeric' }}
                 style={[styles.inputField]}
