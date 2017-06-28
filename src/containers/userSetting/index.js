@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import validator from 'validator';
 import { bindActionCreators } from 'redux';
+import Immutable from 'immutable';
 import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
 import mainStyles from '../../assets/css/mainStyles';
 import normalizePhone from '../../utils/normalizePhone';
@@ -252,13 +253,14 @@ UserSetting.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.string),
 };
 
-
-const mapStateToProps = state => (
-  {
-    userSetting: state.get('userSetting'),
-    initialValues: state.getIn(['userSetting', 'record']),
+const mapStateToProps = (state) => {
+  const stateObj = { userSetting: state.get('userSetting') };
+  const initialValues = state.getIn(['userSetting', 'record']);
+  if (initialValues && (initialValues.size > 0)) {
+    stateObj.initialValues = initialValues;
   }
-);
+  return stateObj;
+};
 
 const mapDispatchToProps = dispatch => (
   {
