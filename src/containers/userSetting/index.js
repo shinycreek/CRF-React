@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  TextInput,
   Picker,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -14,10 +13,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import validator from 'validator';
 import { bindActionCreators } from 'redux';
-import Immutable from 'immutable';
 import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
 import mainStyles from '../../assets/css/mainStyles';
 import normalizePhone from '../../utils/normalizePhone';
+import { renderInputField } from '../../components/fields/';
 import styles from './styles';
 
 const validate = (values) => {
@@ -79,30 +78,8 @@ const validate = (values) => {
 class UserSetting extends React.Component {
   constructor(props) {
     super(props);
-    this.renderInputField = this.renderInputField.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  renderInputField({ input: { onChange, ...restInput }, style, meta: { touched, error }, options }) {
-    const arrStyles = [styles.inputField, style];
-    if (touched && error) {
-      arrStyles.push(mainStyles.inputError);
-    }
-    return (
-      <View>
-        <TextInput
-          onChangeText={onChange}
-          {...restInput}
-          style={arrStyles}
-          underlineColorAndroid="transparent"
-          {...options}
-        />
-        {touched && error &&
-          <Text style={mainStyles.errorText}>{error}</Text>
-        }
-      </View>
-    );
   }
 
   renderSelect({ input, data }) {
@@ -144,15 +121,16 @@ class UserSetting extends React.Component {
                 <Text style={styles.label}>First Name </Text>
                 <Field
                   name="first_name"
-                  component={this.renderInputField}
-                  style={{ marginRight: 5 }}
+                  component={renderInputField}
+                  style={[styles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.label}>Last Name </Text>
                 <Field
                   name="last_name"
-                  component={this.renderInputField}
+                  component={renderInputField}
+                  style={[styles.inputField]}
                 />
               </View>
             </View>
@@ -161,7 +139,8 @@ class UserSetting extends React.Component {
               <Text style={styles.label}>Email </Text>
               <Field
                 name="email"
-                component={this.renderInputField}
+                component={renderInputField}
+                style={[styles.inputField]}
               />
             </View>
 
@@ -169,8 +148,9 @@ class UserSetting extends React.Component {
               <Text style={styles.label}>Phone Number: </Text>
               <Field
                 name="phone"
-                component={this.renderInputField}
+                component={renderInputField}
                 normalize={normalizePhone}
+                style={[styles.inputField]}
               />
             </View>
 
@@ -189,7 +169,8 @@ class UserSetting extends React.Component {
               <Text style={styles.label}>Address </Text>
               <Field
                 name="address"
-                component={this.renderInputField}
+                component={renderInputField}
+                style={[styles.inputField]}
               />
             </View>
 
@@ -198,16 +179,17 @@ class UserSetting extends React.Component {
                 <Text style={styles.label}>City </Text>
                 <Field
                   name="city"
-                  component={this.renderInputField}
-                  style={{ marginRight: 5 }}
+                  component={renderInputField}
+                  style={[styles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.label}>State </Text>
                 <Field
                   name="state"
-                  component={this.renderInputField}
+                  component={renderInputField}
                   options={{ maxLength: 2 }}
+                  style={[styles.inputField]}
                 />
               </View>
             </View>
@@ -216,8 +198,9 @@ class UserSetting extends React.Component {
               <Text style={styles.label}>Zip </Text>
               <Field
                 name="zip"
-                component={this.renderInputField}
+                component={renderInputField}
                 options={{ maxLength: 20, keyboardType: 'numeric' }}
+                style={[styles.inputField]}
               />
             </View>
           </View>
