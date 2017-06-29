@@ -115,7 +115,7 @@ class UserSetting extends React.Component {
           <Text style={styles.top}>
             Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
           </Text>
-          <View style={[styles.box, styles.middle]}>
+          <View style={[mainStyles.box, styles.middle]}>
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
                 <Field
@@ -164,7 +164,7 @@ class UserSetting extends React.Component {
             </View>
           </View>
 
-          <View style={[styles.box, styles.bottom]}>
+          <View style={[mainStyles.box, styles.bottom]}>
             <View style={{ flex: 1 }}>
               <Field
                 name="address"

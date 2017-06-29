@@ -12,6 +12,10 @@ const mainStyles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'red',
   },
+  box: {
+    backgroundColor: '#D8D8D8',
+    padding: 10,
+  },
 });
 
 export default mainStyles;
