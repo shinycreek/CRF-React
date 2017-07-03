@@ -5,16 +5,24 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
+import { connect } from 'react-redux';
+import validator from 'validator';
 import { renderInputField } from '../../components/fields/';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
+import normalizePhone from '../../utils/normalizePhone';
 
 const validate = (values) => {
   const errors = {};
-  const describeTrash = values.get('describe_trash');
+  const email = values.get('email');
+  const phone = values.get('phone');
 
-  if (!describeTrash) {
-    errors.describe_trash = 'Required';
+  if (email && !validator.isEmail(email)) {
+    errors.email = 'Invalid Email';
+  }
+
+  if (phone && phone.length !== 12) {
+    errors.phone = 'Invalid Phone Number';
   }
 
   return errors;
@@ -29,41 +37,28 @@ class StepThird extends React.Component {
   render() {
     return (
       <View>
+        <Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+          You can provide your email address and phone number so that we can contact you about this issue.
+        </Text>
+
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
           <Field
-            name="describe_trash"
-            label="Describe the trash and anything large or unique:"
+            name="email"
+            label="Email Address (optional)"
             component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
-            style={[styles.multilineInputField]}
+            style={mainStyles.inputField}
           />
         </View>
 
-        <View style={[mainStyles.box, styles.bottomSpace]}>
+        <View style={[mainStyles.box, { marginBottom: 50 }]}>
           <Field
-            name="describe_trash"
-            label="Describe the location and extent of the trash:"
+            name="phone"
+            label="Phone Number (optional)"
             component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
-            style={[styles.multilineInputField]}
+            style={mainStyles.inputField}
+            normalize={normalizePhone}
           />
         </View>
-
-        <View style={[mainStyles.box, styles.bottomSpace]}>
-          <Field
-            name="adjacent_waterway"
-            label="What is the name of the adjacent waterway? (If known)"
-            component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
-            style={[styles.multilineInputField]}
-          />
-        </View>
-
-        <View style={[mainStyles.box]}>
-          <Text>Location saved as current location.</Text>
-          <Text>Click here to set to a different location.</Text>
-        </View>
-
       </View>
     );
   }
@@ -74,9 +69,20 @@ StepThird.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default reduxForm({
+const mapStateToProps = (state) => {
+  const stateObj = { userSetting: state.get('userSetting') };
+  const initialValues = state.getIn(['userSetting', 'record']);
+  if (initialValues && (initialValues.size > 0)) {
+    stateObj.initialValues = initialValues;
+  }
+  return stateObj;
+};
+
+const StepThirdForm = reduxForm({
   form: 'trashLoggerForm', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate,
 })(StepThird);
+
+export default connect(mapStateToProps)(StepThirdForm);

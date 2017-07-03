@@ -16,6 +16,17 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#D8D8D8',
     padding: 10,
   },
+  textFont: {
+    color: 'white',
+    fontSize: 16,
+  },
+  inputField: {
+    borderColor: 'gray',
+    borderWidth: 2,
+    marginTop: 5,
+    height: 40,
+    backgroundColor: 'white',
+  },
 });
 
 export default mainStyles;

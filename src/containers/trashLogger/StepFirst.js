@@ -12,9 +12,14 @@ import mainStyles from '../../assets/css/mainStyles';
 const validate = (values) => {
   const errors = {};
   const describeTrash = values.get('describe_trash');
+  const describeLocation = values.get('describe_location');
 
   if (!describeTrash) {
     errors.describe_trash = 'Required';
+  }
+
+  if (!describeLocation) {
+    errors.describe_location = 'Required';
   }
 
   return errors;
@@ -41,7 +46,7 @@ class StepFirst extends React.Component {
 
         <View style={[mainStyles.box, styles.bottomSpace]}>
           <Field
-            name="describe_trash"
+            name="describe_location"
             label="Describe the location and extent of the trash:"
             component={renderInputField}
             options={{ multiline: true, numberOfLines: 3 }}

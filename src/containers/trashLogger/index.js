@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { View, Alert, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import _ from 'lodash';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createUserSetting } from '../../actions/userSetting';
 import StepFirst from './StepFirst';
 import StepSecond from './StepSecond';
 import StepThird from './StepThird';
 import Footer from '../../components/footer/';
-
 import mainStyles from '../../assets/css/mainStyles';
 import styles from './styles';
 
@@ -45,13 +48,22 @@ class TrashLogger extends Component {
   }
 
   onSubmit(values) {
+    const phone = values.get('phone');
+    const email = values.get('email');
+    const record = this.props.userSetting.get('record');
+    const phoneId = this.props.userSetting.get('phoneId');
+
+    if ((!record || record.size === 0) && (email || phone)) {
+      this.props.actions.createUserSetting({ phone_id: phoneId, email, phone });
+    }
+    this.nextPage();
   }
 
   handleChildFormSubmit(handleSubmit) {
     this.setState({ handleSubmit });
   }
 
-  nextPage(values) {
+  nextPage() {
     this.setState({ page: this.state.page + 1 });
   }
 
@@ -61,6 +73,8 @@ class TrashLogger extends Component {
 
   stepName() {
     let message = '';
+    let body = null;
+
     switch (this.state.page) {
       case 1:
         message = 'Step 1: Describe the Trash';
@@ -71,16 +85,24 @@ class TrashLogger extends Component {
       case 3:
         message = 'Step 3: Submit this log';
         break;
-      case 4:
-        message = 'Thank you!';
-        break;
       default:
-        message = '';
+        message = 'Thank you!';
+        body = 'Your report has been logged, and you will be used to help us keep the waterways cleaner.';
     }
-    return (
+    const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
         <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
-      </View>
+      </View>,
+    ];
+
+    if (body) {
+      response.push(<Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+        You can provide your email address and phone number so that we can contact you about this issue.
+      </Text>);
+    }
+
+    return (
+      response
     );
   }
 
@@ -90,18 +112,26 @@ class TrashLogger extends Component {
     return (
       <View style={[mainStyles.container, styles.container]}>
         {this.stepName()}
-        <KeyboardAwareScrollView>
-          {page === 1 && <StepFirst handleChildFormSubmit={this.handleChildFormSubmit} />}
-          {page === 2 && <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />}
-          {page === 3 && <StepThird handleChildFormSubmit={this.handleChildFormSubmit} />}
-        </KeyboardAwareScrollView>
+        {page === 1 &&
+          <KeyboardAwareScrollView>
+            <StepFirst handleChildFormSubmit={this.handleChildFormSubmit} />
+          </KeyboardAwareScrollView>
+        }
+        {page === 2 &&
+          <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />
+        }
+        {page === 3 &&
+          <KeyboardAwareScrollView>
+            <StepThird handleChildFormSubmit={this.handleChildFormSubmit} />
+          </KeyboardAwareScrollView>
+        }
         <Footer
           left={_.includes([2, 3], page)}
           onPressLeft={this.previousPage}
           right={_.includes([1, 2], page)}
           onPressRight={handleSubmit && handleSubmit(this.nextPage)}
           middle={page === 3}
-          // onPressMiddle={handleSubmit(this.onSubmit)}
+          onPressMiddle={handleSubmit && handleSubmit(this.onSubmit)}
           middleButtonText="Submit Report"
         />
       </View>
@@ -109,4 +139,24 @@ class TrashLogger extends Component {
   }
 }
 
-export default TrashLogger;
+TrashLogger.propTypes = {
+  actions: PropTypes.shape({
+    createUserSetting: PropTypes.func.isRequired,
+  }).isRequired,
+  userSetting: PropTypes.instanceOf(Object).isRequired,
+};
+
+
+const mapStateToProps = state => (
+  {
+    userSetting: state.get('userSetting'),
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    actions: bindActionCreators({ createUserSetting }, dispatch),
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(TrashLogger);

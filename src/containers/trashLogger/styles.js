@@ -35,6 +35,43 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
   },
+
+  imagePicker: {
+    position: 'absolute',
+    bottom: 50,
+    width: 150,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  topStepSecond: {
+    flex: 1,
+    minHeight: 100,
+    marginBottom: 30,
+  },
+
+  centerFlex: {
+    flex: 1,
+    alignItems: 'center',
+  },
+
+  imageContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 10,
+  },
+
+  imageContent: {
+    alignContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+
+  imageDimension: {
+    height: 100,
+    width: 120,
+  },
+
 });
 
 export default styles;

@@ -87,7 +87,7 @@ class UserSetting extends React.Component {
       <Picker
         {...input}
         selectedValue={input.value}
-        style={styles.inputField}
+        style={mainStyles.inputField}
         onValueChange={value => input.onChange(value)}
       >
         {data.map((name, index) => (
@@ -122,7 +122,7 @@ class UserSetting extends React.Component {
                   name="first_name"
                   component={renderInputField}
                   label="First Name"
-                  style={[styles.inputField, { marginRight: 5 }]}
+                  style={[mainStyles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
@@ -130,7 +130,7 @@ class UserSetting extends React.Component {
                   name="last_name"
                   label="Last Name"
                   component={renderInputField}
-                  style={[styles.inputField]}
+                  style={[mainStyles.inputField]}
                 />
               </View>
             </View>
@@ -140,7 +140,7 @@ class UserSetting extends React.Component {
                 name="email"
                 label="Email"
                 component={renderInputField}
-                style={[styles.inputField]}
+                style={[mainStyles.inputField]}
               />
             </View>
 
@@ -150,7 +150,7 @@ class UserSetting extends React.Component {
                 label="Phone Number:"
                 component={renderInputField}
                 normalize={normalizePhone}
-                style={[styles.inputField]}
+                style={[mainStyles.inputField]}
               />
             </View>
 
@@ -170,7 +170,7 @@ class UserSetting extends React.Component {
                 name="address"
                 label="Address"
                 component={renderInputField}
-                style={[styles.inputField]}
+                style={[mainStyles.inputField]}
               />
             </View>
 
@@ -180,7 +180,7 @@ class UserSetting extends React.Component {
                   name="city"
                   label="City"
                   component={renderInputField}
-                  style={[styles.inputField, { marginRight: 5 }]}
+                  style={[mainStyles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
@@ -189,7 +189,7 @@ class UserSetting extends React.Component {
                   label="State"
                   component={renderInputField}
                   options={{ maxLength: 2 }}
-                  style={[styles.inputField]}
+                  style={[mainStyles.inputField]}
                 />
               </View>
             </View>
@@ -200,7 +200,7 @@ class UserSetting extends React.Component {
                 label="Zip"
                 component={renderInputField}
                 options={{ maxLength: 20, keyboardType: 'numeric' }}
-                style={[styles.inputField]}
+                style={[mainStyles.inputField]}
               />
             </View>
           </View>

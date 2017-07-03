@@ -2,68 +2,188 @@ import React from 'react';
 import {
   View,
   Text,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { renderInputField } from '../../components/fields/';
+import ImagePicker from 'react-native-image-picker';
+import Immutable from 'immutable';
+import _ from 'lodash';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { RenderCameraButton, RenderGallaryButton } from '../../components/navbarComponent';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 
 const validate = (values) => {
   const errors = {};
-  const describeTrash = values.get('describe_trash1');
+  const images = values.get('images');
 
-  if (!describeTrash) {
-    errors.describe_trash1 = 'Required';
+  if (!images) {
+    errors.images = 'Please select at least one image';
   }
 
   return errors;
 };
 
+const width = Dimensions.get('window').width;
+
 class StepSecond extends React.Component {
+  constructor(props) {
+    super(props);
+    this.selectPhotoTapped = this.selectPhotoTapped.bind(this);
+    this.selectCameraTapped = this.selectCameraTapped.bind(this);
+    this.renderImageField = this.renderImageField.bind(this);
+    this.removeSelectedImage = this.removeSelectedImage.bind(this);
+    this.state = {
+      data: Immutable.fromJS({ images: [] }),
+    };
+  }
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
   }
 
-  render() {
+  renderImageField(field) {
+    const { touched, error } = field.meta;
+    if (touched && error) {
+      Alert.alert(error);
+    }
+
     return (
-      <View>
-        <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
-          <Field
-            name="describe_trash"
-            label="Describe the trash and anything large or unique:"
-            component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
-            style={[styles.multilineInputField]}
+      <View style={[mainStyles.box, styles.imagePicker]}>
+        <View style={styles.centerFlex}>
+          <RenderCameraButton
+            onClick={() => this.selectCameraTapped(field)}
+            size={40}
+            color="black"
           />
         </View>
-
-        <View style={[mainStyles.box, styles.bottomSpace]}>
-          <Field
-            name="describe_trash1"
-            label="Describe the location and extent of the trash:"
-            component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
-            style={[styles.multilineInputField]}
+        <View style={styles.centerFlex}>
+          <RenderGallaryButton
+            onClick={() => this.selectPhotoTapped(field)}
+            size={40}
+            color="black"
           />
         </View>
+      </View>
+    );
+  }
 
-        <View style={[mainStyles.box, styles.bottomSpace]}>
-          <Field
-            name="adjacent_waterway"
-            label="What is the name of the adjacent waterway? (If known)"
-            component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
-            style={[styles.multilineInputField]}
-          />
+  selectPhotoTapped(field) {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true,
+      },
+    };
+    if (!this.isOverLimit()) {
+      ImagePicker.launchImageLibrary(options, (response) => {
+        this.selectImageResponse(response, field);
+      });
+    }
+  }
+
+  selectCameraTapped(field) {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true,
+      },
+    };
+    if (!this.isOverLimit()) {
+      ImagePicker.launchCamera(options, (response) => {
+        this.selectImageResponse(response, field);
+      });
+    }
+  }
+
+  selectImageResponse(response, field) {
+    const imageData = response.data;
+    const fileName = response.fileName;
+
+    if (response.didCancel) {
+      console.log('User cancelled photo picker');
+    } else if (response.error) {
+      console.log(`ImagePicker Error: ${response.error}`);
+    } else if (response.customButton) {
+      console.log(`User tapped custom button: ${response.customButton}`);
+    } else {
+      const source = { uri: response.uri };
+
+      this.setState((prevState) => {
+        const data = prevState.data;
+        return {
+          data: data.updateIn(['images'], image => image.push({ url: imageData, success: true, name: fileName, avatarSource: source })),
+        };
+      }, () => {
+        field.input.onChange(
+        _.compact(
+          this.state.data.get('images').map(c => (c.success && c.url)).toJS(),
+        ),
+      );
+      },
+    );
+    }
+  }
+
+  isOverLimit() {
+    if (this.state.data.get('images').size >= 6) {
+      Alert.alert('You can upload max 6 images');
+      return true;
+    }
+    return false;
+  }
+
+  removeSelectedImage(index) {
+    this.setState((prevState) => {
+      const data = prevState.data;
+      return {
+        data: data.deleteIn(['images', index]),
+      };
+    });
+  }
+
+  render() {
+    const capturedImages = this.state.data.get('images');
+    return (
+      <View style={styles.centerFlex}>
+        <View style={[styles.topStepSecond]}>
+          <View style={[styles.imageContainer, { width }]}>
+            {capturedImages.map((image, i) => (
+              <View
+                key={`selectedImage${i}`}
+                style={[styles.imageContent, { width: (width / 2) }]}
+              >
+                <Image
+                  source={image.avatarSource}
+                  style={[styles.imageDimension, mainStyles.box]}
+                />
+                <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 30 }}>
+                  <Text>
+                    <Icon name="times-circle" size={30} color="white" />
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              ),
+            )}
+          </View>
+          <Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+            You can attach up to 6 images to this trash log.</Text>
+          <Text style={mainStyles.textFont}>
+            Use your camera to take photos of the trash you would like to report, or select existing photos from your Library.
+          </Text>
         </View>
-
-        <View style={[mainStyles.box]}>
-          <Text>Location saved as current location.</Text>
-          <Text>Click here to set to a different location.</Text>
-        </View>
-
+        <Field
+          name="images"
+          component={this.renderImageField}
+        />
       </View>
     );
   }

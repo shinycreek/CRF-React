@@ -16,13 +16,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
 
   middle: {
     flex: 1,
     justifyContent: 'flex-start',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     flexDirection: 'row',
     marginTop: 5,
   },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   },
 
 });
