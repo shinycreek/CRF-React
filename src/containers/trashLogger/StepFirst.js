@@ -64,7 +64,7 @@ class StepFirst extends React.Component {
           />
         </View>
 
-        <View style={[mainStyles.box]}>
+        <View style={[mainStyles.box, { marginBottom: 50 }]}>
           <Text>Location saved as current location.</Text>
           <Text>Click here to set to a different location.</Text>
         </View>

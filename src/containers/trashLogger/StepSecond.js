@@ -19,10 +19,10 @@ import mainStyles from '../../assets/css/mainStyles';
 
 const validate = (values) => {
   const errors = {};
-  const images = values.get('images');
+  const images = values.get('trash_logger_images_attributes');
 
   if (!images) {
-    errors.images = 'Please select at least one image';
+    errors.trash_logger_images_attributes = 'Please select at least one image';
   }
 
   return errors;
@@ -181,7 +181,7 @@ class StepSecond extends React.Component {
           </Text>
         </View>
         <Field
-          name="images"
+          name="trash_logger_images_attributes.image"
           component={this.renderImageField}
         />
       </View>

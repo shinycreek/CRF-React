@@ -5,7 +5,9 @@ import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Actions } from 'react-native-router-flux';
 import { createUserSetting } from '../../actions/userSetting';
+import { createTrashLogger } from '../../actions/trashLogger';
 import StepFirst from './StepFirst';
 import StepSecond from './StepSecond';
 import StepThird from './StepThird';
@@ -39,7 +41,11 @@ class TrashLogger extends Component {
           error: null,
         });
       },
-      error => Alert.alert('Location Error', JSON.stringify(error)),
+      error => Alert.alert('Location Error', 'Please enable GPS',
+        [
+        { text: 'OK', onPress: () => Actions.pop() },
+        ]),
+        { distanceFilter: 1 },
     );
   }
 
@@ -52,11 +58,13 @@ class TrashLogger extends Component {
     const email = values.get('email');
     const record = this.props.userSetting.get('record');
     const phoneId = this.props.userSetting.get('phoneId');
+    const { latitude, longitude } = this.state;
+    const formValues = values.merge({ latitude, longitude, phone_id: phoneId }).toJS();
 
     if ((!record || record.size === 0) && (email || phone)) {
       this.props.actions.createUserSetting({ phone_id: phoneId, email, phone });
     }
-    this.nextPage();
+    this.props.actions.createTrashLogger(formValues).then(() => this.nextPage());
   }
 
   handleChildFormSubmit(handleSubmit) {
@@ -107,10 +115,10 @@ class TrashLogger extends Component {
   }
 
   render() {
-    const { page, handleSubmit } = this.state;
-
+    const { page, handleSubmit, latitude, longitude } = this.state;
     return (
       <View style={[mainStyles.container, styles.container]}>
+        <Text style={{ color: 'white', marginTop: 10 }}>{latitude} {longitude}</Text>
         {this.stepName()}
         {page === 1 &&
           <KeyboardAwareScrollView>
@@ -142,10 +150,10 @@ class TrashLogger extends Component {
 TrashLogger.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,
+    createTrashLogger: PropTypes.func.isRequired,
   }).isRequired,
   userSetting: PropTypes.instanceOf(Object).isRequired,
 };
-
 
 const mapStateToProps = state => (
   {
@@ -155,7 +163,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting }, dispatch),
+    actions: bindActionCreators({ createUserSetting, createTrashLogger }, dispatch),
   }
 );
 
