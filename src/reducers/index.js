@@ -3,11 +3,13 @@ import { reducer as reduxFormReducer } from 'redux-form/immutable';
 import basinMap from './basinMap';
 import crf from './crf';
 import userSetting from './userSetting';
+import trashLogger from './trashLogger';
 
 const rootReducer = combineReducers({
   basinMap,
   crf,
   userSetting,
+  trashLogger,
   form: reduxFormReducer,
 });
 

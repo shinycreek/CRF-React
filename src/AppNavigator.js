@@ -5,6 +5,7 @@ import Home from './components/home/';
 import BasinMap from './containers/basinMap/';
 import CRF from './containers/crf/';
 import UserSetting from './containers/userSetting/';
+import TrashLogger from './containers/trashLogger/';
 import { closeLogo } from './constants/images';
 import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
@@ -36,6 +37,15 @@ const AppNavigator = () => (
         component={UserSetting}
         renderBackButton={() => renderHomeButton()}
         title="Settings"
+      />
+      <Scene
+        key="trashLogger"
+        hideNavBar={false}
+        component={TrashLogger}
+        renderBackButton={() => renderHomeButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
+        title="Trash Logger"
       />
     </Scene>
   </RouterWithRedux>

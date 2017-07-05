@@ -12,11 +12,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 
-  box: {
-    backgroundColor: '#D8D8D8',
-    padding: 10,
-  },
-
   bottom: {
     flex: 1,
     marginBottom: 50,

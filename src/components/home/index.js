@@ -14,9 +14,12 @@ const Home = () => (
   <View style={[mainStyles.container, styles.container]}>
 
     <View style={{ flex: 1, padding: 10 }}>
-      <View style={[styles.box, styles.mediumpurple]}>
-        <Text style={styles.textStyle}>Trash Logger</Text>
-      </View>
+
+      <TouchableOpacity onPress={() => Actions.trashLogger()} style={[styles.box, styles.mediumpurple]}>
+        <View>
+          <Text style={styles.textStyle}>Trash Logger</Text>
+        </View>
+      </TouchableOpacity>
 
       <TouchableOpacity onPress={() => Actions.basinMap()} style={[styles.box, styles.coral]}>
         <View>

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  TextInput,
   Picker,
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -17,6 +16,7 @@ import { bindActionCreators } from 'redux';
 import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
 import mainStyles from '../../assets/css/mainStyles';
 import normalizePhone from '../../utils/normalizePhone';
+import { renderInputField } from '../../components/fields/';
 import styles from './styles';
 
 const validate = (values) => {
@@ -78,30 +78,8 @@ const validate = (values) => {
 class UserSetting extends React.Component {
   constructor(props) {
     super(props);
-    this.renderInputField = this.renderInputField.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  renderInputField({ input: { onChange, ...restInput }, style, meta: { touched, error }, options }) {
-    const arrStyles = [styles.inputField, style];
-    if (touched && error) {
-      arrStyles.push(mainStyles.inputError);
-    }
-    return (
-      <View>
-        <TextInput
-          onChangeText={onChange}
-          {...restInput}
-          style={arrStyles}
-          underlineColorAndroid="transparent"
-          {...options}
-        />
-        {touched && error &&
-          <Text style={mainStyles.errorText}>{error}</Text>
-        }
-      </View>
-    );
   }
 
   renderSelect({ input, data }) {
@@ -109,7 +87,7 @@ class UserSetting extends React.Component {
       <Picker
         {...input}
         selectedValue={input.value}
-        style={styles.inputField}
+        style={mainStyles.inputField}
         onValueChange={value => input.onChange(value)}
       >
         {data.map((name, index) => (
@@ -137,39 +115,42 @@ class UserSetting extends React.Component {
           <Text style={styles.top}>
             Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
           </Text>
-          <View style={[styles.box, styles.middle]}>
+          <View style={[mainStyles.box, styles.middle]}>
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>First Name </Text>
                 <Field
                   name="first_name"
-                  component={this.renderInputField}
-                  style={{ marginRight: 5 }}
+                  component={renderInputField}
+                  label="First Name"
+                  style={[mainStyles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>Last Name </Text>
                 <Field
                   name="last_name"
-                  component={this.renderInputField}
+                  label="Last Name"
+                  component={renderInputField}
+                  style={[mainStyles.inputField]}
                 />
               </View>
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Email </Text>
               <Field
                 name="email"
-                component={this.renderInputField}
+                label="Email"
+                component={renderInputField}
+                style={[mainStyles.inputField]}
               />
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Phone Number: </Text>
               <Field
                 name="phone"
-                component={this.renderInputField}
+                label="Phone Number:"
+                component={renderInputField}
                 normalize={normalizePhone}
+                style={[mainStyles.inputField]}
               />
             </View>
 
@@ -183,40 +164,43 @@ class UserSetting extends React.Component {
             </View>
           </View>
 
-          <View style={[styles.box, styles.bottom]}>
+          <View style={[mainStyles.box, styles.bottom]}>
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Address </Text>
               <Field
                 name="address"
-                component={this.renderInputField}
+                label="Address"
+                component={renderInputField}
+                style={[mainStyles.inputField]}
               />
             </View>
 
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>City </Text>
                 <Field
                   name="city"
-                  component={this.renderInputField}
-                  style={{ marginRight: 5 }}
+                  label="City"
+                  component={renderInputField}
+                  style={[mainStyles.inputField, { marginRight: 5 }]}
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={styles.label}>State </Text>
                 <Field
                   name="state"
-                  component={this.renderInputField}
+                  label="State"
+                  component={renderInputField}
                   options={{ maxLength: 2 }}
+                  style={[mainStyles.inputField]}
                 />
               </View>
             </View>
 
             <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Zip </Text>
               <Field
                 name="zip"
-                component={this.renderInputField}
+                label="Zip"
+                component={renderInputField}
                 options={{ maxLength: 20, keyboardType: 'numeric' }}
+                style={[mainStyles.inputField]}
               />
             </View>
           </View>
@@ -252,13 +236,14 @@ UserSetting.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.string),
 };
 
-
-const mapStateToProps = state => (
-  {
-    userSetting: state.get('userSetting'),
-    initialValues: state.getIn(['userSetting', 'record']),
+const mapStateToProps = (state) => {
+  const stateObj = { userSetting: state.get('userSetting') };
+  const initialValues = state.getIn(['userSetting', 'record']);
+  if (initialValues && (initialValues.size > 0)) {
+    stateObj.initialValues = initialValues;
   }
-);
+  return stateObj;
+};
 
 const mapDispatchToProps = dispatch => (
   {

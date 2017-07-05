@@ -17,7 +17,7 @@ export const getUserSetting = phoneId => (
       }
     })
     .catch(() => {
-      dispatch({ type: types.ERROR_GET_USER_SETTING });
+      dispatch({ type: types.SUCCESS_GET_USER_SETTING });
     });
   }
 );
