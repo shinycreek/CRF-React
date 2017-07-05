@@ -35,6 +35,9 @@ class StepThird extends React.Component {
   }
 
   render() {
+    const { userSettingRecord } = this.props;
+    const phone = userSettingRecord ? userSettingRecord.get('phone') : undefined;
+    const email = userSettingRecord ? userSettingRecord.get('email') : undefined;
     return (
       <View>
         <Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
@@ -45,6 +48,7 @@ class StepThird extends React.Component {
           <Field
             name="email"
             label="Email Address (optional)"
+            options={{ value: email }}
             component={renderInputField}
             style={mainStyles.inputField}
           />
@@ -67,19 +71,17 @@ class StepThird extends React.Component {
 StepThird.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  userSettingRecord: PropTypes.instanceOf(Object).isRequired,
 };
 
 const mapStateToProps = (state) => {
-  const stateObj = { userSetting: state.get('userSetting') };
-  const initialValues = state.getIn(['userSetting', 'record']);
-  if (initialValues && (initialValues.size > 0)) {
-    stateObj.initialValues = initialValues;
-  }
-  return stateObj;
+  return {
+    userSettingRecord: state.getIn(['userSetting', 'record']),
+  };
 };
 
 const StepThirdForm = reduxForm({
-  form: 'trashLoggerForm', // <------ same form name
+  form: 'trashLoggerTileForm', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate,

@@ -8,20 +8,23 @@ import {
   Alert,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm, formValueSelector, change as changeFieldValue } from 'redux-form/immutable';
+import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import Immutable from 'immutable';
 import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { bindActionCreators } from 'redux';
 import { RenderCameraButton, RenderGallaryButton } from '../../components/navbarComponent';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 
+const selector = formValueSelector('trashLoggerTileForm');
+
 const validate = (values) => {
   const errors = {};
   const images = values.get('trash_logger_images_attributes');
-
-  if (!images) {
+  if (!images || images.length === 0) {
     errors.trash_logger_images_attributes = 'Please select at least one image';
   }
 
@@ -105,7 +108,7 @@ class StepSecond extends React.Component {
   }
 
   selectImageResponse(response, field) {
-    const imageData = response.data;
+    const imageData = `data:image/jpeg;base64,${response.data}`;
     const fileName = response.fileName;
 
     if (response.didCancel) {
@@ -115,18 +118,16 @@ class StepSecond extends React.Component {
     } else if (response.customButton) {
       console.log(`User tapped custom button: ${response.customButton}`);
     } else {
-      const source = { uri: response.uri };
-
       this.setState((prevState) => {
         const data = prevState.data;
         return {
-          data: data.updateIn(['images'], image => image.push({ url: imageData, success: true, name: fileName, avatarSource: source })),
+          data: data.updateIn(['images'], image => image.push({ url: imageData, success: true, name: fileName })),
         };
       }, () => {
         field.input.onChange(
-        _.compact(
-          this.state.data.get('images').map(c => (c.success && c.url)).toJS(),
-        ),
+        // _.compact(
+          this.state.data.get('images').map(c => (c.success && { image: c.url })).toJS(),
+        // ),
       );
       },
     );
@@ -147,22 +148,25 @@ class StepSecond extends React.Component {
       return {
         data: data.deleteIn(['images', index]),
       };
+    }, () => {
+      const updateValue = this.state.data.get('images').map(c => (c.success && { image: c.url })).toJS();
+      this.props.actions.changeFieldValue(this.props.form, 'trash_logger_images_attributes', updateValue, false);
     });
   }
 
   render() {
-    const capturedImages = this.state.data.get('images');
+    const { imageSelected } = this.props;
     return (
       <View style={styles.centerFlex}>
         <View style={[styles.topStepSecond]}>
           <View style={[styles.imageContainer, { width }]}>
-            {capturedImages.map((image, i) => (
+            {imageSelected && imageSelected.map((image, i) => (
               <View
-                key={`selectedImage${i}`}
+                key={`imageSelected${i}`}
                 style={[styles.imageContent, { width: (width / 2) }]}
               >
                 <Image
-                  source={image.avatarSource}
+                  source={{ uri: image.image }}
                   style={[styles.imageDimension, mainStyles.box]}
                 />
                 <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 30 }}>
@@ -181,7 +185,7 @@ class StepSecond extends React.Component {
           </Text>
         </View>
         <Field
-          name="trash_logger_images_attributes.image"
+          name="trash_logger_images_attributes"
           component={this.renderImageField}
         />
       </View>
@@ -190,13 +194,32 @@ class StepSecond extends React.Component {
 }
 
 StepSecond.propTypes = {
+  actions: PropTypes.shape({
+    changeFieldValue: PropTypes.func.isRequired,
+  }).isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  imageSelected: PropTypes.instanceOf(Object).isRequired,
+  form: PropTypes.string.isRequired,
 };
 
-export default reduxForm({
-  form: 'trashLoggerForm', // <------ same form name
+function mapStateToProps(state) {
+  return {
+    imageSelected: selector(state, 'trash_logger_images_attributes'),
+  };
+}
+
+const mapDispatchToProps = dispatch => (
+  {
+    actions: bindActionCreators({ changeFieldValue }, dispatch),
+  }
+);
+
+const trashLoggerTileFormObj = reduxForm({
+  form: 'trashLoggerTileForm', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate,
 })(StepSecond);
+
+export default connect(mapStateToProps, mapDispatchToProps)(trashLoggerTileFormObj);

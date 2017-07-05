@@ -39,7 +39,7 @@ class StepFirst extends React.Component {
             name="describe_trash"
             label="Describe the trash and anything large or unique:"
             component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
+            options={{ multiline: true, numberOfLines: 2 }}
             style={[styles.multilineInputField]}
           />
         </View>
@@ -49,7 +49,7 @@ class StepFirst extends React.Component {
             name="describe_location"
             label="Describe the location and extent of the trash:"
             component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
+            options={{ multiline: true, numberOfLines: 2 }}
             style={[styles.multilineInputField]}
           />
         </View>
@@ -59,7 +59,7 @@ class StepFirst extends React.Component {
             name="adjacent_waterway"
             label="What is the name of the adjacent waterway? (If known)"
             component={renderInputField}
-            options={{ multiline: true, numberOfLines: 3 }}
+            options={{ multiline: true, numberOfLines: 2 }}
             style={[styles.multilineInputField]}
           />
         </View>
@@ -80,7 +80,7 @@ StepFirst.propTypes = {
 };
 
 export default reduxForm({
-  form: 'trashLoggerForm', // <------ same form name
+  form: 'trashLoggerTileForm', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate,

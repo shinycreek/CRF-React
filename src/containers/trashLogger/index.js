@@ -3,10 +3,11 @@ import { View, Alert, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import _ from 'lodash';
 import { bindActionCreators } from 'redux';
+import { reset } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
-import { createUserSetting } from '../../actions/userSetting';
+import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
 import { createTrashLogger } from '../../actions/trashLogger';
 import StepFirst from './StepFirst';
 import StepSecond from './StepSecond';
@@ -64,7 +65,11 @@ class TrashLogger extends Component {
     if ((!record || record.size === 0) && (email || phone)) {
       this.props.actions.createUserSetting({ phone_id: phoneId, email, phone });
     }
-    this.props.actions.createTrashLogger(formValues).then(() => this.nextPage());
+
+    this.props.actions.createTrashLogger(formValues).then(() => {
+      this.props.actions.reset('trashLoggerTileForm');
+      this.nextPage();
+    });
   }
 
   handleChildFormSubmit(handleSubmit) {
@@ -98,14 +103,15 @@ class TrashLogger extends Component {
         body = 'Your report has been logged, and you will be used to help us keep the waterways cleaner.';
     }
     const response = [
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
         <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
       </View>,
     ];
 
     if (body) {
-      response.push(<Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-        You can provide your email address and phone number so that we can contact you about this issue.
+      response.push(
+        <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+          You can provide your email address and phone number so that we can contact you about this issue.
       </Text>);
     }
 
@@ -151,6 +157,8 @@ TrashLogger.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,
     createTrashLogger: PropTypes.func.isRequired,
+    updateUserSetting: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
   }).isRequired,
   userSetting: PropTypes.instanceOf(Object).isRequired,
 };
@@ -163,7 +171,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, createTrashLogger }, dispatch),
+    actions: bindActionCreators({ createUserSetting, updateUserSetting, createTrashLogger, reset }, dispatch),
   }
 );
 
