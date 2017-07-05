@@ -59,6 +59,7 @@ class StepThird extends React.Component {
             name="phone"
             label="Phone Number (optional)"
             component={renderInputField}
+            options={{ value: phone }}
             style={mainStyles.inputField}
             normalize={normalizePhone}
           />
