@@ -12,14 +12,13 @@ import { Field, reduxForm, formValueSelector, change as changeFieldValue } from 
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import Immutable from 'immutable';
-import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { RenderCameraButton, RenderGallaryButton } from '../../components/navbarComponent';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 
-const selector = formValueSelector('trashLoggerTileForm');
+const selector = formValueSelector('pollutionReportForm');
 
 const validate = (values) => {
   const errors = {};
@@ -178,9 +177,9 @@ class StepSecond extends React.Component {
             )}
           </View>
           <Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-            You can attach up to 6 images to this trash log.</Text>
+            You can attach up to 6 images to this pollution log.</Text>
           <Text style={mainStyles.textFont}>
-            Use your camera to take photos of the trash you would like to report, or select existing photos from your Library.
+            Use your camera to take photos of the pollution you would like to report, or select existing photos from your Library.
           </Text>
         </View>
         <Field
@@ -214,11 +213,11 @@ const mapDispatchToProps = dispatch => (
   }
 );
 
-const trashLoggerTileFormObj = reduxForm({
-  form: 'trashLoggerTileForm', // <------ same form name
+const pollutionReportFormObj = reduxForm({
+  form: 'pollutionReportForm', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate,
 })(StepSecond);
 
-export default connect(mapStateToProps, mapDispatchToProps)(trashLoggerTileFormObj);
+export default connect(mapStateToProps, mapDispatchToProps)(pollutionReportFormObj);
