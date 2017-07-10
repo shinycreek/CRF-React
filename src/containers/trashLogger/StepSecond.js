@@ -41,7 +41,7 @@ class StepSecond extends React.Component {
     this.renderImageField = this.renderImageField.bind(this);
     this.removeSelectedImage = this.removeSelectedImage.bind(this);
     this.state = {
-      data: Immutable.fromJS({ images: [] }),
+      data: Immutable.fromJS({ images: this.props.imageSelected || [] }),
     };
   }
 
@@ -109,7 +109,6 @@ class StepSecond extends React.Component {
 
   selectImageResponse(response, field) {
     const imageData = `data:image/jpeg;base64,${response.data}`;
-    const fileName = response.fileName;
 
     if (response.didCancel) {
       console.log('User cancelled photo picker');
@@ -121,12 +120,12 @@ class StepSecond extends React.Component {
       this.setState((prevState) => {
         const data = prevState.data;
         return {
-          data: data.updateIn(['images'], image => image.push({ url: imageData, success: true, name: fileName })),
+          data: data.updateIn(['images'], image => image.push(Immutable.fromJS({ image: imageData }))),
         };
       }, () => {
         field.input.onChange(
         // _.compact(
-          this.state.data.get('images').map(c => (c.success && { image: c.url })).toJS(),
+          this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS(),
         // ),
       );
       },
@@ -149,7 +148,7 @@ class StepSecond extends React.Component {
         data: data.deleteIn(['images', index]),
       };
     }, () => {
-      const updateValue = this.state.data.get('images').map(c => (c.success && { image: c.url })).toJS();
+      const updateValue = this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS();
       this.props.actions.changeFieldValue(this.props.form, 'trash_logger_images_attributes', updateValue, false);
     });
   }

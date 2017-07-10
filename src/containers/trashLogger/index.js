@@ -44,8 +44,9 @@ class TrashLogger extends Component {
       },
       error => Alert.alert('Location Error', 'Please enable GPS',
         [
-        { text: 'OK', onPress: () => Actions.pop() },
-        ]),
+          { text: 'OK', onPress: () => Actions.pop() },
+        ],
+        { cancelable: false }),
         { distanceFilter: 1 },
     );
   }
