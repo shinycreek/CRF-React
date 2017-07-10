@@ -22,9 +22,9 @@ const selector = formValueSelector('pollutionReportForm');
 
 const validate = (values) => {
   const errors = {};
-  const images = values.get('trash_logger_images_attributes');
+  const images = values.get('upload_images_attributes');
   if (!images || images.length === 0) {
-    errors.trash_logger_images_attributes = 'Please select at least one image';
+    errors.upload_images_attributes = 'Please select at least one image';
   }
 
   return errors;
@@ -148,7 +148,7 @@ class StepSecond extends React.Component {
       };
     }, () => {
       const updateValue = this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS();
-      this.props.actions.changeFieldValue(this.props.form, 'trash_logger_images_attributes', updateValue, false);
+      this.props.actions.changeFieldValue(this.props.form, 'upload_images_attributes', updateValue, false);
     });
   }
 
@@ -183,7 +183,7 @@ class StepSecond extends React.Component {
           </Text>
         </View>
         <Field
-          name="trash_logger_images_attributes"
+          name="upload_images_attributes"
           component={this.renderImageField}
         />
       </View>
@@ -203,7 +203,7 @@ StepSecond.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    imageSelected: selector(state, 'trash_logger_images_attributes'),
+    imageSelected: selector(state, 'upload_images_attributes'),
   };
 }
 
