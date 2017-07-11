@@ -16,7 +16,10 @@ const AuthorityContact = ({ contactDetails }) => (
     <ScrollView style={[mainStyles.container]}>
       {contactDetails.map((contactDetail, index) => (
         <View key={`autCon${index}`} style={[mainStyles.box, { margin: 10 }]}>
-          <Text style={[styles.textStyle]}> { contactDetail.get('display_name') } </Text>
+          <Text style={[styles.textStyle]}>
+            <Icon name="user" color="#272b71" style={[styles.textStyle]} />
+            &nbsp; { contactDetail.get('display_name') }
+          </Text>
           <TouchableOpacity
             onPress={() => email([contactDetail.get('email')], null, null, null, null)}
           >
