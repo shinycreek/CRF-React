@@ -3935,6 +3935,10 @@ react-devtools@^2.3.1:
     react-devtools-core "^2.3.3"
     update-notifier "^2.1.0"
 
+react-native-communications@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-communications/-/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"
+
 react-native-device-info@^0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.2.tgz#350cd68ed43839022ddea0a3a423439f16fa4fba"

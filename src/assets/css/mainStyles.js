@@ -27,6 +27,9 @@ const mainStyles = StyleSheet.create({
     height: 40,
     backgroundColor: 'white',
   },
+  colorWhite: {
+    color: 'white',
+  },
 });
 
 export default mainStyles;

@@ -27,13 +27,17 @@ const Home = () => (
         </View>
       </TouchableOpacity>
 
-      <View style={[styles.box, styles.mediumseagreen]}>
-        <Text style={styles.textStyle}>Authority Contacts</Text>
-      </View>
+      <TouchableOpacity onPress={() => Actions.authorityContact()} style={[styles.box, styles.mediumseagreen]}>
+        <View>
+          <Text style={styles.textStyle}>Authority Contacts</Text>
+        </View>
+      </TouchableOpacity>
 
-      <View style={[styles.box, styles.mediumvioletred]}>
-        <Text style={styles.textStyle}>Lake Levels</Text>
-      </View>
+      <TouchableOpacity onPress={() => Actions.lakeLevels()} style={[styles.box, styles.mediumvioletred]}>
+        <View>
+          <Text style={styles.textStyle}>Lake Levels</Text>
+        </View>
+      </TouchableOpacity>
     </View>
 
     <View style={{ flex: 1, padding: 10 }}>
