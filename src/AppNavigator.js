@@ -6,6 +6,8 @@ import BasinMap from './containers/basinMap/';
 import CRF from './containers/crf/';
 import UserSetting from './containers/userSetting/';
 import TrashLogger from './containers/trashLogger/';
+import PollutionReport from './containers/pollutionReport';
+import AuthorityContact from './components/authorityContact/';
 import { closeLogo } from './constants/images';
 import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
@@ -46,6 +48,24 @@ const AppNavigator = () => (
         leftButtonIconStyle={{ height: 28, width: 30 }}
         renderRightButton={() => renderRightButton()}
         title="Trash Logger"
+      />
+      <Scene
+        key="pollutionReport"
+        hideNavBar={false}
+        component={PollutionReport}
+        renderBackButton={() => renderHomeButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
+        title="Pollution Report"
+      />
+      <Scene
+        key="authorityContact"
+        hideNavBar={false}
+        component={AuthorityContact}
+        renderBackButton={() => renderHomeButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
+        title="Authority Contact"
       />
     </Scene>
   </RouterWithRedux>
