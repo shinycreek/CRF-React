@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
-import { createTrashLogger } from '../../actions/trashLogger';
+import { createPollutionReport } from '../../actions/pollutionReport';
 import StepFirst from './StepFirst';
 import StepSecond from './StepSecond';
 import StepThird from './StepThird';
@@ -16,7 +16,7 @@ import Footer from '../../components/footer/';
 import mainStyles from '../../assets/css/mainStyles';
 import styles from './styles';
 
-class TrashLogger extends Component {
+class PollutionReport extends Component {
   constructor(props) {
     super(props);
     this.nextPage = this.nextPage.bind(this);
@@ -67,8 +67,8 @@ class TrashLogger extends Component {
       this.props.actions.createUserSetting({ phone_id: phoneId, email, phone });
     }
 
-    this.props.actions.createTrashLogger(formValues).then(() => {
-      this.props.actions.reset('trashLoggerTileForm');
+    this.props.actions.createPollutionReport(formValues).then(() => {
+      this.props.actions.reset('pollutionReportForm');
       this.nextPage();
     });
   }
@@ -91,7 +91,7 @@ class TrashLogger extends Component {
 
     switch (this.state.page) {
       case 1:
-        message = 'Step 1: Describe the Trash';
+        message = 'Step 1: Describe the Pollution';
         break;
       case 2:
         message = 'Step 2: Take a Photo';
@@ -101,7 +101,7 @@ class TrashLogger extends Component {
         break;
       default:
         message = 'Thank you!';
-        body = 'Your report has been logged, and you will be used to help us keep the waterways cleaner.';
+        body = 'Your report has been logged, and you will be used to help us keep the environment pollution free.';
     }
     const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
@@ -154,10 +154,10 @@ class TrashLogger extends Component {
   }
 }
 
-TrashLogger.propTypes = {
+PollutionReport.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,
-    createTrashLogger: PropTypes.func.isRequired,
+    createPollutionReport: PropTypes.func.isRequired,
     updateUserSetting: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
   }).isRequired,
@@ -172,8 +172,8 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, updateUserSetting, createTrashLogger, reset }, dispatch),
+    actions: bindActionCreators({ createUserSetting, updateUserSetting, createPollutionReport, reset }, dispatch),
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrashLogger);
+export default connect(mapStateToProps, mapDispatchToProps)(PollutionReport);

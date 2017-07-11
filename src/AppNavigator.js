@@ -58,6 +58,7 @@ const AppNavigator = () => (
         renderRightButton={() => renderRightButton()}
         title="Pollution Report"
       />
+<<<<<<< HEAD
       <Scene
         key="authorityContact"
         hideNavBar={false}
@@ -67,6 +68,8 @@ const AppNavigator = () => (
         renderRightButton={() => renderRightButton()}
         title="Authority Contact"
       />
+=======
+>>>>>>> d1a0670f71ca093bc7b17e635d3b6c72d896159b
     </Scene>
   </RouterWithRedux>
 );
