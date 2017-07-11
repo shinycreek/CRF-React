@@ -33,9 +33,11 @@ const Home = () => (
         </View>
       </TouchableOpacity>
 
-      <View style={[styles.box, styles.mediumvioletred]}>
-        <Text style={styles.textStyle}>Lake Levels</Text>
-      </View>
+      <TouchableOpacity onPress={() => Actions.lakeLevels()} style={[styles.box, styles.mediumvioletred]}>
+        <View>
+          <Text style={styles.textStyle}>Lake Levels</Text>
+        </View>
+      </TouchableOpacity>
     </View>
 
     <View style={{ flex: 1, padding: 10 }}>

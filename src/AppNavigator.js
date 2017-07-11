@@ -8,6 +8,7 @@ import UserSetting from './containers/userSetting/';
 import TrashLogger from './containers/trashLogger/';
 import PollutionReport from './containers/pollutionReport';
 import AuthorityContact from './components/authorityContact/';
+import LakeLevel from './containers/lakeLevel/';
 import { closeLogo } from './constants/images';
 import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
@@ -66,6 +67,15 @@ const AppNavigator = () => (
         leftButtonIconStyle={{ height: 28, width: 30 }}
         renderRightButton={() => renderRightButton()}
         title="Authority Contact"
+      />
+      <Scene
+        key="lakeLevels"
+        hideNavBar={false}
+        component={LakeLevel}
+        renderBackButton={() => renderHomeButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
+        title="Lake Levels"
       />
     </Scene>
   </RouterWithRedux>
