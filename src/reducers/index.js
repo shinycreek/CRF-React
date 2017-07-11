@@ -5,6 +5,7 @@ import crf from './crf';
 import userSetting from './userSetting';
 import trashLogger from './trashLogger';
 import pollutionReport from './pollutionReport';
+import authorityContact from './authorityContact';
 
 const rootReducer = combineReducers({
   basinMap,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   userSetting,
   trashLogger,
   pollutionReport,
+  authorityContact,
   form: reduxFormReducer,
 });
 
