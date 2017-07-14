@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { getLakeLevels } from '../../actions/lakeLevel';
+import { even } from '../../utils/extraLib';
 import mainStyles from '../../assets/css/mainStyles';
 
 class LakeLevel extends React.Component {
@@ -19,7 +20,7 @@ class LakeLevel extends React.Component {
   render() {
     const { lakeLevels } = this.props;
     return (
-      <View style={[mainStyles.container, { flex: 1, marginTop: 50 }]}>
+      <View style={[mainStyles.container, mainStyles.marginFromNav]}>
         <View style={{ height: 50, flexDirection: 'row' }}>
           <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
             {"Lake level is 'full' at 100 feet."}
@@ -44,7 +45,7 @@ class LakeLevel extends React.Component {
           </View>
 
           {lakeLevels.map((ll, index) => (
-            <View style={{ flex: 1, flexDirection: 'row', backgroundColor: (index % 2 === 0 ? '#D8D8D8' : '#C7C7C7'), padding: 10 }}>
+            <View key={`lakeLevelRow${index}`} style={even(index) ? mainStyles.row1 : mainStyles.row2}>
               <View style={{ flex: 3 }}>
                 <Text>{ll.get('lake_name')}</Text>
               </View>

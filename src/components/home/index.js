@@ -55,9 +55,9 @@ const Home = () => (
         <Text style={styles.textStyle}>Follow Us!</Text>
       </View>
 
-      <View style={[styles.box, styles.mediumpurple]}>
-        <Text style={styles.textStyle}>Recreational Releases</Text>
-      </View>
+      <TouchableOpacity onPress={() => Actions.waterDams()} style={[styles.box, styles.mediumpurple]}>
+        <View><Text style={styles.textStyle}>Recreational Releases</Text></View>
+      </TouchableOpacity>
 
     </View>
   </View>

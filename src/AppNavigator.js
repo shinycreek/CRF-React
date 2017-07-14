@@ -9,6 +9,8 @@ import TrashLogger from './containers/trashLogger/';
 import PollutionReport from './containers/pollutionReport';
 import AuthorityContact from './components/authorityContact/';
 import LakeLevel from './containers/lakeLevel/';
+import WaterDam from './containers/recreationalRelease/WaterDam';
+import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';
 import { closeLogo } from './constants/images';
 import { renderRightButton, renderHomeButton } from './components/navbarComponent/';
 
@@ -76,6 +78,24 @@ const AppNavigator = () => (
         leftButtonIconStyle={{ height: 28, width: 30 }}
         renderRightButton={() => renderRightButton()}
         title="Lake Levels"
+      />
+      <Scene
+        key="waterDams"
+        hideNavBar={false}
+        component={WaterDam}
+        renderBackButton={() => renderHomeButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
+        title="Recreational Releases"
+      />
+      <Scene
+        key="flowArrivalLocation"
+        hideNavBar={false}
+        component={FlowArrivalLocation}
+        renderBackButton={() => renderHomeButton()}
+        leftButtonIconStyle={{ height: 28, width: 30 }}
+        renderRightButton={() => renderRightButton()}
+        title="Recreational Releases"
       />
     </Scene>
   </RouterWithRedux>
