@@ -7,8 +7,10 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { Actions } from 'react-native-router-flux';
 import { getFlowArrivalLocation } from '../../actions/recreationalRelease';
 import WaterArrive from '../../components/recreationalRelease/WaterArrive';
+import Footer from '../../components/footer/';
 import mainStyles from '../../assets/css/mainStyles';
 import styles from './styles';
 
@@ -54,6 +56,10 @@ class FlowArrivalLocation extends React.Component {
             ))}
           </View>
         </ScrollView>
+        <Footer
+          left
+          onPressLeft={() => Actions.pop()}
+        />
       </View>
     );
   }
