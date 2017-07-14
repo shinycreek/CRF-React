@@ -7,6 +7,7 @@ import trashLogger from './trashLogger';
 import pollutionReport from './pollutionReport';
 import authorityContact from './authorityContact';
 import lakeLevels from './lakeLevels';
+import recreationalReleases from './recreationalRelease';
 
 const rootReducer = combineReducers({
   basinMap,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   pollutionReport,
   authorityContact,
   lakeLevels,
+  recreationalReleases,
   form: reduxFormReducer,
 });
 
