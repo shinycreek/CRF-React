@@ -84,16 +84,18 @@ class UserSetting extends React.Component {
 
   renderSelect({ input, data }) {
     return (
-      <Picker
-        {...input}
-        selectedValue={input.value}
-        style={mainStyles.inputField}
-        onValueChange={value => input.onChange(value)}
-      >
-        {data.map((name, index) => (
-          <Picker.Item label={name} value={name} key={`country${index}`} />
-        ))}
-      </Picker>
+      <View style={{backgroundColor: '#FFF'}}>
+        <Picker
+          {...input}
+          selectedValue={input.value}
+          style={{ height: 40 }}
+          onValueChange={value => input.onChange(value)}
+        >
+          {data.map((name, index) => (
+            <Picker.Item label={name} value={name} key={`country${index}`} />
+          ))}
+        </Picker>
+      </View>
     );
   }
 
