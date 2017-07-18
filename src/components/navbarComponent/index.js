@@ -10,7 +10,7 @@ import { Actions } from 'react-native-router-flux';
 export const renderRightButton = () => (
   <TouchableOpacity onPress={() => Actions.userSetting()}>
     <Text>
-      <Icon name="cog" size={30} color="#272b71" marginBottom={100} />
+      <Icon name="cog" size={28} color="white" />
     </Text>
   </TouchableOpacity>
 );
@@ -18,7 +18,15 @@ export const renderRightButton = () => (
 export const renderHomeButton = () => (
   <TouchableOpacity onPress={() => Actions.home()}>
     <Text>
-      <Icon name="home" size={30} color="#272b71" marginBottom={100} />
+      <Icon name="home" size={30} color="white" />
+    </Text>
+  </TouchableOpacity>
+);
+
+export const renderCloseButton = () => (
+  <TouchableOpacity onPress={() => Actions.home()}>
+    <Text>
+      <Icon name="times" size={30} color="white" />
     </Text>
   </TouchableOpacity>
 );

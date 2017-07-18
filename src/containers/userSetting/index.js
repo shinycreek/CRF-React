@@ -17,6 +17,7 @@ import { createUserSetting, updateUserSetting } from '../../actions/userSetting'
 import mainStyles from '../../assets/css/mainStyles';
 import normalizePhone from '../../utils/normalizePhone';
 import { renderInputField } from '../../components/fields/';
+import BackgroundImage from '../../components/appBackground/';
 import styles from './styles';
 
 const validate = (values) => {
@@ -112,114 +113,116 @@ class UserSetting extends React.Component {
   render() {
     const { handleSubmit, countries } = this.props;
     return (
-      <View style={[mainStyles.container, styles.container]}>
-        <KeyboardAwareScrollView>
-          <Text style={styles.top}>
-            Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
-          </Text>
-          <View style={[mainStyles.box, styles.middle]}>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 1 }}>
-                <Field
-                  name="first_name"
-                  component={renderInputField}
-                  label="First Name"
-                  style={[mainStyles.inputField, { marginRight: 5 }]}
-                />
+      <BackgroundImage>
+        <View style={[mainStyles.container, styles.container]}>
+          <KeyboardAwareScrollView>
+            <Text style={styles.top}>
+              Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
+            </Text>
+            <View style={[mainStyles.box, styles.middle]}>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    name="first_name"
+                    component={renderInputField}
+                    label="First Name"
+                    style={[mainStyles.inputField, { marginRight: 5 }]}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    name="last_name"
+                    label="Last Name"
+                    component={renderInputField}
+                    style={[mainStyles.inputField]}
+                  />
+                </View>
               </View>
+
               <View style={{ flex: 1 }}>
                 <Field
-                  name="last_name"
-                  label="Last Name"
+                  name="email"
+                  label="Email"
                   component={renderInputField}
                   style={[mainStyles.inputField]}
                 />
               </View>
-            </View>
 
-            <View style={{ flex: 1 }}>
-              <Field
-                name="email"
-                label="Email"
-                component={renderInputField}
-                style={[mainStyles.inputField]}
-              />
-            </View>
-
-            <View style={{ flex: 1 }}>
-              <Field
-                name="phone"
-                label="Phone Number:"
-                component={renderInputField}
-                normalize={normalizePhone}
-                style={[mainStyles.inputField]}
-              />
-            </View>
-
-            <View style={{ flex: 1 }}>
-              <Text style={styles.label}>Country </Text>
-              <Field
-                name="country"
-                component={this.renderSelect}
-                data={countries}
-              />
-            </View>
-          </View>
-
-          <View style={[mainStyles.box, styles.bottom]}>
-            <View style={{ flex: 1 }}>
-              <Field
-                name="address"
-                label="Address"
-                component={renderInputField}
-                style={[mainStyles.inputField]}
-              />
-            </View>
-
-            <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
                 <Field
-                  name="city"
-                  label="City"
+                  name="phone"
+                  label="Phone Number:"
                   component={renderInputField}
-                  style={[mainStyles.inputField, { marginRight: 5 }]}
+                  normalize={normalizePhone}
+                  style={[mainStyles.inputField]}
                 />
               </View>
+
+              <View style={{ flex: 1 }}>
+                <Text style={styles.label}>Country </Text>
+                <Field
+                  name="country"
+                  component={this.renderSelect}
+                  data={countries}
+                />
+              </View>
+            </View>
+
+            <View style={[mainStyles.box, styles.bottom]}>
               <View style={{ flex: 1 }}>
                 <Field
-                  name="state"
-                  label="State"
+                  name="address"
+                  label="Address"
                   component={renderInputField}
-                  options={{ maxLength: 2 }}
+                  style={[mainStyles.inputField]}
+                />
+              </View>
+
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    name="city"
+                    label="City"
+                    component={renderInputField}
+                    style={[mainStyles.inputField, { marginRight: 5 }]}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    name="state"
+                    label="State"
+                    component={renderInputField}
+                    options={{ maxLength: 2 }}
+                    style={[mainStyles.inputField]}
+                  />
+                </View>
+              </View>
+
+              <View style={{ flex: 1 }}>
+                <Field
+                  name="zip"
+                  label="Zip"
+                  component={renderInputField}
+                  options={{ maxLength: 20, keyboardType: 'numeric' }}
                   style={[mainStyles.inputField]}
                 />
               </View>
             </View>
+          </KeyboardAwareScrollView>
 
-            <View style={{ flex: 1 }}>
-              <Field
-                name="zip"
-                label="Zip"
-                component={renderInputField}
-                options={{ maxLength: 20, keyboardType: 'numeric' }}
-                style={[mainStyles.inputField]}
-              />
+          <View style={styles.footer}>
+            <View style={[styles.footerButton, { flex: 0.8 }]}>
+              <Icon name="arrow-left" size={30} color="#D8D8D8" onPress={() => Actions.pop()} />
             </View>
-          </View>
-        </KeyboardAwareScrollView>
 
-        <View style={styles.footer}>
-          <View style={[styles.footerButton, { flex: 0.8 }]}>
-            <Icon name="arrow-left" size={30} color="#D8D8D8" onPress={() => Actions.pop()} />
-          </View>
-
-          <View style={[styles.footerButton, { flex: 1 }]}>
-            <Button style={{ backgroundColor: '#D8D8D8', width: 50, marginTop: 10 }} textStyle={{ fontSize: 18, color: 'black' }} onPress={handleSubmit(this.onSubmit)} >
-              OK
-            </Button>
+            <View style={[styles.footerButton, { flex: 1 }]}>
+              <Button style={{ backgroundColor: '#D8D8D8', width: 50, marginTop: 10 }} textStyle={{ fontSize: 18, color: 'black' }} onPress={handleSubmit(this.onSubmit)} >
+                OK
+              </Button>
+            </View>
           </View>
         </View>
-      </View>
+      </BackgroundImage>
     );
   }
 }

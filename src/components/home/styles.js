@@ -16,25 +16,42 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '300',
     color: 'white',
+    textAlign: 'center',
+  },
+
+  icon: {
+    width: 50,
+    height: 60,
+  },
+
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   mediumpurple: {
-    backgroundColor: 'mediumpurple',
+    backgroundColor: '#5534B4',
   },
   coral: {
-    backgroundColor: 'coral',
+    backgroundColor: '#008B00',
   },
   mediumseagreen: {
-    backgroundColor: 'mediumseagreen',
+    backgroundColor: '#2672F1',
   },
   mediumvioletred: {
-    backgroundColor: 'mediumvioletred',
+    backgroundColor: '#D3451C',
   },
   dodgerblue: {
-    backgroundColor: 'dodgerblue',
+    backgroundColor: '#D3451C',
   },
   lightseagreen: {
-    backgroundColor: 'lightseagreen',
+    backgroundColor: '#AD163C',
+  },
+  followUs: {
+    backgroundColor: '#00829B',
+  },
+  recreationalRelease: {
+    backgroundColor: '#5534B4',
   },
 
 });
