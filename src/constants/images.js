@@ -7,5 +7,6 @@ import forwardLogo from '../assets/images/forward.png';
 import mailLogo from '../assets/images/mail.png';
 import mapLogo from '../assets/images/map.png';
 import crfLogo from '../assets/images/crf.png';
+import splashPageLogo from '../assets/images/splash-page.png';
 
-export { homebgLogo, trashLogo, airLogo, barsLogo, dropletLogo, forwardLogo, mailLogo, mapLogo, crfLogo };
+export { homebgLogo, trashLogo, airLogo, barsLogo, dropletLogo, forwardLogo, mailLogo, mapLogo, crfLogo, splashPageLogo };
