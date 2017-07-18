@@ -53,11 +53,11 @@ const Home = () => (
           <View><Text style={styles.textStyle}>CRF Website</Text></View>
         </TouchableOpacity>
 
-        <View style={[styles.box, styles.coral]}>
+        <View style={[styles.box, styles.followUs]}>
           <Text style={styles.textStyle}>Follow Us!</Text>
         </View>
 
-        <TouchableOpacity onPress={() => Actions.waterDams()} style={[styles.box, styles.mediumpurple]}>
+        <TouchableOpacity onPress={() => Actions.waterDams()} style={[styles.box, styles.recreationalRelease]}>
           <View><Text style={styles.textStyle}>Recreational Releases</Text></View>
         </TouchableOpacity>
 
