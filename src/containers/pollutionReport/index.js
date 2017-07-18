@@ -15,6 +15,7 @@ import StepThird from './StepThird';
 import Footer from '../../components/footer/';
 import mainStyles from '../../assets/css/mainStyles';
 import styles from './styles';
+import BackgroundImage from '../../components/appBackground/';
 
 class PollutionReport extends Component {
   constructor(props) {
@@ -124,32 +125,34 @@ class PollutionReport extends Component {
   render() {
     const { page, handleSubmit, latitude, longitude } = this.state;
     return (
-      <View style={[mainStyles.container, styles.container]}>
-        <Text style={{ color: 'white', marginTop: 10 }}>{latitude} {longitude}</Text>
-        {this.stepName()}
-        {page === 1 &&
-          <KeyboardAwareScrollView>
-            <StepFirst handleChildFormSubmit={this.handleChildFormSubmit} />
-          </KeyboardAwareScrollView>
-        }
-        {page === 2 &&
-          <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />
-        }
-        {page === 3 &&
-          <KeyboardAwareScrollView>
-            <StepThird handleChildFormSubmit={this.handleChildFormSubmit} />
-          </KeyboardAwareScrollView>
-        }
-        <Footer
-          left={_.includes([2, 3], page)}
-          onPressLeft={this.previousPage}
-          right={_.includes([1, 2], page)}
-          onPressRight={handleSubmit && handleSubmit(this.nextPage)}
-          middle={page === 3}
-          onPressMiddle={handleSubmit && handleSubmit(this.onSubmit)}
-          middleButtonText="Submit Report"
-        />
-      </View>
+      <BackgroundImage>
+        <View style={[mainStyles.container, styles.container]}>
+          <Text style={{ color: 'white', marginTop: 10 }}>{latitude} {longitude}</Text>
+          {this.stepName()}
+          {page === 1 &&
+            <KeyboardAwareScrollView>
+              <StepFirst handleChildFormSubmit={this.handleChildFormSubmit} />
+            </KeyboardAwareScrollView>
+          }
+          {page === 2 &&
+            <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />
+          }
+          {page === 3 &&
+            <KeyboardAwareScrollView>
+              <StepThird handleChildFormSubmit={this.handleChildFormSubmit} />
+            </KeyboardAwareScrollView>
+          }
+          <Footer
+            left={_.includes([2, 3], page)}
+            onPressLeft={this.previousPage}
+            right={_.includes([1, 2], page)}
+            onPressRight={handleSubmit && handleSubmit(this.nextPage)}
+            middle={page === 3}
+            onPressMiddle={handleSubmit && handleSubmit(this.onSubmit)}
+            middleButtonText="Submit Report"
+          />
+        </View>
+      </BackgroundImage>
     );
   }
 }

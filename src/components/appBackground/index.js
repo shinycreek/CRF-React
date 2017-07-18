@@ -8,7 +8,7 @@ import styles from './styles';
 
 class BackgroundImage extends Component {
   render() {
-    const { source, children, style, ...props } = this.props;
+    // const { source, children, style, ...props } = this.props;
     return (
       <Image
         source={homebgLogo}
