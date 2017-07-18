@@ -123,11 +123,10 @@ class PollutionReport extends Component {
   }
 
   render() {
-    const { page, handleSubmit, latitude, longitude } = this.state;
+    const { page, handleSubmit } = this.state;
     return (
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
-          <Text style={{ color: 'white', marginTop: 10 }}>{latitude} {longitude}</Text>
           {this.stepName()}
           {page === 1 &&
             <KeyboardAwareScrollView>

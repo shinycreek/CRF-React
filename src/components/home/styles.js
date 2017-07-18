@@ -16,6 +16,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '300',
     color: 'white',
+    textAlign: 'center',
+  },
+
+  icon: {
+    width: 50,
+    height: 60,
+  },
+
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   mediumpurple: {
