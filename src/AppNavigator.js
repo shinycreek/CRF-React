@@ -7,7 +7,7 @@ import CRF from './containers/crf/';
 import UserSetting from './containers/userSetting/';
 import TrashLogger from './containers/trashLogger/';
 import PollutionReport from './containers/pollutionReport';
-import AuthorityContact from './components/authorityContact/';
+import AuthorityContact from './containers/authorityContact/';
 import LakeLevel from './containers/lakeLevel/';
 import WaterDam from './containers/recreationalRelease/WaterDam';
 import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';

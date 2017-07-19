@@ -25,43 +25,47 @@ export const getUserSetting = phoneId => (
 export const createUserSetting = params => (
   (dispatch) => {
     dispatch({ type: types.START_CREATE_USER_SETTING });
-    axios.post('/api/v1/user_settings',
-      {
-        user_setting: params,
-      },
-    )
-    .then((response) => {
-      if (response.data.success === 0) {
+    return(
+      axios.post('/api/v1/user_settings',
+        {
+          user_setting: params,
+        },
+      )
+      .then((response) => {
+        if (response.data.success === 0) {
+          dispatch({ type: types.ERROR_CREATE_USER_SETTING });
+        } else {
+          dispatch(getUserSetting(params.phone_id));
+          dispatch({ type: types.SUCCESS_GET_USER_SETTING });
+        }
+      })
+      .catch((error) => {
         dispatch({ type: types.ERROR_CREATE_USER_SETTING });
-      } else {
-        dispatch(getUserSetting(params.phone_id));
-        dispatch({ type: types.SUCCESS_GET_USER_SETTING });
-      }
-    })
-    .catch((error) => {
-      dispatch({ type: types.ERROR_CREATE_USER_SETTING });
-    });
+      })
+    );
   }
 );
 
 export const updateUserSetting = params => (
   (dispatch) => {
     dispatch({ type: types.START_UPDATE_USER_SETTING });
-    axios.put('/api/v1/user_settings/update.json',
-      {
-        user_setting: params,
-      },
-    )
-    .then((response) => {
-      if (response.data.success === 0) {
+    return(
+      axios.put('/api/v1/user_settings/update.json',
+        {
+          user_setting: params,
+        },
+      )
+      .then((response) => {
+        if (response.data.success === 0) {
+          dispatch({ type: types.ERROR_UPDATE_USER_SETTING });
+        } else {
+          dispatch(getUserSetting(params.phone_id));
+          dispatch({ type: types.SUCCESS_GET_USER_SETTING });
+        }
+      })
+      .catch(() => {
         dispatch({ type: types.ERROR_UPDATE_USER_SETTING });
-      } else {
-        dispatch(getUserSetting(params.phone_id));
-        dispatch({ type: types.SUCCESS_GET_USER_SETTING });
-      }
-    })
-    .catch(() => {
-      dispatch({ type: types.ERROR_UPDATE_USER_SETTING });
-    });
+      })
+    );
   }
 );
