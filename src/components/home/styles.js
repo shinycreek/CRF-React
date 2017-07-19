@@ -13,15 +13,14 @@ const styles = StyleSheet.create({
   },
 
   textStyle: {
-    fontSize: 20,
-    fontWeight: '300',
+    fontSize: 16,
     color: 'white',
     textAlign: 'center',
   },
 
   icon: {
-    width: 50,
-    height: 60,
+    width: 40,
+    height: 50,
   },
 
   content: {

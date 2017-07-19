@@ -2,27 +2,15 @@ import React from 'react';
 import {
   Image,
 } from 'react-native';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { SPLASH_SCREEN_CLOSE } from '../../constants/types';
+import { Actions } from 'react-native-router-flux';
 import { splashPageLogo } from '../../constants/images';
 import styles from './styles';
 
-
 class SplashScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.closeSplashScreen = this.closeSplashScreen.bind(this);
-  }
-
   componentDidMount() {
     setTimeout(() => {
-      this.closeSplashScreen();
+      Actions.home({ type: 'reset' });
     }, 3000);
-  }
-
-  closeSplashScreen() {
-    this.props.dispatch({ type: SPLASH_SCREEN_CLOSE });
   }
 
   render() {
@@ -35,14 +23,4 @@ class SplashScreen extends React.Component {
   }
 }
 
-SplashScreen.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = dispatch => (
-  {
-    dispatch,
-  }
-);
-
-export default connect(null, mapDispatchToProps)(SplashScreen);
+export default SplashScreen;

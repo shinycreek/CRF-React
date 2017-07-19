@@ -12,6 +12,7 @@ import LakeLevel from './containers/lakeLevel/';
 import WaterDam from './containers/recreationalRelease/WaterDam';
 import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';
 import { renderRightButton, renderHomeButton, renderCloseButton } from './components/navbarComponent/';
+import SplashScreen from './containers/home/';
 
 const RouterWithRedux = connect()(Router);
 
@@ -22,7 +23,20 @@ const AppNavigator = () => (
       navigationBarStyle={{ backgroundColor: '#5534B4' }}
       titleStyle={{ color: 'white' }}
     >
-      <Scene key="home" component={Home} initial hideNavBar />
+      <Scene
+        key="splashScreen"
+        component={SplashScreen}
+        initial
+        hideNavBar
+      />
+      <Scene
+        key="home"
+        component={Home}
+        hideNavBar={false}
+        renderBackButton={() => null}
+        renderRightButton={() => renderRightButton()}
+        title="Catawba Riverkeeper"
+      />
       <Scene
         key="basinMap"
         hideNavBar={false}
