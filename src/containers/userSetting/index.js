@@ -13,7 +13,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import validator from 'validator';
 import { bindActionCreators } from 'redux';
-import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
+import DeviceInfo from 'react-native-device-info';
+import { createUserSetting, updateUserSetting, getUserSetting } from '../../actions/userSetting';
 import mainStyles from '../../assets/css/mainStyles';
 import normalizePhone from '../../utils/normalizePhone';
 import { renderInputField } from '../../components/fields/';
@@ -83,9 +84,13 @@ class UserSetting extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.props.actions.getUserSetting(DeviceInfo.getUniqueID());
+  }
+
   renderSelect({ input, data }) {
     return (
-      <View style={{backgroundColor: '#FFF'}}>
+      <View style={{ backgroundColor: '#FFF' }}>
         <Picker
           {...input}
           selectedValue={input.value}
@@ -104,9 +109,9 @@ class UserSetting extends React.Component {
     const formValues = values.set('phone_id', this.props.userSetting.get('phoneId')).toJS();
 
     if (this.props.userSetting.get('record')) {
-      this.props.actions.updateUserSetting(formValues);
+      this.props.actions.updateUserSetting(formValues).then(() => Actions.pop());
     } else {
-      this.props.actions.createUserSetting(formValues);
+      this.props.actions.createUserSetting(formValues).then(() => Actions.pop());
     }
   }
 
@@ -235,6 +240,7 @@ UserSetting.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,
     updateUserSetting: PropTypes.func.isRequired,
+    getUserSetting: PropTypes.func.isRequired,
   }).isRequired,
   userSetting: PropTypes.instanceOf(Object).isRequired,
   handleSubmit: PropTypes.func.isRequired,
@@ -252,7 +258,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, updateUserSetting }, dispatch),
+    actions: bindActionCreators({ createUserSetting, updateUserSetting, getUserSetting }, dispatch),
   }
 );
 

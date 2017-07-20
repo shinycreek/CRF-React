@@ -26,6 +26,9 @@ const mainStyles = StyleSheet.create({
     height: 40,
     backgroundColor: 'white',
   },
+  fontStyle: {
+    fontFamily: 'AvenirNext-Bold',
+  },
   colorWhite: {
     color: 'white',
   },
