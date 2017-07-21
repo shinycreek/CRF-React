@@ -12,7 +12,6 @@ import { Field, reduxForm, formValueSelector, change as changeFieldValue } from 
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import Immutable from 'immutable';
-import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { bindActionCreators } from 'redux';
 import { RenderCameraButton, RenderGallaryButton } from '../../components/navbarComponent';

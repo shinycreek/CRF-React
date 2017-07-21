@@ -113,8 +113,8 @@ class PollutionReport extends Component {
     if (body) {
       response.push(
         <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-          You can provide your email address and phone number so that we can contact you about this issue.
-      </Text>);
+          { body }
+        </Text>);
     }
 
     return (

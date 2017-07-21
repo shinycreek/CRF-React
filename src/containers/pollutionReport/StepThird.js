@@ -50,7 +50,7 @@ class StepThird extends React.Component {
             label="Email Address (optional)"
             options={{ value: email }}
             component={renderInputField}
-            style={mainStyles.inputField}
+            style={[mainStyles.inputField]}
           />
         </View>
 
@@ -60,7 +60,7 @@ class StepThird extends React.Component {
             label="Phone Number (optional)"
             component={renderInputField}
             options={{ value: phone }}
-            style={mainStyles.inputField}
+            style={[mainStyles.inputField]}
             normalize={normalizePhone}
           />
         </View>

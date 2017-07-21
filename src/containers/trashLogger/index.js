@@ -102,7 +102,7 @@ class TrashLogger extends Component {
         break;
       default:
         message = 'Thank you!';
-        body = 'Your report has been logged, and you will be used to help us keep the waterways cleaner.';
+        body = 'Your report has been logged, and will be used to help us keep the waterways cleaner.';
     }
     const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
@@ -113,8 +113,8 @@ class TrashLogger extends Component {
     if (body) {
       response.push(
         <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-          You can provide your email address and phone number so that we can contact you about this issue.
-      </Text>);
+          {body}
+        </Text>);
     }
 
     return (
