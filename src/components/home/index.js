@@ -17,7 +17,10 @@ const Home = () => (
     <View style={[mainStyles.container, mainStyles.marginFromNav, styles.container]}>
 
       <View style={{ flex: 1, padding: 10 }}>
-        <TouchableOpacity onPress={() => Actions.trashLogger()} style={[styles.box, styles.mediumpurple]}>
+        <TouchableOpacity
+          onPress={() => Actions.trashLogger()}
+          style={[styles.box, styles.mediumpurple]}
+        >
           <View style={[styles.content, { flex: 2 }]}>
             <Image
               style={styles.icon}
@@ -43,7 +46,10 @@ const Home = () => (
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => Actions.authorityContact()} style={[styles.box, styles.mediumseagreen]}>
+        <TouchableOpacity
+          onPress={() => Actions.authorityContact()}
+          style={[styles.box, styles.mediumseagreen]}
+        >
           <View style={[styles.content, { flex: 1.8 }]}>
             <Image
               style={[{ height: 35, width: 45 }]}
@@ -57,7 +63,10 @@ const Home = () => (
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => Actions.lakeLevels()} style={[styles.box, styles.mediumvioletred]}>
+        <TouchableOpacity
+          onPress={() => Actions.lakeLevels()}
+          style={[styles.box, styles.mediumvioletred]}
+        >
           <View style={[styles.content, { flex: 2 }]}>
             <Image
               style={[{ height: 40, width: 50 }]}
@@ -72,7 +81,10 @@ const Home = () => (
       </View>
 
       <View style={{ flex: 1, padding: 10 }}>
-        <TouchableOpacity onPress={() => Actions.pollutionReport()} style={[styles.box, styles.dodgerblue]}>
+        <TouchableOpacity
+          onPress={() => Actions.pollutionReport()}
+          style={[styles.box, styles.dodgerblue]}
+        >
           <View style={[styles.content, { flex: 1.8 }]}>
             <Image
               style={[{ height: 50, width: 30 }]}
@@ -111,7 +123,10 @@ const Home = () => (
           </View>
         </View>
 
-        <TouchableOpacity onPress={() => Actions.waterDams()} style={[styles.box, styles.recreationalRelease]}>
+        <TouchableOpacity
+          onPress={() => Actions.waterDams()}
+          style={[styles.box, styles.recreationalRelease]}
+        >
           <View style={[styles.content, { flex: 1.8 }]}>
             <Image
               style={[{ height: 40, width: 50 }]}

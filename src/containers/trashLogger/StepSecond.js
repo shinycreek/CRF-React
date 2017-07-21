@@ -198,9 +198,14 @@ StepSecond.propTypes = {
   }).isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  imageSelected: PropTypes.instanceOf(Object).isRequired,
+  imageSelected: PropTypes.arrayOf(PropTypes.instanceOf(Object)),
   form: PropTypes.string.isRequired,
 };
+
+StepSecond.defaultProps = {
+  imageSelected: [],
+};
+
 
 function mapStateToProps(state) {
   return {
