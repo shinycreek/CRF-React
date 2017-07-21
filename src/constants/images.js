@@ -8,5 +8,22 @@ import mailLogo from '../assets/images/mail.png';
 import mapLogo from '../assets/images/map.png';
 import crfLogo from '../assets/images/crf.png';
 import splashPageLogo from '../assets/images/splash-page.png';
+import homeLogo from '../assets/images/home.png';
+import settingLogo from '../assets/images/setting.png';
+import locationLogo from '../assets/images/location.png';
 
-export { homebgLogo, trashLogo, airLogo, barsLogo, dropletLogo, forwardLogo, mailLogo, mapLogo, crfLogo, splashPageLogo };
+export {
+   homebgLogo,
+   trashLogo,
+   airLogo,
+   barsLogo,
+   dropletLogo,
+   forwardLogo,
+   mailLogo,
+   mapLogo,
+   crfLogo,
+   splashPageLogo,
+   homeLogo,
+   settingLogo,
+   locationLogo,
+ };

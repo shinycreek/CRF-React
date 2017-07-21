@@ -2,24 +2,36 @@ import React from 'react';
 import {
   Text,
   TouchableOpacity,
+  Image,
+  StyleSheet,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
+import { homeLogo, settingLogo } from '../../constants/images';
+
+const styles = StyleSheet.create({
+  homeLogo: {
+    width: 30,
+    height: 30,
+  },
+});
 
 export const renderRightButton = () => (
   <TouchableOpacity onPress={() => Actions.userSetting()}>
-    <Text>
-      <Icon name="cog" size={28} color="white" />
-    </Text>
+    <Image
+      style={styles.homeLogo}
+      source={settingLogo}
+    />
   </TouchableOpacity>
 );
 
 export const renderHomeButton = () => (
   <TouchableOpacity onPress={() => Actions.home()}>
-    <Text>
-      <Icon name="home" size={30} color="white" />
-    </Text>
+    <Image
+      style={styles.homeLogo}
+      source={homeLogo}
+    />
   </TouchableOpacity>
 );
 

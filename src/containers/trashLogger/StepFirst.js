@@ -2,12 +2,14 @@ import React from 'react';
 import {
   View,
   Text,
+  Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { renderInputField } from '../../components/fields/';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
+import { locationLogo } from '../../constants/images';
 
 const validate = (values) => {
   const errors = {};
@@ -64,9 +66,18 @@ class StepFirst extends React.Component {
           />
         </View>
 
-        <View style={[mainStyles.box, { marginBottom: 50 }]}>
-          <Text>Location saved as current location.</Text>
-          <Text>Click here to set to a different location.</Text>
+        <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
+          <View style={{ flex: 0.5 }}>
+            <Text>Location saved as current location.</Text>
+            <Text>Click here to set to a different location.</Text>
+          </View>
+          <View style={{ flex: 0.1 }}>
+            <Image
+              style={{ height: 37, width: 24 }}
+              source={locationLogo}
+              resizeMode="cover"
+            />
+          </View>
         </View>
 
       </View>
