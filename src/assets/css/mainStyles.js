@@ -26,8 +26,11 @@ const mainStyles = StyleSheet.create({
     height: 40,
     backgroundColor: 'white',
   },
-  fontStyle: {
-    fontFamily: 'AvenirNext-Bold',
+
+  fieldBorder: {
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: 'black',
   },
   colorWhite: {
     color: 'white',
@@ -47,6 +50,27 @@ const mainStyles = StyleSheet.create({
   marginFromNav: {
     flex: 1,
     marginTop: 50,
+  },
+  navBar: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 40,
+    paddingBottom: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#5534B4',
+    borderBottomColor: '#5534B4', // #5534B4
+  },
+  navBarPRColor: {
+    backgroundColor: '#D3451C', // #5534B4
+    borderBottomColor: '#D3451C',
+  },
+  navBarTitleStyle: {
+    color: 'white',
+    marginBottom: 40,
+    fontFamily: 'AvenirNext-Bold',
+    fontSize: 18,
+    width: 200,
   },
   // font styles
   bold: {
@@ -73,7 +97,32 @@ const mainStyles = StyleSheet.create({
   h6: {
     fontSize: 5,
   },
+
+  f14: {
+    fontSize: 14,
+  },
   // end font styles
+
+  // font style
+  fontStyle: {
+    fontFamily: 'AvenirNext-Bold',
+  },
+
+  label: {
+    fontFamily: 'Akzidenz-Grotesk-B-Medium',
+    fontSize: 14,
+    marginBottom: 10,
+  },
+
+  fontAkzB: {
+    fontFamily: 'Akzidenz-Grotesk-B-Medium',
+    fontSize: 14,
+  },
+
+  // margin css
+  mTop10: {
+    marginTop: 10,
+  },
 });
 
 export default mainStyles;

@@ -11,6 +11,8 @@ import splashPageLogo from '../assets/images/splash-page.png';
 import homeLogo from '../assets/images/home.png';
 import settingLogo from '../assets/images/setting.png';
 import locationLogo from '../assets/images/location.png';
+import calendarLogo from '../assets/images/calendar.png';
+import clockLogo from '../assets/images/clock.png';
 
 export {
    homebgLogo,
@@ -26,4 +28,6 @@ export {
    homeLogo,
    settingLogo,
    locationLogo,
+   calendarLogo,
+   clockLogo,
  };

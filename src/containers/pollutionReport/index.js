@@ -89,10 +89,11 @@ class PollutionReport extends Component {
   stepName() {
     let message = '';
     let body = null;
+    let response = null;
 
     switch (this.state.page) {
       case 1:
-        message = 'Step 1: Describe the Pollution';
+        message = null;
         break;
       case 2:
         message = 'Step 2: Take a Photo';
@@ -104,11 +105,14 @@ class PollutionReport extends Component {
         message = 'Thank you!';
         body = 'Your report has been logged, and you will be used to help us keep the environment pollution free.';
     }
-    const response = [
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
-        <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
-      </View>,
-    ];
+
+    if (message) {
+      response = [
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
+          <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
+        </View>,
+      ];
+    }
 
     if (body) {
       response.push(

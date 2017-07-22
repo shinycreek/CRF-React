@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
+  bottomSpace10: {
+    marginBottom: 10,
+  },
+
   topSpace: {
     marginTop: 20,
   },
@@ -70,6 +74,19 @@ const styles = StyleSheet.create({
   imageDimension: {
     height: 100,
     width: 120,
+  },
+
+  dateTime: {
+    backgroundColor: 'white',
+    height: 40,
+    width: 120,
+    flex: 0.8,
+  },
+
+  displayDateTime: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 10,
   },
 
 });

@@ -13,6 +13,7 @@ import WaterDam from './containers/recreationalRelease/WaterDam';
 import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';
 import { renderRightButton, renderHomeButton, renderCloseButton } from './components/navbarComponent/';
 import SplashScreen from './containers/home/';
+import mainStyles from './assets/css/mainStyles';
 
 const RouterWithRedux = connect()(Router);
 
@@ -20,17 +21,18 @@ const AppNavigator = () => (
   <RouterWithRedux>
     <Scene
       key="root"
-      navigationBarStyle={{ backgroundColor: '#5534B4' }}
-      titleStyle={{ color: 'white' }}
+      navigationBarStyle={mainStyles.navBar}
+      titleStyle={mainStyles.navBarTitleStyle}
     >
-      <Scene
+      {/* <Scene
         key="splashScreen"
         component={SplashScreen}
         initial
         hideNavBar
-      />
+      /> */}
       <Scene
         key="home"
+        initial
         component={Home}
         hideNavBar={false}
         renderBackButton={() => null}
@@ -73,6 +75,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Pollution Report"
+        navigationBarStyle={mainStyles.navBarPRColor}
       />
       <Scene
         key="authorityContact"
