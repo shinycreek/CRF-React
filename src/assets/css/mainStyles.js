@@ -88,6 +88,10 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#2672F1', // #5534B4
     borderBottomColor: '#2672F1',
   },
+  navBarLakeLevelColor: {
+    backgroundColor: '#D3451C', // #5534B4
+    borderBottomColor: '#D3451C',
+  },
   navBarTitleStyle: {
     color: 'white',
     marginBottom: 40,

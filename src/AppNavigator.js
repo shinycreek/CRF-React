@@ -94,6 +94,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Lake Levels"
+        navigationBarStyle={mainStyles.navBarLakeLevelColor}
       />
       <Scene
         key="waterDams"
