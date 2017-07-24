@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
   imagePicker: {
     width: 250,
     height: 80,
-    marginBottom: 50,
-    marginTop: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    position: 'absolute',
+    bottom: 50,
   },
 
   centerFlex: {
@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
   },
 
   imageDimension: {
-    height: 100,
-    width: 120,
+    height: 70,
+    width: 80,
   },
 
   dateTime: {

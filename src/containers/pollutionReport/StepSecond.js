@@ -139,7 +139,6 @@ class StepSecond extends React.Component {
   render() {
     const { imageSelected } = this.props;
     return (
-      <ScrollView style={{ flex: 1 }}>
         <View style={styles.centerFlex}>
           <View style={{ minHeight: height - 320 }}>
             <View style={[styles.imageContainer, { width }]}>
@@ -152,21 +151,23 @@ class StepSecond extends React.Component {
                     source={{ uri: image.image }}
                     style={[styles.imageDimension, mainStyles.box]}
                   />
-                  <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 30 }}>
+                  <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 50 }}>
                     <Text>
-                      <Icon name="times-circle" size={30} color="white" />
+                      <Icon name="window-close" size={25} color="white" />
                     </Text>
                   </TouchableOpacity>
                 </View>
                 ),
               )}
-              <Text style={[mainStyles.textFont, { paddingLeft: 20, paddingRight: 20 }]}>
+              <Text
+                style={[mainStyles.textFont, mainStyles.fontAkzB,
+                  { paddingLeft: 50, paddingRight: 50 }]}
+              >
                 You can attach up to 6 images to this pollution log.
                 {'\n'}{'\n'}
                 Use your camera to take photos of the pollution you would
                 like to report, or select existing photos from your Library.
               </Text>
-              <Text style={[mainStyles.textFont]} />
             </View>
           </View>
           <Field
@@ -174,7 +175,6 @@ class StepSecond extends React.Component {
             component={this.renderImageField}
           />
         </View>
-      </ScrollView>
     );
   }
 }
