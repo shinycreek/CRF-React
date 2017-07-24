@@ -33,6 +33,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  arrowRight: {
+    width: 30,
+    marginRight: 10,
+    resizeMode: 'contain',
+  },
+
+  arrowLeft: {
+    width: 30,
+    marginLeft: 10,
+    resizeMode: 'contain',
+  },
+
 });
 
 export default styles;

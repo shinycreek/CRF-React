@@ -13,6 +13,8 @@ import settingLogo from '../assets/images/setting.png';
 import locationLogo from '../assets/images/location.png';
 import calendarLogo from '../assets/images/calendar.png';
 import clockLogo from '../assets/images/clock.png';
+import arrowLeftLogo from '../assets/images/arrow-left.png';
+import arrowRightLogo from '../assets/images/arrow-right.png';
 
 export {
    homebgLogo,
@@ -30,4 +32,6 @@ export {
    locationLogo,
    calendarLogo,
    clockLogo,
+   arrowLeftLogo,
+   arrowRightLogo,
  };

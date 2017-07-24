@@ -1,18 +1,25 @@
 import React from 'react';
 import {
   View,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Button from 'apsl-react-native-button';
+import { arrowLeftLogo, arrowRightLogo } from '../../constants/images';
 import styles from './styles';
 
 const Footer = props => (
   <View style={styles.footer}>
-    {props.left && <View style={styles.left}>
-      <Icon name="arrow-left" size={30} color="#D8D8D8" onPress={() => props.onPressLeft()} />
-    </View>}
+    {props.left && <TouchableOpacity onPress={() => props.onPressLeft()} style={styles.left}>
+      <Image
+        source={arrowLeftLogo}
+        style={styles.arrowLeft}
+      />
+      </TouchableOpacity>
+    }
 
     {props.middle &&
       <View style={[styles.middle, { flex: props.right ? 1 : 2 }]}>
@@ -22,11 +29,14 @@ const Footer = props => (
       </View>
     }
 
-    {props.right &&
-      <View style={styles.right}>
-        <Icon name="arrow-right" size={30} color="#D8D8D8" onPress={() => props.onPressRight()} />
-      </View>
+    {props.right && <TouchableOpacity onPress={() => props.onPressRight()} style={styles.right}>
+      <Image
+        source={arrowRightLogo}
+        style={styles.arrowRight}
+      />
+      </TouchableOpacity>
     }
+
   </View>
 
 );

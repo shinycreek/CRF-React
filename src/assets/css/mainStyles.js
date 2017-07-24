@@ -24,7 +24,18 @@ const mainStyles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 5,
     height: 40,
+    borderRadius: 3,
+    paddingLeft: 10,
     backgroundColor: 'white',
+  },
+
+  multilineInputField: {
+    borderColor: 'gray',
+    borderWidth: 2,
+    marginTop: 5,
+    backgroundColor: 'white',
+    borderRadius: 3,
+    paddingLeft: 10,
   },
 
   fieldBorder: {
@@ -122,6 +133,9 @@ const mainStyles = StyleSheet.create({
   // margin css
   mTop10: {
     marginTop: 10,
+  },
+  mTop20: {
+    marginTop: 20,
   },
 });
 

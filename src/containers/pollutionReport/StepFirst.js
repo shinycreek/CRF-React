@@ -59,8 +59,6 @@ class StepFirst extends React.Component {
         hour: dt[0],
         minute: tm,
       });
-      console.log("=momentObj.toString()", momentObj.toString())
-      // Alert.alert()
     } else {
       const newDateObj = moment(dateTime);
       momentObj.set({
@@ -69,7 +67,6 @@ class StepFirst extends React.Component {
         date: newDateObj.get('date'),
       });
     }
-    console.log("=momentObj.toString(11)", momentObj.toString())
     this.setState({ dateTime: momentObj.format() }, () => {
       field.input.onChange(
         this.state.dateTime,
@@ -84,8 +81,7 @@ class StepFirst extends React.Component {
         mode="date"
         placeholder="select date"
         format="YYYY-MM-DD"
-        minDate="2016-05-01"
-        maxDate="2018-06-01"
+        maxDate={moment().format()}
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         iconSource={calendarLogo}
@@ -214,11 +210,11 @@ class StepFirst extends React.Component {
               label="Describe the pollution:"
               component={renderInputField}
               options={{ multiline: true, numberOfLines: 2 }}
-              style={[styles.multilineInputField]}
+              style={[mainStyles.multilineInputField]}
             />
           </View>
 
-          <View style={[mainStyles.mTop10, { flex: 1, flexDirection: 'row' }]}>
+          <View style={[mainStyles.mTop20, { flex: 1, flexDirection: 'row' }]}>
             <View style={{ flex: 1 }}>
               <Text style={mainStyles.label}>Location saved as current location.</Text>
               <Text style={mainStyles.label}>Click here to set to a different location.</Text>

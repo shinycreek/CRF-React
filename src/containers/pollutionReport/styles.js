@@ -7,21 +7,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
-  inputField: {
-    borderColor: 'gray',
-    borderWidth: 2,
-    marginTop: 5,
-    height: 40,
-    backgroundColor: 'white',
-  },
-
-  multilineInputField: {
-    borderColor: 'gray',
-    borderWidth: 2,
-    marginTop: 5,
-    backgroundColor: 'white',
-  },
-
   bottomSpace: {
     marginBottom: 20,
   },

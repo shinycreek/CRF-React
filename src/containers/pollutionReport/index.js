@@ -178,7 +178,11 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, updateUserSetting, createPollutionReport, reset }, dispatch),
+    actions: bindActionCreators({
+      createUserSetting,
+      updateUserSetting,
+      createPollutionReport,
+      reset }, dispatch),
   }
 );
 
