@@ -127,7 +127,7 @@ class PollutionReport extends Component {
       response.push(
         <Text
           key="stepName2"
-          style={[mainStyles.textFont, { marginBottom: 2, marginTop: 20, height: 20 }]}
+          style={[mainStyles.textFont, { marginBottom: 2, marginTop: 20 }]}
         >
           { body }
         </Text>);
