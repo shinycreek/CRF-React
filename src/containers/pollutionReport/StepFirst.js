@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Alert,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
@@ -140,7 +139,7 @@ class StepFirst extends React.Component {
         <Text style={[mainStyles.textFont]}>
           To report trash for a cleanup, please use the Trash Logger tool instead!
         </Text>
-        <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
+        <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace, mainStyles.mBottom50]}>
 
           <View style={{ flex: 1, flexDirection: 'row' }}>
             <Text style={[mainStyles.label]}>Date and Time Pollution Observed:</Text>
@@ -155,7 +154,7 @@ class StepFirst extends React.Component {
               <View style={[styles.displayDateTime]}>
                 <Text style={[mainStyles.fontAkzB, mainStyles.f14]}>{displayDate}</Text>
               </View>
-              <View style={{ position: 'absolute', left: 40 }}>
+              <View style={{ position: 'absolute', left: 20 }}>
                 <Field
                   name="pollution_observed_at"
                   component={this.renderDatePickerField}
@@ -173,7 +172,7 @@ class StepFirst extends React.Component {
               <View style={[styles.displayDateTime]}>
                 <Text style={[mainStyles.fontAkzB, mainStyles.f14]}>{time}</Text>
               </View>
-              <View style={{ position: 'absolute', left: 40 }}>
+              <View style={{ position: 'absolute', left: 20 }}>
                 <Field
                   name="pollution_observed_at"
                   component={this.renderTimePickerField}
@@ -215,9 +214,11 @@ class StepFirst extends React.Component {
           </View>
 
           <View style={[mainStyles.mTop20, { flex: 1, flexDirection: 'row' }]}>
-            <View style={{ flex: 1 }}>
-              <Text style={mainStyles.label}>Location saved as current location.</Text>
-              <Text style={mainStyles.label}>Click here to set to a different location.</Text>
+            <View style={[mainStyles.mBottom20, { flex: 1 }]}>
+              <Text style={mainStyles.label}>Location saved as current location.
+                {'\n'}
+                Click here to set to a different location.
+              </Text>
             </View>
             <View>
               <Image

@@ -68,8 +68,10 @@ class StepFirst extends React.Component {
 
         <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
           <View style={{ flex: 0.5 }}>
-            <Text>Location saved as current location.</Text>
-            <Text>Click here to set to a different location.</Text>
+            <Text style={[mainStyles.label, { marginTop: 1 }]}>Location saved as current location.
+              {'\n'}
+              Click here to set to a different location.
+            </Text>
           </View>
           <View style={{ flex: 0.1 }}>
             <Image

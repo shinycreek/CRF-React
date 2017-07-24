@@ -72,7 +72,11 @@ class StepThird extends React.Component {
 StepThird.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  userSettingRecord: PropTypes.instanceOf(Object).isRequired,
+  userSettingRecord: PropTypes.instanceOf(Object),
+};
+
+StepThird.defaultProps = {
+  userSettingRecord: undefined,
 };
 
 const mapStateToProps = state => ({

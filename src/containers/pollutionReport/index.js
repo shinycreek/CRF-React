@@ -114,14 +114,21 @@ class PollutionReport extends Component {
     if (message) {
       response = [
         <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
-          <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
+          <Text
+            style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.f18]}
+          >
+            { message }
+          </Text>
         </View>,
       ];
     }
 
     if (body) {
       response.push(
-        <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+        <Text
+          key="stepName2"
+          style={[mainStyles.textFont, { marginBottom: 2, marginTop: 20, height: 20 }]}
+        >
           { body }
         </Text>);
     }

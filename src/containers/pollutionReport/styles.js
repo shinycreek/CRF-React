@@ -20,18 +20,18 @@ const styles = StyleSheet.create({
   },
 
   stepName: {
-    fontWeight: 'bold',
-    fontSize: 20,
+    paddingTop: 3,
+    paddingBottom: 3,
     color: 'black',
   },
 
   imagePicker: {
     width: 250,
-    height: 80,
+    height: 70,
     flexDirection: 'row',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 50,
+    bottom: 30,
   },
 
   centerFlex: {

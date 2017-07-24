@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
   },
 
   stepName: {
-    fontWeight: 'bold',
-    fontSize: 20,
+    paddingTop: 3,
+    paddingBottom: 3,
     color: 'black',
   },
 

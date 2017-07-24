@@ -112,6 +112,10 @@ const mainStyles = StyleSheet.create({
   f14: {
     fontSize: 14,
   },
+
+  f18: {
+    fontSize: 18,
+  },
   // end font styles
 
   // font style
@@ -122,7 +126,9 @@ const mainStyles = StyleSheet.create({
   label: {
     fontFamily: 'Akzidenz-Grotesk-B-Medium',
     fontSize: 14,
-    marginBottom: 10,
+    marginTop: 10,
+    marginBottom: 4,
+    color: 'black',
   },
 
   fontAkzB: {
@@ -136,6 +142,12 @@ const mainStyles = StyleSheet.create({
   },
   mTop20: {
     marginTop: 20,
+  },
+  mBottom20: {
+    marginBottom: 20,
+  },
+  mBottom50: {
+    marginBottom: 50,
   },
 });
 

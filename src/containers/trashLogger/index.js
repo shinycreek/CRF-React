@@ -43,7 +43,7 @@ class TrashLogger extends Component {
           error: null,
         });
       },
-      error => Alert.alert('Location Error', 'Please enable GPS',
+      () => Alert.alert('Location Error', 'Please enable GPS',
         [
           { text: 'OK', onPress: () => Actions.pop() },
         ],
@@ -106,7 +106,11 @@ class TrashLogger extends Component {
     }
     const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
-        <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
+        <Text
+          style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.f18]}
+        >
+          { message }
+        </Text>
       </View>,
     ];
 
@@ -123,11 +127,10 @@ class TrashLogger extends Component {
   }
 
   render() {
-    const { page, handleSubmit, latitude, longitude } = this.state;
+    const { page, handleSubmit } = this.state;
     return (
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
-          <Text style={{ color: 'white', marginTop: 10 }}>{latitude} {longitude}</Text>
           {this.stepName()}
           {page === 1 &&
             <KeyboardAwareScrollView>

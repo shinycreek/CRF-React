@@ -18,7 +18,7 @@ export const renderInputField = ({
   }
   return (
     <View>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[mainStyles.label]}>{label}</Text>
       <TextInput
         onChangeText={onChange}
         {...restInput}

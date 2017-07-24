@@ -118,7 +118,6 @@ class StepSecond extends React.Component {
         <View style={styles.centerFlex}>
           <RenderCameraButton
             onClick={() => this.selectCameraTapped(field)}
-            size={40}
             color="black"
           />
           <Text style={mainStyles.label}>Camera</Text>
