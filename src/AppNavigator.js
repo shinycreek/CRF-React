@@ -103,6 +103,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Recreational Releases"
+        navigationBarStyle={mainStyles.navBarRecreationalColor}
       />
       <Scene
         key="flowArrivalLocation"

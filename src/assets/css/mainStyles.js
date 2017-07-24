@@ -70,27 +70,31 @@ const mainStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#5534B4',
-    borderBottomColor: '#5534B4', // #5534B4
+    borderBottomColor: '#5534B4',
   },
   navBarPRColor: {
-    backgroundColor: '#D3451C', // #5534B4
+    backgroundColor: '#D3451C',
     borderBottomColor: '#D3451C',
   },
   navBarCRFColor: {
-    backgroundColor: '#AD163C', // #5534B4
+    backgroundColor: '#AD163C',
     borderBottomColor: '#AD163C',
   },
   navBarBasinColor: {
-    backgroundColor: '#008B00', // #5534B4
+    backgroundColor: '#008B00',
     borderBottomColor: '#008B00',
   },
   navBarAuthorityColor: {
-    backgroundColor: '#2672F1', // #5534B4
+    backgroundColor: '#2672F1',
     borderBottomColor: '#2672F1',
   },
   navBarLakeLevelColor: {
-    backgroundColor: '#D3451C', // #5534B4
+    backgroundColor: '#D3451C',
     borderBottomColor: '#D3451C',
+  },
+  navBarRecreationalColor: {
+    backgroundColor: '#5534B4',
+    borderBottomColor: '#5534B4',
   },
   navBarTitleStyle: {
     color: 'white',
