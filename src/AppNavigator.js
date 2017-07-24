@@ -13,6 +13,7 @@ import WaterDam from './containers/recreationalRelease/WaterDam';
 import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';
 import { renderRightButton, renderHomeButton, renderCloseButton } from './components/navbarComponent/';
 import SplashScreen from './containers/home/';
+import mainStyles from './assets/css/mainStyles';
 
 const RouterWithRedux = connect()(Router);
 
@@ -20,8 +21,8 @@ const AppNavigator = () => (
   <RouterWithRedux>
     <Scene
       key="root"
-      navigationBarStyle={{ backgroundColor: '#5534B4' }}
-      titleStyle={{ color: 'white' }}
+      navigationBarStyle={mainStyles.navBar}
+      titleStyle={mainStyles.navBarTitleStyle}
     >
       <Scene
         key="splashScreen"
@@ -43,6 +44,7 @@ const AppNavigator = () => (
         component={BasinMap}
         renderBackButton={() => renderCloseButton()}
         renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarBasinColor}
       />
       <Scene
         key="crf"
@@ -50,6 +52,7 @@ const AppNavigator = () => (
         component={CRF}
         renderBackButton={() => renderCloseButton()}
         renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarCRFColor}
       />
       <Scene
         key="userSetting"
@@ -73,6 +76,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Pollution Report"
+        navigationBarStyle={mainStyles.navBarPRColor}
       />
       <Scene
         key="authorityContact"
@@ -81,6 +85,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Authority Contact"
+        navigationBarStyle={mainStyles.navBarAuthorityColor}
       />
       <Scene
         key="lakeLevels"
@@ -89,6 +94,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Lake Levels"
+        navigationBarStyle={mainStyles.navBarLakeLevelColor}
       />
       <Scene
         key="waterDams"
@@ -97,6 +103,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Recreational Releases"
+        navigationBarStyle={mainStyles.navBarRecreationalColor}
       />
       <Scene
         key="flowArrivalLocation"

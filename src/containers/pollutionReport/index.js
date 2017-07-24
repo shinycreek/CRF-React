@@ -25,12 +25,13 @@ class PollutionReport extends Component {
     this.stepName = this.stepName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChildFormSubmit = this.handleChildFormSubmit.bind(this);
-
+    this.handleShowRightArrow = this.handleShowRightArrow.bind(this);
     this.state = {
       latitude: null,
       longitude: null,
       error: null,
       page: 1,
+      showRightArrow: false,
     };
   }
 
@@ -43,7 +44,7 @@ class PollutionReport extends Component {
           error: null,
         });
       },
-      error => Alert.alert('Location Error', 'Please enable GPS',
+      () => Alert.alert('Location Error', 'Please enable GPS',
         [
           { text: 'OK', onPress: () => Actions.pop() },
         ],
@@ -78,6 +79,10 @@ class PollutionReport extends Component {
     this.setState({ handleSubmit });
   }
 
+  handleShowRightArrow(show) {
+    this.setState({ showRightArrow: show });
+  }
+
   nextPage() {
     this.setState({ page: this.state.page + 1 });
   }
@@ -89,10 +94,11 @@ class PollutionReport extends Component {
   stepName() {
     let message = '';
     let body = null;
+    let response = null;
 
     switch (this.state.page) {
       case 1:
-        message = 'Step 1: Describe the Pollution';
+        message = null;
         break;
       case 2:
         message = 'Step 2: Take a Photo';
@@ -104,17 +110,27 @@ class PollutionReport extends Component {
         message = 'Thank you!';
         body = 'Your report has been logged, and you will be used to help us keep the environment pollution free.';
     }
-    const response = [
-      <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
-        <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
-      </View>,
-    ];
+
+    if (message) {
+      response = [
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
+          <Text
+            style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.f18]}
+          >
+            { message }
+          </Text>
+        </View>,
+      ];
+    }
 
     if (body) {
       response.push(
-        <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-          You can provide your email address and phone number so that we can contact you about this issue.
-      </Text>);
+        <Text
+          key="stepName2"
+          style={[mainStyles.textFont, { marginBottom: 2, marginTop: 20 }]}
+        >
+          { body }
+        </Text>);
     }
 
     return (
@@ -134,7 +150,10 @@ class PollutionReport extends Component {
             </KeyboardAwareScrollView>
           }
           {page === 2 &&
-            <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />
+            <StepSecond
+              handleChildFormSubmit={this.handleChildFormSubmit}
+              handleShowRightArrow={this.handleShowRightArrow}
+            />
           }
           {page === 3 &&
             <KeyboardAwareScrollView>
@@ -144,7 +163,7 @@ class PollutionReport extends Component {
           <Footer
             left={_.includes([2, 3], page)}
             onPressLeft={this.previousPage}
-            right={_.includes([1, 2], page)}
+            right={(page === 1) || (page === 2 && this.state.showRightArrow)}
             onPressRight={handleSubmit && handleSubmit(this.nextPage)}
             middle={page === 3}
             onPressMiddle={handleSubmit && handleSubmit(this.onSubmit)}
@@ -174,7 +193,11 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, updateUserSetting, createPollutionReport, reset }, dispatch),
+    actions: bindActionCreators({
+      createUserSetting,
+      updateUserSetting,
+      createPollutionReport,
+      reset }, dispatch),
   }
 );
 

@@ -25,12 +25,14 @@ class TrashLogger extends Component {
     this.stepName = this.stepName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChildFormSubmit = this.handleChildFormSubmit.bind(this);
+    this.handleShowRightArrow = this.handleShowRightArrow.bind(this);
 
     this.state = {
       latitude: null,
       longitude: null,
       error: null,
       page: 1,
+      showRightArrow: false,
     };
   }
 
@@ -43,7 +45,7 @@ class TrashLogger extends Component {
           error: null,
         });
       },
-      error => Alert.alert('Location Error', 'Please enable GPS',
+      () => Alert.alert('Location Error', 'Please enable GPS',
         [
           { text: 'OK', onPress: () => Actions.pop() },
         ],
@@ -78,6 +80,10 @@ class TrashLogger extends Component {
     this.setState({ handleSubmit });
   }
 
+  handleShowRightArrow(show) {
+    this.setState({ showRightArrow: show });
+  }
+
   nextPage() {
     this.setState({ page: this.state.page + 1 });
   }
@@ -102,19 +108,23 @@ class TrashLogger extends Component {
         break;
       default:
         message = 'Thank you!';
-        body = 'Your report has been logged, and you will be used to help us keep the waterways cleaner.';
+        body = 'Your report has been logged, and will be used to help us keep the waterways cleaner.';
     }
     const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
-        <Text style={[mainStyles.box, styles.stepName]}> { message }</Text>
+        <Text
+          style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.f18]}
+        >
+          { message }
+        </Text>
       </View>,
     ];
 
     if (body) {
       response.push(
         <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-          You can provide your email address and phone number so that we can contact you about this issue.
-      </Text>);
+          {body}
+        </Text>);
     }
 
     return (
@@ -123,11 +133,10 @@ class TrashLogger extends Component {
   }
 
   render() {
-    const { page, handleSubmit, latitude, longitude } = this.state;
+    const { page, handleSubmit } = this.state;
     return (
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
-          <Text style={{ color: 'white', marginTop: 10 }}>{latitude} {longitude}</Text>
           {this.stepName()}
           {page === 1 &&
             <KeyboardAwareScrollView>
@@ -135,7 +144,10 @@ class TrashLogger extends Component {
             </KeyboardAwareScrollView>
           }
           {page === 2 &&
-            <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />
+            <StepSecond
+              handleChildFormSubmit={this.handleChildFormSubmit}
+              handleShowRightArrow={this.handleShowRightArrow}
+            />
           }
           {page === 3 &&
             <KeyboardAwareScrollView>
@@ -145,7 +157,7 @@ class TrashLogger extends Component {
           <Footer
             left={_.includes([2, 3], page)}
             onPressLeft={this.previousPage}
-            right={_.includes([1, 2], page)}
+            right={(page === 1) || (page === 2 && this.state.showRightArrow)}
             onPressRight={handleSubmit && handleSubmit(this.nextPage)}
             middle={page === 3}
             onPressMiddle={handleSubmit && handleSubmit(this.onSubmit)}
@@ -175,7 +187,11 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, updateUserSetting, createTrashLogger, reset }, dispatch),
+    actions: bindActionCreators({
+      createUserSetting,
+      updateUserSetting,
+      createTrashLogger,
+      reset }, dispatch),
   }
 );
 

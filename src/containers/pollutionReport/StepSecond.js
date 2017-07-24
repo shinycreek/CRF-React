@@ -19,18 +19,8 @@ import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 
 const selector = formValueSelector('pollutionReportForm');
-
-const validate = (values) => {
-  const errors = {};
-  const images = values.get('upload_images_attributes');
-  if (!images || images.length === 0) {
-    errors.upload_images_attributes = 'Please select at least one image';
-  }
-
-  return errors;
-};
-
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class StepSecond extends React.Component {
   constructor(props) {
@@ -48,30 +38,22 @@ class StepSecond extends React.Component {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
   }
 
-  renderImageField(field) {
-    const { touched, error } = field.meta;
-    if (touched && error) {
-      Alert.alert(error);
+  componentDidUpdate(nextProps) {
+    if (nextProps.imageSelected !== this.props.imageSelected) {
+      this.props.handleShowRightArrow(this.props.imageSelected.length !== 0);
     }
+  }
 
-    return (
-      <View style={[mainStyles.box, styles.imagePicker]}>
-        <View style={styles.centerFlex}>
-          <RenderCameraButton
-            onClick={() => this.selectCameraTapped(field)}
-            size={40}
-            color="black"
-          />
-        </View>
-        <View style={styles.centerFlex}>
-          <RenderGallaryButton
-            onClick={() => this.selectPhotoTapped(field)}
-            size={40}
-            color="black"
-          />
-        </View>
-      </View>
-    );
+  removeSelectedImage(index) {
+    this.setState((prevState) => {
+      const data = prevState.data;
+      return {
+        data: data.deleteIn(['images', index]),
+      };
+    }, () => {
+      const updateValue = this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS();
+      this.props.actions.changeFieldValue(this.props.form, 'upload_images_attributes', updateValue, false);
+    });
   }
 
   selectPhotoTapped(field) {
@@ -108,14 +90,7 @@ class StepSecond extends React.Component {
 
   selectImageResponse(response, field) {
     const imageData = `data:image/jpeg;base64,${response.data}`;
-
-    if (response.didCancel) {
-      console.log('User cancelled photo picker');
-    } else if (response.error) {
-      console.log(`ImagePicker Error: ${response.error}`);
-    } else if (response.customButton) {
-      console.log(`User tapped custom button: ${response.customButton}`);
-    } else {
+    if (!response.didCancel && !response.error && !response.customButton) {
       this.setState((prevState) => {
         const data = prevState.data;
         return {
@@ -123,12 +98,10 @@ class StepSecond extends React.Component {
         };
       }, () => {
         field.input.onChange(
-        // _.compact(
           this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS(),
-        // ),
-      );
+        );
       },
-    );
+      );
     }
   }
 
@@ -140,23 +113,34 @@ class StepSecond extends React.Component {
     return false;
   }
 
-  removeSelectedImage(index) {
-    this.setState((prevState) => {
-      const data = prevState.data;
-      return {
-        data: data.deleteIn(['images', index]),
-      };
-    }, () => {
-      const updateValue = this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS();
-      this.props.actions.changeFieldValue(this.props.form, 'upload_images_attributes', updateValue, false);
-    });
+  renderImageField(field) {
+    return (
+      <View style={[mainStyles.box, mainStyles.imagePicker]}>
+        <View style={styles.centerFlex}>
+          <RenderCameraButton
+            onClick={() => this.selectCameraTapped(field)}
+            color="black"
+          />
+          <Text style={[mainStyles.label, { marginTop: 1 }]}>Camera</Text>
+        </View>
+        <View style={styles.centerFlex}>
+          <RenderGallaryButton
+            onClick={() => this.selectPhotoTapped(field)}
+            size={40}
+            color="black"
+          />
+          <Text style={[mainStyles.label, { marginTop: 1 }]}>Library</Text>
+        </View>
+      </View>
+    );
   }
+
 
   render() {
     const { imageSelected } = this.props;
     return (
       <View style={styles.centerFlex}>
-        <View style={[styles.topStepSecond]}>
+        <View style={{ minHeight: height - 320 }}>
           <View style={[styles.imageContainer, { width }]}>
             {imageSelected && imageSelected.map((image, i) => (
               <View
@@ -165,22 +149,26 @@ class StepSecond extends React.Component {
               >
                 <Image
                   source={{ uri: image.image }}
-                  style={[styles.imageDimension, mainStyles.box]}
+                  style={[styles.imageDimension, mainStyles.box, { paddingLeft: 50 }]}
                 />
-                <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 30 }}>
+                <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 50 }}>
                   <Text>
-                    <Icon name="times-circle" size={30} color="white" />
+                    <Icon name="window-close" size={25} color="white" />
                   </Text>
                 </TouchableOpacity>
               </View>
               ),
             )}
+            <Text
+              style={[mainStyles.textFont, mainStyles.fontAkzB,
+                { paddingLeft: 50, paddingRight: 50 }]}
+            >
+              You can attach up to 6 images to this pollution log.
+              {'\n'}{'\n'}
+              Use your camera to take photos of the pollution you would
+              like to report, or select existing photos from your Library.
+            </Text>
           </View>
-          <Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
-            You can attach up to 6 images to this pollution log.</Text>
-          <Text style={mainStyles.textFont}>
-            Use your camera to take photos of the pollution you would like to report, or select existing photos from your Library.
-          </Text>
         </View>
         <Field
           name="upload_images_attributes"
@@ -197,8 +185,13 @@ StepSecond.propTypes = {
   }).isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  imageSelected: PropTypes.instanceOf(Object).isRequired,
+  imageSelected: PropTypes.arrayOf(PropTypes.instanceOf(Object)),
   form: PropTypes.string.isRequired,
+  handleShowRightArrow: PropTypes.func.isRequired,
+};
+
+StepSecond.defaultProps = {
+  imageSelected: [],
 };
 
 function mapStateToProps(state) {
@@ -217,7 +210,6 @@ const pollutionReportFormObj = reduxForm({
   form: 'pollutionReportForm', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-  validate,
 })(StepSecond);
 
 export default connect(mapStateToProps, mapDispatchToProps)(pollutionReportFormObj);

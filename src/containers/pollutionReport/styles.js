@@ -7,23 +7,12 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
-  inputField: {
-    borderColor: 'gray',
-    borderWidth: 2,
-    marginTop: 5,
-    height: 40,
-    backgroundColor: 'white',
-  },
-
-  multilineInputField: {
-    borderColor: 'gray',
-    borderWidth: 2,
-    marginTop: 5,
-    backgroundColor: 'white',
-  },
-
   bottomSpace: {
     marginBottom: 20,
+  },
+
+  bottomSpace10: {
+    marginBottom: 10,
   },
 
   topSpace: {
@@ -31,23 +20,9 @@ const styles = StyleSheet.create({
   },
 
   stepName: {
-    fontWeight: 'bold',
-    fontSize: 20,
+    paddingTop: 3,
+    paddingBottom: 3,
     color: 'black',
-  },
-
-  imagePicker: {
-    position: 'absolute',
-    bottom: 50,
-    width: 150,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  topStepSecond: {
-    flex: 1,
-    minHeight: 100,
-    marginBottom: 30,
   },
 
   centerFlex: {
@@ -68,8 +43,21 @@ const styles = StyleSheet.create({
   },
 
   imageDimension: {
-    height: 100,
+    height: 70,
+    width: 80,
+  },
+
+  dateTime: {
+    backgroundColor: 'white',
+    height: 40,
     width: 120,
+    flex: 0.8,
+  },
+
+  displayDateTime: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 10,
   },
 
 });

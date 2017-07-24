@@ -50,7 +50,7 @@ class StepThird extends React.Component {
             label="Email Address (optional)"
             options={{ value: email }}
             component={renderInputField}
-            style={mainStyles.inputField}
+            style={[mainStyles.inputField]}
           />
         </View>
 
@@ -60,7 +60,7 @@ class StepThird extends React.Component {
             label="Phone Number (optional)"
             component={renderInputField}
             options={{ value: phone }}
-            style={mainStyles.inputField}
+            style={[mainStyles.inputField]}
             normalize={normalizePhone}
           />
         </View>
@@ -72,14 +72,17 @@ class StepThird extends React.Component {
 StepThird.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  userSettingRecord: PropTypes.instanceOf(Object).isRequired,
+  userSettingRecord: PropTypes.instanceOf(Object),
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userSettingRecord: state.getIn(['userSetting', 'record']),
-  };
+StepThird.defaultProps = {
+  userSettingRecord: null,
 };
+
+
+const mapStateToProps = state => ({
+  userSettingRecord: state.getIn(['userSetting', 'record']),
+});
 
 const StepThirdForm = reduxForm({
   form: 'trashLoggerTileForm', // <------ same form name
