@@ -85,6 +85,7 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Authority Contact"
+        navigationBarStyle={mainStyles.navBarAuthorityColor}
       />
       <Scene
         key="lakeLevels"

@@ -84,6 +84,10 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#008B00', // #5534B4
     borderBottomColor: '#008B00',
   },
+  navBarAuthorityColor: {
+    backgroundColor: '#2672F1', // #5534B4
+    borderBottomColor: '#2672F1',
+  },
   navBarTitleStyle: {
     color: 'white',
     marginBottom: 40,
