@@ -90,17 +90,19 @@ class StepSecond extends React.Component {
 
   selectImageResponse(response, field) {
     const imageData = `data:image/jpeg;base64,${response.data}`;
-    this.setState((prevState) => {
-      const data = prevState.data;
-      return {
-        data: data.updateIn(['images'], image => image.push(Immutable.fromJS({ image: imageData }))),
-      };
-    }, () => {
-      field.input.onChange(
-        this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS(),
+    if (!response.didCancel && !response.error && !response.customButton) {
+      this.setState((prevState) => {
+        const data = prevState.data;
+        return {
+          data: data.updateIn(['images'], image => image.push(Immutable.fromJS({ image: imageData }))),
+        };
+      }, () => {
+        field.input.onChange(
+          this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS(),
+        );
+      },
       );
-    },
-    );
+    }
   }
 
   isOverLimit() {
@@ -137,42 +139,42 @@ class StepSecond extends React.Component {
   render() {
     const { imageSelected } = this.props;
     return (
-        <View style={styles.centerFlex}>
-          <View style={{ minHeight: height - 320 }}>
-            <View style={[styles.imageContainer, { width }]}>
-              {imageSelected && imageSelected.map((image, i) => (
-                <View
-                  key={`imageSelected${i}`}
-                  style={[styles.imageContent, { width: (width / 2) }]}
-                >
-                  <Image
-                    source={{ uri: image.image }}
-                    style={[styles.imageDimension, mainStyles.box]}
-                  />
-                  <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 50 }}>
-                    <Text>
-                      <Icon name="window-close" size={25} color="white" />
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                ),
-              )}
-              <Text
-                style={[mainStyles.textFont, mainStyles.fontAkzB,
-                  { paddingLeft: 50, paddingRight: 50 }]}
+      <View style={styles.centerFlex}>
+        <View style={{ minHeight: height - 320 }}>
+          <View style={[styles.imageContainer, { width }]}>
+            {imageSelected && imageSelected.map((image, i) => (
+              <View
+                key={`imageSelected${i}`}
+                style={[styles.imageContent, { width: (width / 2) }]}
               >
-                You can attach up to 6 images to this pollution log.
-                {'\n'}{'\n'}
-                Use your camera to take photos of the pollution you would
-                like to report, or select existing photos from your Library.
-              </Text>
-            </View>
+                <Image
+                  source={{ uri: image.image }}
+                  style={[styles.imageDimension, mainStyles.box, { paddingLeft: 50 }]}
+                />
+                <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 50 }}>
+                  <Text>
+                    <Icon name="window-close" size={25} color="white" />
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              ),
+            )}
+            <Text
+              style={[mainStyles.textFont, mainStyles.fontAkzB,
+                { paddingLeft: 50, paddingRight: 50 }]}
+            >
+              You can attach up to 6 images to this pollution log.
+              {'\n'}{'\n'}
+              Use your camera to take photos of the pollution you would
+              like to report, or select existing photos from your Library.
+            </Text>
           </View>
-          <Field
-            name="upload_images_attributes"
-            component={this.renderImageField}
-          />
         </View>
+        <Field
+          name="upload_images_attributes"
+          component={this.renderImageField}
+        />
+      </View>
     );
   }
 }

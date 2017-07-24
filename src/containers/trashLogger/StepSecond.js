@@ -90,17 +90,19 @@ class StepSecond extends React.Component {
 
   selectImageResponse(response, field) {
     const imageData = `data:image/jpeg;base64,${response.data}`;
-    this.setState((prevState) => {
-      const data = prevState.data;
-      return {
-        data: data.updateIn(['images'], image => image.push(Immutable.fromJS({ image: imageData }))),
-      };
-    }, () => {
-      field.input.onChange(
-        this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS(),
+    if (!response.didCancel && !response.error && !response.customButton) {
+      this.setState((prevState) => {
+        const data = prevState.data;
+        return {
+          data: data.updateIn(['images'], image => image.push(Immutable.fromJS({ image: imageData }))),
+        };
+      }, () => {
+        field.input.onChange(
+          this.state.data.get('images').map(c => (c.get('image') && { image: c.get('image') })).toJS(),
+        );
+      },
       );
-    },
-    );
+    }
   }
 
   isOverLimit() {
