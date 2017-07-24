@@ -24,15 +24,14 @@ const AppNavigator = () => (
       navigationBarStyle={mainStyles.navBar}
       titleStyle={mainStyles.navBarTitleStyle}
     >
-      {/* <Scene
+      <Scene
         key="splashScreen"
         component={SplashScreen}
         initial
         hideNavBar
-      /> */}
+      />
       <Scene
         key="home"
-        initial
         component={Home}
         hideNavBar={false}
         renderBackButton={() => null}

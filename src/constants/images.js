@@ -15,6 +15,8 @@ import calendarLogo from '../assets/images/calendar.png';
 import clockLogo from '../assets/images/clock.png';
 import arrowLeftLogo from '../assets/images/arrow-left.png';
 import arrowRightLogo from '../assets/images/arrow-right.png';
+import cameraLogo from '../assets/images/camera.png';
+import libraryLogo from '../assets/images/library.png';
 
 export {
    homebgLogo,
@@ -34,4 +36,6 @@ export {
    clockLogo,
    arrowLeftLogo,
    arrowRightLogo,
+   cameraLogo,
+   libraryLogo,
  };

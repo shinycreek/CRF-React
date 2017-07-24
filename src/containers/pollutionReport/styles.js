@@ -26,17 +26,12 @@ const styles = StyleSheet.create({
   },
 
   imagePicker: {
-    position: 'absolute',
-    bottom: 50,
-    width: 150,
+    width: 250,
+    height: 80,
+    marginBottom: 50,
+    marginTop: 20,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-
-  topStepSecond: {
-    flex: 1,
-    minHeight: 100,
-    marginBottom: 30,
   },
 
   centerFlex: {

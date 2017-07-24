@@ -8,12 +8,23 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import { homeLogo, settingLogo } from '../../constants/images';
+import {
+  homeLogo,
+  settingLogo,
+  cameraLogo,
+  libraryLogo,
+} from '../../constants/images';
 
 const styles = StyleSheet.create({
   homeLogo: {
     width: 30,
     height: 30,
+  },
+
+  camLib: {
+    width: 40,
+    marginRight: 10,
+    resizeMode: 'contain',
   },
 });
 
@@ -43,14 +54,20 @@ export const renderCloseButton = () => (
   </TouchableOpacity>
 );
 
-export const RenderCameraButton = ({ onClick, ...other }) => (
+export const RenderCameraButton = ({ onClick }) => (
   <TouchableOpacity onPress={() => onClick()}>
-    <Icon name="camera" {...other} />
+    <Image
+      style={styles.camLib}
+      source={cameraLogo}
+    />
   </TouchableOpacity>
 );
 
-export const RenderGallaryButton = ({ onClick, ...other }) => (
+export const RenderGallaryButton = ({ onClick }) => (
   <TouchableOpacity onPress={() => onClick()}>
-    <Icon name="picture-o" {...other} />
+    <Image
+      style={styles.camLib}
+      source={libraryLogo}
+    />
   </TouchableOpacity>
 );

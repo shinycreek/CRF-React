@@ -4,7 +4,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Button from 'apsl-react-native-button';
