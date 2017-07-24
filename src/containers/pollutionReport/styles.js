@@ -25,15 +25,6 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 
-  imagePicker: {
-    width: 250,
-    height: 70,
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: 30,
-  },
-
   centerFlex: {
     flex: 1,
     alignItems: 'center',

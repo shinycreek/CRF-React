@@ -6,7 +6,6 @@ import {
   Dimensions,
   TouchableOpacity,
   Alert,
-  ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector, change as changeFieldValue } from 'redux-form/immutable';
@@ -114,13 +113,13 @@ class StepSecond extends React.Component {
 
   renderImageField(field) {
     return (
-      <View style={[mainStyles.box, styles.imagePicker]}>
+      <View style={[mainStyles.box, mainStyles.imagePicker]}>
         <View style={styles.centerFlex}>
           <RenderCameraButton
             onClick={() => this.selectCameraTapped(field)}
             color="black"
           />
-          <Text style={mainStyles.label}>Camera</Text>
+          <Text style={[mainStyles.label, { marginTop: 1 }]}>Camera</Text>
         </View>
         <View style={styles.centerFlex}>
           <RenderGallaryButton
@@ -128,7 +127,7 @@ class StepSecond extends React.Component {
             size={40}
             color="black"
           />
-          <Text style={mainStyles.label}>Library</Text>
+          <Text style={[mainStyles.label, { marginTop: 1 }]}>Library</Text>
         </View>
       </View>
     );

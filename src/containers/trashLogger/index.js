@@ -25,12 +25,14 @@ class TrashLogger extends Component {
     this.stepName = this.stepName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChildFormSubmit = this.handleChildFormSubmit.bind(this);
+    this.handleShowRightArrow = this.handleShowRightArrow.bind(this);
 
     this.state = {
       latitude: null,
       longitude: null,
       error: null,
       page: 1,
+      showRightArrow: false,
     };
   }
 
@@ -76,6 +78,10 @@ class TrashLogger extends Component {
 
   handleChildFormSubmit(handleSubmit) {
     this.setState({ handleSubmit });
+  }
+
+  handleShowRightArrow(show) {
+    this.setState({ showRightArrow: show });
   }
 
   nextPage() {
@@ -138,7 +144,10 @@ class TrashLogger extends Component {
             </KeyboardAwareScrollView>
           }
           {page === 2 &&
-            <StepSecond handleChildFormSubmit={this.handleChildFormSubmit} />
+            <StepSecond
+              handleChildFormSubmit={this.handleChildFormSubmit}
+              handleShowRightArrow={this.handleShowRightArrow}
+            />
           }
           {page === 3 &&
             <KeyboardAwareScrollView>
@@ -148,7 +157,7 @@ class TrashLogger extends Component {
           <Footer
             left={_.includes([2, 3], page)}
             onPressLeft={this.previousPage}
-            right={_.includes([1, 2], page)}
+            right={(page === 1) || (page === 2 && this.state.showRightArrow)}
             onPressRight={handleSubmit && handleSubmit(this.nextPage)}
             middle={page === 3}
             onPressMiddle={handleSubmit && handleSubmit(this.onSubmit)}
@@ -178,7 +187,11 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    actions: bindActionCreators({ createUserSetting, updateUserSetting, createTrashLogger, reset }, dispatch),
+    actions: bindActionCreators({
+      createUserSetting,
+      updateUserSetting,
+      createTrashLogger,
+      reset }, dispatch),
   }
 );
 

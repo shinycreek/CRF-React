@@ -30,26 +30,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  stepName: {
-    paddingTop: 3,
-    paddingBottom: 3,
-    color: 'black',
-  },
-
-  imagePicker: {
-    position: 'absolute',
-    bottom: 50,
-    width: 150,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  topStepSecond: {
-    flex: 1,
-    minHeight: 100,
-    marginBottom: 30,
-  },
-
   centerFlex: {
     flex: 1,
     alignItems: 'center',
@@ -68,8 +48,28 @@ const styles = StyleSheet.create({
   },
 
   imageDimension: {
-    height: 100,
-    width: 120,
+    height: 70,
+    width: 80,
+  },
+
+  stepName: {
+    paddingTop: 3,
+    paddingBottom: 3,
+    color: 'black',
+  },
+
+  imagePicker: {
+    position: 'absolute',
+    bottom: 50,
+    width: 150,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  topStepSecond: {
+    flex: 1,
+    minHeight: 100,
+    marginBottom: 30,
   },
 
 });

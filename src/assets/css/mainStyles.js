@@ -149,6 +149,15 @@ const mainStyles = StyleSheet.create({
   mBottom50: {
     marginBottom: 50,
   },
+
+  imagePicker: {
+    width: 250,
+    height: 70,
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 30,
+  },
 });
 
 export default mainStyles;
