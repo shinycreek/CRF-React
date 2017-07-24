@@ -44,6 +44,7 @@ const AppNavigator = () => (
         component={BasinMap}
         renderBackButton={() => renderCloseButton()}
         renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarBasinColor}
       />
       <Scene
         key="crf"
@@ -51,6 +52,7 @@ const AppNavigator = () => (
         component={CRF}
         renderBackButton={() => renderCloseButton()}
         renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarCRFColor}
       />
       <Scene
         key="userSetting"

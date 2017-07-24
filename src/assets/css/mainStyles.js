@@ -76,6 +76,14 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#D3451C', // #5534B4
     borderBottomColor: '#D3451C',
   },
+  navBarCRFColor: {
+    backgroundColor: '#AD163C', // #5534B4
+    borderBottomColor: '#AD163C',
+  },
+  navBarBasinColor: {
+    backgroundColor: '#008B00', // #5534B4
+    borderBottomColor: '#008B00',
+  },
   navBarTitleStyle: {
     color: 'white',
     marginBottom: 40,
