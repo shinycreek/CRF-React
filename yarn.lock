@@ -2357,9 +2357,13 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0:
+hoist-non-react-statics@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+
+hoist-non-react-statics@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.2.1.tgz#a7e41c760121d0abfc7a2339b331d29a26389e52"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -3949,7 +3953,7 @@ react-native-device-info@^0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-0.10.2.tgz#350cd68ed43839022ddea0a3a423439f16fa4fba"
 
-react-native-experimental-navigation@0.28.x:
+react-native-experimental-navigation@^0.28.0:
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/react-native-experimental-navigation/-/react-native-experimental-navigation-0.28.0.tgz#561298190320cd336dc5b00c2e8bc2435cfb4909"
   dependencies:
@@ -3971,14 +3975,13 @@ react-native-keyboard-aware-scroll-view@^0.2.9:
     react-timer-mixin "^0.13.3"
 
 react-native-router-flux@^3.39.2:
-  version "3.40.1"
-  resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.40.1.tgz#ed7dc91745884ea8c78e04400e7e04ad918f99e4"
+  version "3.41.0"
+  resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.41.0.tgz#481367031ed413931e9b60605ddb8857267c1c85"
   dependencies:
     lodash.isequal "^4.5.0"
-    react-native-experimental-navigation "0.28.x"
-    react-native-keyboard-aware-scroll-view "^0.2.9"
+    react-native-experimental-navigation "^0.28.0"
     react-native-tabs "^1.0.9"
-    react-static-container "1.0.1"
+    react-static-container "^1.0.1"
 
 react-native-tabs@^1.0.9:
   version "1.0.9"
@@ -4099,7 +4102,7 @@ react-redux@^5.0.5:
     loose-envify "^1.1.0"
     prop-types "^15.5.10"
 
-react-static-container@1.0.1:
+react-static-container@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
@@ -4218,13 +4221,13 @@ redux-devtools-instrument@^1.3.3:
     lodash "^4.2.0"
     symbol-observable "^1.0.2"
 
-redux-form@^6.8.0:
-  version "6.8.0"
-  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-6.8.0.tgz#ff1b590b59f987d7e3ff080d752f7120bfe42af3"
+redux-form@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.0.2.tgz#6fcc3e847ee95e1eca6af46da34c949458c6e950"
   dependencies:
     deep-equal "^1.0.1"
     es6-error "^4.0.0"
-    hoist-non-react-statics "^1.2.0"
+    hoist-non-react-statics "^2.2.0"
     invariant "^2.2.2"
     is-promise "^2.1.0"
     lodash "^4.17.3"
