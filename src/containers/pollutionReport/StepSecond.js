@@ -163,7 +163,7 @@ class StepSecond extends React.Component {
               style={[mainStyles.textFont, mainStyles.fontAkzB,
                 { paddingLeft: 50, paddingRight: 50 }]}
             >
-              You can attach up to 6 images to this pollution log.
+              You can attach up to 6 images to this Pollution Report.
               {'\n'}{'\n'}
               Use your camera to take photos of the pollution you would
               like to report, or select existing photos from your Library.
