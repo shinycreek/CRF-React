@@ -32,6 +32,9 @@ class AuthorityContact extends React.Component {
             {contactDetails.map((contactDetail, index) => (
               <View key={`autCon${index}`} style={[mainStyles.box, { margin: 10 }]}>
                 <Text style={[styles.textStyle]}>
+                  { contactDetail.get('description') }
+                </Text>
+                <Text style={[styles.textStyle]}>
                   <Icon name="user" color="#272b71" style={[styles.textStyle]} />
                   &nbsp; { contactDetail.get('display_name') }
                 </Text>
@@ -50,9 +53,6 @@ class AuthorityContact extends React.Component {
                     <Icon name="phone" color="#272b71" style={[styles.textStyle]} /> { contactDetail.get('phone') }
                   </Text>
                 </TouchableOpacity>
-                <Text style={[styles.textStyle]}>
-                  { contactDetail.get('description') }
-                </Text>
               </View>
             ))}
           </ScrollView>
