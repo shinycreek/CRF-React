@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
 
   topText: {
-    flex: 0.13,
+    flex: 0.18,
     flexDirection: 'row',
   },
 
