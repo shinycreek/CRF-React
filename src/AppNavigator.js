@@ -75,7 +75,7 @@ const AppNavigator = () => (
         component={PollutionReport}
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
-        title="Pollution Report"
+        title="Pollution Reporter"
         navigationBarStyle={mainStyles.navBarPRColor}
       />
       <Scene
