@@ -50,13 +50,11 @@ const mainStyles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#D8D8D8',
-    padding: 10,
   },
   row2: {
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#C7C7C7',
-    padding: 10,
   },
   marginFromNav: {
     flex: 1,
@@ -178,8 +176,8 @@ const mainStyles = StyleSheet.create({
   },
 
   // padding css
-  pLeft10: {
-    paddingLeft: 10,
+  pLeft20: {
+    paddingLeft: 20,
   },
 
   imagePicker: {

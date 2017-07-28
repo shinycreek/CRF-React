@@ -12,10 +12,10 @@ const startsStopsContentStyle = [
   mainStyles.fontAkzB,
   mainStyles.fWeight500,
   mainStyles.textColorLightBlue,
+  mainStyles.pLeft20,
 ];
 
 const startsStopsHeadingStyle = startsStopsContentStyle.concat(
-  mainStyles.pLeft10,
   { flex: 1 },
 );
 

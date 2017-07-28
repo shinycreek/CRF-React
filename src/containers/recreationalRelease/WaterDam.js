@@ -42,7 +42,7 @@ class WaterDam extends React.Component {
               styles.scrollView,
             ]}
           >
-            <View style={styles.tableView}>
+            <View style={{ flex: 1 }}>
               {dams.map(dam => (
                 <View key={`dam${dam.get('id')}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
                   <View style={{ flex: 1 }}>
@@ -51,7 +51,7 @@ class WaterDam extends React.Component {
                         style={[
                           mainStyles.f14,
                           mainStyles.bold,
-                          mainStyles.pLeft10,
+                          mainStyles.pLeft20,
                           {
                             fontFamily: 'Akzidenz Gr',
                             color: '#00458B',
