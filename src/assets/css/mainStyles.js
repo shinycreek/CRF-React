@@ -107,9 +107,16 @@ const mainStyles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
+  fWeight500: {
+    fontWeight: '500',
+  },
   textColorBlue: {
     color: '#272b71',
   },
+  textColorLightBlue: {
+    color: '#001E5B',
+  },
+
   h1: {
     fontSize: 30,
   },
@@ -168,6 +175,11 @@ const mainStyles = StyleSheet.create({
   },
   mBottom50: {
     marginBottom: 50,
+  },
+
+  // padding css
+  pLeft10: {
+    paddingLeft: 10,
   },
 
   imagePicker: {
