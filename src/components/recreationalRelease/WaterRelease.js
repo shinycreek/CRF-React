@@ -24,7 +24,7 @@ const stopsText = waterRelease => (
 );
 
 const unitsText = waterRelease => (
-  waterRelease.units === 2 ? ' - 2 Units' : ""
+  waterRelease.units === 2 ? '- 2 Units' : ""
 );
 
 const WaterRelease = ({ waterReleases }) => (
