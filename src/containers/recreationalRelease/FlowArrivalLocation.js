@@ -37,16 +37,19 @@ class FlowArrivalLocation extends React.Component {
               styles.scrollView,
             ]}
           >
-            <View style={styles.tableView}>
+            <View style={{ flex: 1 }}>
               {flowArrivalLocations.map((flowArrivalLocation, index) => (
-                <View key={`flowArrivalLocation${index}`} style={{ flex: 1, flexDirection: 'row' }}>
+                <View key={`flowArrivalLocation${index}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
                   <View style={{ flex: 1 }}>
                     <Text
                       style={[
-                        mainStyles.h3,
+                        mainStyles.f14,
                         mainStyles.bold,
-                        mainStyles.textColorBlue,
-                        { marginTop: 20 },
+                        mainStyles.pLeft20,
+                        {
+                          fontFamily: 'Akzidenz Gr',
+                          color: '#00458B',
+                        },
                       ]}
                     >
                       {flowArrivalLocation.get('name')}

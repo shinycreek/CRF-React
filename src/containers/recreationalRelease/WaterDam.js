@@ -28,12 +28,12 @@ class WaterDam extends React.Component {
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={styles.topText}>
             <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
-              Showing Catawba River water release times by name of the dam releasing
+              Showing Catawba River water release times by name of the dam releasing.{'\n'}
             </Text>
           </View>
           <View style={styles.topText}>
             <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
-              Click on a dam to see arrival/recession times
+              Click on a dam to see arrival/recession times.
             </Text>
           </View>
           <ScrollView
@@ -42,17 +42,20 @@ class WaterDam extends React.Component {
               styles.scrollView,
             ]}
           >
-            <View style={styles.tableView}>
+            <View style={{ flex: 1 }}>
               {dams.map(dam => (
-                <View key={`dam${dam.get('id')}`} style={{ flex: 1, flexDirection: 'row' }}>
+                <View key={`dam${dam.get('id')}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
                   <View style={{ flex: 1 }}>
                     <TouchableOpacity onPress={() => Actions.flowArrivalLocation({ damId: dam.get('id') })}>
                       <Text
                         style={[
-                          mainStyles.h3,
+                          mainStyles.f14,
                           mainStyles.bold,
-                          mainStyles.textColorBlue,
-                          { marginTop: 20 },
+                          mainStyles.pLeft20,
+                          {
+                            fontFamily: 'Akzidenz Gr',
+                            color: '#00458B',
+                          },
                         ]}
                       >
                         {dam.get('name')}

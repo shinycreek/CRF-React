@@ -50,13 +50,11 @@ const mainStyles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#D8D8D8',
-    padding: 10,
   },
   row2: {
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#C7C7C7',
-    padding: 10,
   },
   marginFromNav: {
     flex: 1,
@@ -107,9 +105,16 @@ const mainStyles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
+  fWeight500: {
+    fontWeight: '500',
+  },
   textColorBlue: {
     color: '#272b71',
   },
+  textColorLightBlue: {
+    color: '#001E5B',
+  },
+
   h1: {
     fontSize: 30,
   },
@@ -168,6 +173,11 @@ const mainStyles = StyleSheet.create({
   },
   mBottom50: {
     marginBottom: 50,
+  },
+
+  // padding css
+  pLeft20: {
+    paddingLeft: 20,
   },
 
   imagePicker: {
