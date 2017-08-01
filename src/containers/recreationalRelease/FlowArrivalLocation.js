@@ -28,7 +28,7 @@ class FlowArrivalLocation extends React.Component {
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={styles.topText}>
             <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
-              Arrival and recession times:
+              Scheduled arrival and recession times below the dam:
             </Text>
           </View>
           <ScrollView
