@@ -15,23 +15,33 @@ const startsStopsContentStyle = [
   mainStyles.pLeft20,
 ];
 
-const startsStopsHeadingStyle = startsStopsContentStyle.concat(
-  { flex: 1 },
+const startsText = waterRelease => (
+  waterRelease.generation ? waterRelease.start_at : waterRelease.date
+);
+
+const stopsText = waterRelease => (
+  waterRelease.generation ? waterRelease.stop_at : 'No Generation Scheduled'
+);
+
+const unitsText = waterRelease => (
+  waterRelease.units === 2 ? '- 2 Units' : ""
 );
 
 const WaterRelease = ({ waterReleases }) => (
   <View style={{ flex: 1 }}>
     <View style={{ flex: 1, flexDirection: 'row' }}>
-      <Text style={startsStopsHeadingStyle}>Starts</Text>
-      <Text style={startsStopsHeadingStyle}>Stops</Text>
+      <Text style={startsStopsContentStyle.concat({ flex: 1 })}>Starts</Text>
+      <Text style={startsStopsContentStyle.concat({ flex: 1.5 })}>Stops</Text>
     </View>
     {waterReleases.map((waterRelease, index) => (
       <View key={`waterReleaseRow${index}`} style={even(index) ? mainStyles.row2 : mainStyles.row1}>
         <View style={{ flex: 1, flexDirection: 'row' }}>
-          <Text style={startsStopsContentStyle}>{waterRelease.start_at}</Text>
+          <Text style={startsStopsContentStyle}>{startsText(waterRelease)}</Text>
         </View>
-        <View style={{ flex: 1, flexDirection: 'row' }}>
-          <Text style={startsStopsContentStyle}>{waterRelease.stop_at}</Text>
+        <View style={{ flex: 1.5, flexDirection: 'row' }}>
+          <Text style={startsStopsContentStyle}>
+            {`${stopsText(waterRelease)} ${unitsText(waterRelease)}`}
+          </Text>
         </View>
       </View>
     ))}
