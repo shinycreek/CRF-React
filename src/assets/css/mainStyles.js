@@ -161,6 +161,11 @@ const mainStyles = StyleSheet.create({
     fontSize: 14,
   },
 
+  mediaText: {
+    marginTop: -10,
+    left: -5,
+  },
+
   // margin css
   mTop10: {
     marginTop: 10,
