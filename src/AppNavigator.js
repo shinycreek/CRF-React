@@ -84,7 +84,7 @@ const AppNavigator = () => (
         component={AuthorityContact}
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
-        title="Authority Contact"
+        title="Authority Contacts"
         navigationBarStyle={mainStyles.navBarAuthorityColor}
       />
       <Scene
