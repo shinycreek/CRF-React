@@ -121,7 +121,7 @@ class StepSecond extends React.Component {
             onClick={() => this.selectCameraTapped(field)}
             color="black"
           />
-          <Text style={[mainStyles.label, { marginTop: 1 }]}>Camera</Text>
+          <Text style={[mainStyles.label, { marginTop: -10, left: -5 }]}>Camera</Text>
         </View>
         <View style={styles.centerFlex}>
           <RenderGallaryButton
@@ -129,7 +129,7 @@ class StepSecond extends React.Component {
             size={40}
             color="black"
           />
-          <Text style={[mainStyles.label, { marginTop: 1 }]}>Library</Text>
+          <Text style={[mainStyles.label, { marginTop: -10, left: -5 }]}>Library</Text>
         </View>
       </View>
     );
