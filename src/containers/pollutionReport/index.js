@@ -108,7 +108,7 @@ class PollutionReport extends Component {
         break;
       default:
         message = 'Thank you!';
-        body = 'Your report has been logged, and you will be used to help us keep the environment pollution free.';
+        body = 'Your report has been logged, and will be used to help us keep the waterways cleaner.';
     }
 
     if (message) {
