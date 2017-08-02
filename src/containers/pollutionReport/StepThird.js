@@ -40,7 +40,7 @@ class StepThird extends React.Component {
     const email = userSettingRecord ? userSettingRecord.get('email') : undefined;
     return (
       <View>
-        <Text style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+        <Text style={[mainStyles.textFont, mainStyles.clearTextBg, { marginBottom: 10, marginTop: 20 }]}>
           You can provide your email address and phone number so that we can contact you about this issue.
         </Text>
 

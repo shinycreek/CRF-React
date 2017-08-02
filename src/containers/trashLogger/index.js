@@ -122,7 +122,7 @@ class TrashLogger extends Component {
 
     if (body) {
       response.push(
-        <Text key="stepName2" style={[mainStyles.textFont, { marginBottom: 10, marginTop: 20 }]}>
+        <Text key="stepName2" style={[mainStyles.textFont, mainStyles.clearTextBg, { marginBottom: 10, marginTop: 20 }]}>
           {body}
         </Text>);
     }

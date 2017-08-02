@@ -3917,22 +3917,29 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-devtools-core@^2.1.8, react-devtools-core@^2.3.3:
+react-devtools-core@^2.1.8:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-2.3.3.tgz#3a950e6f20f2c8e67d0419e428c8500e7d8bf347"
   dependencies:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-devtools@^2.3.1:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-2.3.3.tgz#447671315459f50a94a1f5064f2f4eddac29f65e"
+react-devtools-core@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-2.5.0.tgz#5ad179f88f22d205940721e38e4ecc3a2d35bf03"
+  dependencies:
+    shell-quote "^1.6.1"
+    ws "^2.0.3"
+
+react-devtools@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-2.5.0.tgz#8c282ae717f3cb99787c2c6783bb3ec4ba3fdb65"
   dependencies:
     cross-spawn "^5.0.1"
     electron "^1.4.15"
     ip "^1.1.4"
     minimist "^1.2.0"
-    react-devtools-core "^2.3.3"
+    react-devtools-core "^2.5.0"
     update-notifier "^2.1.0"
 
 react-native-communications@^2.2.1:

@@ -152,7 +152,7 @@ class StepSecond extends React.Component {
                   style={[styles.imageDimension, mainStyles.box, { paddingLeft: 50 }]}
                 />
                 <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 50 }}>
-                  <Text>
+                  <Text style={[mainStyles.clearTextBg]} >
                     <Icon name="window-close" size={25} color="white" />
                   </Text>
                 </TouchableOpacity>
@@ -160,7 +160,7 @@ class StepSecond extends React.Component {
               ),
             )}
             <Text
-              style={[mainStyles.textFont, mainStyles.fontAkzB,
+              style={[mainStyles.textFont, mainStyles.fontAkzB, mainStyles.clearTextBg,
                 { paddingLeft: 50, paddingRight: 50 }]}
             >
               You can attach up to 6 images to this Pollution Report.
