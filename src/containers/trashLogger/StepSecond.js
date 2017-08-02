@@ -160,7 +160,7 @@ class StepSecond extends React.Component {
               ),
             )}
             <Text
-              style={[mainStyles.textFont, mainStyles.fontAkzB,
+              style={[mainStyles.textFont, mainStyles.fontAkzB, mainStyles.clearTextBg,
                 { paddingLeft: 50, paddingRight: 50 }]}
             >
               You can attach up to 6 images to this Trash Log.

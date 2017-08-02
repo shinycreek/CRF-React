@@ -27,12 +27,12 @@ class WaterDam extends React.Component {
       <BackgroundImage>
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={styles.topText}>
-            <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
+            <Text style={[mainStyles.colorWhite, mainStyles.clearTextBg, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
               Showing Catawba River water release times by name of the dam releasing.{'\n'}
             </Text>
           </View>
           <View style={styles.topText}>
-            <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
+            <Text style={[mainStyles.colorWhite, mainStyles.clearTextBg, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
               Click on a dam to see arrival/recession times.
             </Text>
           </View>

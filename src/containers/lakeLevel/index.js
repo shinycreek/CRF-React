@@ -24,7 +24,7 @@ class LakeLevel extends React.Component {
       <BackgroundImage>
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={{ height: 50, flexDirection: 'row' }}>
-            <Text style={[mainStyles.colorWhite, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
+            <Text style={[mainStyles.colorWhite, mainStyles.clearTextBg, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
               {"Lake level is 'full' at 100 feet."}
             </Text>
           </View>
