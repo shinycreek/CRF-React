@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Picker,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
@@ -14,6 +15,7 @@ import { renderInputField } from '../../components/fields/';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { calendarLogo, clockLogo, locationLogo } from '../../constants/images';
+import countyList from '../../constants/countyList';
 
 const selector = formValueSelector('trashLoggerTileForm');
 
@@ -42,6 +44,7 @@ class StepFirst extends React.Component {
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
     this.state = {
       dateTime: moment().format(),
+      language: 'java',
     };
   }
 
@@ -141,7 +144,33 @@ class StepFirst extends React.Component {
         </Text>
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace, mainStyles.mBottom50]}>
 
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          {/* Need to change it to dropdown */}
+          <View style={{ flex: 1 }}>
+            <Field
+              name="county"
+              label="County Where Pollution Observed:"
+              component={renderInputField}
+              style={[mainStyles.inputField]}
+            />
+          </View>
+
+          <Picker
+            selectedValue={this.state.language}
+            onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
+            <Picker.Item label="Java" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
+
+          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+            <Field
+              name="address"
+              label="Address where pollution observed:"
+              component={renderInputField}
+              style={[mainStyles.inputField]}
+            />
+          </View>
+
+          <View style={[mainStyles.mTop10, { flex: 1, flexDirection: 'row' }]}>
             <Text style={[mainStyles.label]}>Date and Time Pollution Observed:</Text>
           </View>
 
@@ -207,6 +236,25 @@ class StepFirst extends React.Component {
             <Field
               name="describe_pollution"
               label="Describe the pollution:"
+              component={renderInputField}
+              options={{ multiline: true, numberOfLines: 2 }}
+              style={[mainStyles.multilineInputField]}
+            />
+          </View>
+
+          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+            <Field
+              name="responsible_party"
+              label="Party you believe responsible:"
+              component={renderInputField}
+              style={[mainStyles.inputField]}
+            />
+          </View>
+
+          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+            <Field
+              name="other_information"
+              label="Any other important information:"
               component={renderInputField}
               options={{ multiline: true, numberOfLines: 2 }}
               style={[mainStyles.multilineInputField]}
