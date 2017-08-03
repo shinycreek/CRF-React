@@ -110,18 +110,23 @@ const Home = () => (
           </View>
         </TouchableOpacity>
 
-        <View style={[styles.box, styles.followUs]}>
-          <View style={[styles.content, { flex: 2 }]}>
-            <Image
-              style={[{ height: 40, width: 60 }]}
-              source={forwardLogo}
-              resizeMode="cover"
-            />
+        <TouchableOpacity
+          onPress={() => Actions.followUs()}
+          style={[styles.box, styles.followUs]}
+        >
+          <View style={[styles.box, styles.followUs]}>
+            <View style={[styles.content, { flex: 2 }]}>
+              <Image
+                style={[{ height: 40, width: 60 }]}
+                source={forwardLogo}
+                resizeMode="cover"
+              />
+            </View>
+            <View style={[styles.textContent, { flex: 1 }]}>
+              <Text style={[styles.textStyle, mainStyles.fontStyle]}>Follow Us!</Text>
+            </View>
           </View>
-          <View style={[styles.textContent, { flex: 1 }]}>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Follow Us!</Text>
-          </View>
-        </View>
+        </TouchableOpacity>
 
         <TouchableOpacity
           onPress={() => Actions.waterDams()}

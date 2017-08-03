@@ -11,6 +11,10 @@ import AuthorityContact from './containers/authorityContact/';
 import LakeLevel from './containers/lakeLevel/';
 import WaterDam from './containers/recreationalRelease/WaterDam';
 import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';
+import FollowUs from './containers/followUs';
+import FacebookPage from './containers/followUs/FacebookPage';
+import InstagramPage from './containers/followUs/InstagramPage';
+import TwitterPage from './containers/followUs/TwitterPage';
 import { renderRightButton, renderHomeButton, renderCloseButton } from './components/navbarComponent/';
 import SplashScreen from './containers/home/';
 import mainStyles from './assets/css/mainStyles';
@@ -112,6 +116,39 @@ const AppNavigator = () => (
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
         title="Recreational Releases"
+      />
+      <Scene
+        key="followUs"
+        hideNavBar={false}
+        component={FollowUs}
+        renderBackButton={() => renderHomeButton()}
+        renderRightButton={() => renderRightButton()}
+        title="Follw Us!"
+        navigationBarStyle={mainStyles.navBarFollowUsColor}
+      />
+      <Scene
+        key="facebookPage"
+        hideNavBar={false}
+        component={FacebookPage}
+        renderBackButton={() => renderCloseButton()}
+        renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarFollowUsColor}
+      />
+      <Scene
+        key="instagramPage"
+        hideNavBar={false}
+        component={InstagramPage}
+        renderBackButton={() => renderCloseButton()}
+        renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarFollowUsColor}
+      />
+      <Scene
+        key="twitterPage"
+        hideNavBar={false}
+        component={TwitterPage}
+        renderBackButton={() => renderCloseButton()}
+        renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarFollowUsColor}
       />
     </Scene>
   </RouterWithRedux>

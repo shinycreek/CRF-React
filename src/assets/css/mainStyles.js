@@ -94,6 +94,10 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#5534B4',
     borderBottomColor: '#5534B4',
   },
+  navBarFollowUsColor: {
+    backgroundColor: '#00829B',
+    borderBottomColor: '#00829B',
+  },
   navBarTitleStyle: {
     color: 'white',
     marginBottom: 40,

@@ -26,3 +26,42 @@ export const fetchCRF = () => (
     });
   }
 );
+
+export const fetchFacebookPageUrl = () => (
+  (dispatch) => {
+    dispatch({ type: types.START_FETCH_FACEBOOK_PAGE_URL });
+    axios.get('/api/v1/websites/facebook_page.json')
+    .then((response) => {
+      dispatch({ type: types.SUCCESS_FETCH_FACEBOOK_PAGE_URL, url: response.data.url });
+    })
+    .catch(() => {
+      dispatch({ type: types.ERROR_FETCH_FACEBOOK_PAGE_URL });
+    });
+  }
+);
+
+export const fetchInstagramPageUrl = () => (
+  (dispatch) => {
+    dispatch({ type: types.START_FETCH_INSTAGRAM_PAGE_URL });
+    axios.get('/api/v1/websites/instagram_page.json')
+    .then((response) => {
+      dispatch({ type: types.SUCCESS_FETCH_INSTAGRAM_PAGE_URL, url: response.data.url });
+    })
+    .catch(() => {
+      dispatch({ type: types.ERROR_FETCH_INSTAGRAM_PAGE_URL });
+    });
+  }
+);
+
+export const fetchTwitterPageUrl = () => (
+  (dispatch) => {
+    dispatch({ type: types.START_FETCH_TWITTER_PAGE_URL });
+    axios.get('/api/v1/websites/twitter_page.json')
+    .then((response) => {
+      dispatch({ type: types.SUCCESS_FETCH_TWITTER_PAGE_URL, url: response.data.url });
+    })
+    .catch(() => {
+      dispatch({ type: types.ERROR_FETCH_TWITTER_PAGE_URL });
+    });
+  }
+);
