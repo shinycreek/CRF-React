@@ -80,29 +80,11 @@ const validate = (values) => {
 class UserSetting extends React.Component {
   constructor(props) {
     super(props);
-    this.renderSelect = this.renderSelect.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
     this.props.actions.getUserSetting(DeviceInfo.getUniqueID());
-  }
-
-  renderSelect({ input, data }) {
-    return (
-      <View style={{ backgroundColor: '#FFF' }}>
-        <Picker
-          {...input}
-          selectedValue={input.value}
-          style={{ height: 40 }}
-          onValueChange={value => input.onChange(value)}
-        >
-          {data.map((name, index) => (
-            <Picker.Item label={name} value={name} key={`country${index}`} />
-          ))}
-        </Picker>
-      </View>
-    );
   }
 
   onSubmit(values) {
@@ -116,12 +98,12 @@ class UserSetting extends React.Component {
   }
 
   render() {
-    const { handleSubmit, countries } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
           <KeyboardAwareScrollView>
-            <Text style={styles.top}>
+            <Text style={[mainStyles.textFont, styles.bottomSpace10, mainStyles.clearTextBg]}>
               Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
             </Text>
             <View style={[mainStyles.box, styles.middle]}>
@@ -163,14 +145,6 @@ class UserSetting extends React.Component {
                 />
               </View>
 
-              <View style={{ flex: 1 }}>
-                <Text style={styles.label}>Country </Text>
-                <Field
-                  name="country"
-                  component={this.renderSelect}
-                  data={countries}
-                />
-              </View>
             </View>
 
             <View style={[mainStyles.box, styles.bottom]}>
@@ -232,10 +206,6 @@ class UserSetting extends React.Component {
   }
 }
 
-UserSetting.defaultProps = {
-  countries: ['Mecklenburg', 'Gaston', 'Cabarrus', 'Lincoln'],
-};
-
 UserSetting.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,
@@ -244,7 +214,6 @@ UserSetting.propTypes = {
   }).isRequired,
   userSetting: PropTypes.instanceOf(Object).isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  countries: PropTypes.arrayOf(PropTypes.string),
 };
 
 const mapStateToProps = (state) => {

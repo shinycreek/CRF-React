@@ -3,6 +3,7 @@ import {
   View,
   Text,
   Image,
+  Picker
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
@@ -31,9 +32,30 @@ class StepFirst extends React.Component {
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
+    this.renderSelect = this.renderSelect.bind(this);
+  }
+
+  renderSelect({ input, data }) {
+    console.log("data:")
+    console.log(data)
+    return (
+      <View style={{ backgroundColor: '#FFF' }}>
+        <Picker
+          {...input}
+          selectedValue={input.value}
+          
+          onValueChange={value => input.onChange(value)}
+        >
+          {data.map((name, index) => (
+            <Picker.Item label={name} value={name} key={`county${index}`} />
+          ))}
+        </Picker>
+      </View>
+    );
   }
 
   render() {
+    const {counties} = this.props;
     return (
       <View>
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
@@ -55,6 +77,15 @@ class StepFirst extends React.Component {
             style={[styles.multilineInputField]}
           />
         </View>
+
+        <View style={[mainStyles.box, styles.bottomSpace]}>
+            <Text style={styles.label}>County where trash was observed: </Text>
+            <Field
+              name="county"
+              component={this.renderSelect}
+              data={counties}
+            />
+          </View>
 
         <View style={[mainStyles.box, styles.bottomSpace]}>
           <Field
@@ -87,9 +118,14 @@ class StepFirst extends React.Component {
   }
 }
 
+StepFirst.defaultProps = {
+  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York']
+};
+
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  counties: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default reduxForm({
