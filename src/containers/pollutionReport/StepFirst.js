@@ -36,15 +36,15 @@ const validate = (values) => {
 };
 
 class StepFirst extends React.Component {
-
   constructor(props) {
     super(props);
     this.handleDateTime = this.handleDateTime.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
+
     this.state = {
       dateTime: moment().format(),
-      language: 'java',
+      county: null,
     };
   }
 
@@ -145,21 +145,31 @@ class StepFirst extends React.Component {
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace, mainStyles.mBottom50]}>
 
           {/* Need to change it to dropdown */}
-          <View style={{ flex: 1 }}>
+          {/* <View style={{ flex: 1 }}>
             <Field
               name="county"
               label="County Where Pollution Observed:"
               component={renderInputField}
               style={[mainStyles.inputField]}
             />
+          </View> */}
+
+          <View style={[mainStyles.mTop10, { flex: 1, flexDirection: 'row' }]}>
+            <Text style={[mainStyles.label]}>County Where Pollution Observed:</Text>
           </View>
 
-          <Picker
-            selectedValue={this.state.language}
-            onValueChange={(itemValue, itemIndex) => this.setState({ language: itemValue })}>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker>
+          <View style={{ flex: 1 }}>
+            <Picker
+              selectedValue={this.state.county}
+              onValueChange={itemValue => this.setState({ county: itemValue })}
+            >
+              {
+                countyList.map(county =>
+                  (<Picker.Item key={county} label={county} value={county} />),
+                )
+              }
+            </Picker>
+          </View>
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Field
