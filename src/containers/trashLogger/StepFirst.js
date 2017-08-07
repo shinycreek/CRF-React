@@ -36,14 +36,12 @@ class StepFirst extends React.Component {
   }
 
   renderSelect({ input, data }) {
-    console.log("data:")
-    console.log(data)
     return (
       <View style={{ backgroundColor: '#FFF' }}>
         <Picker
           {...input}
           selectedValue={input.value}
-          
+
           onValueChange={value => input.onChange(value)}
         >
           {data.map((name, index) => (
