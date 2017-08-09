@@ -25,7 +25,7 @@ export const getUserSetting = phoneId => (
 export const createUserSetting = params => (
   (dispatch) => {
     dispatch({ type: types.START_CREATE_USER_SETTING });
-    return(
+    return (
       axios.post('/api/v1/user_settings',
         {
           user_setting: params,
@@ -49,7 +49,7 @@ export const createUserSetting = params => (
 export const updateUserSetting = params => (
   (dispatch) => {
     dispatch({ type: types.START_UPDATE_USER_SETTING });
-    return(
+    return (
       axios.put('/api/v1/user_settings/update.json',
         {
           user_setting: params,

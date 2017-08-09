@@ -176,7 +176,6 @@ class PollutionReport extends Component {
 }
 
 
-
 PollutionReport.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,

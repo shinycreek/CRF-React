@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Picker
+  Picker,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
@@ -145,7 +145,7 @@ class StepFirst extends React.Component {
     const displayDate = moment(this.state.dateTime).format('MMM DD');
     const date = moment(this.state.dateTime).format('YYYY-MM-DD');
     const time = moment(this.state.dateTime).format('hh:mm A');
-    const {counties} = this.props;
+    const { counties } = this.props;
 
     return (
       <View>
@@ -207,7 +207,6 @@ class StepFirst extends React.Component {
           </View>
 
 
-
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Field
               name="pollution_address"
@@ -226,7 +225,6 @@ class StepFirst extends React.Component {
               data={counties}
             />
           </View>
-
 
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
@@ -292,13 +290,13 @@ class StepFirst extends React.Component {
 }
 
 StepFirst.defaultProps = {
-  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York']
+  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York'],
 };
 
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  counties: PropTypes.arrayOf(PropTypes.string)
+  counties: PropTypes.arrayOf(PropTypes.string),
 };
 
 function mapStateToProps(state) {

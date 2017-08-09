@@ -182,7 +182,7 @@ const mainStyles = StyleSheet.create({
 
   // fixes issue on ios
   clearTextBg: {
-    backgroundColor:'rgba(0,0,0,0)'
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 
   // padding css

@@ -3,7 +3,7 @@ import {
   View,
   Text,
   Image,
-  Picker
+  Picker,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
@@ -53,7 +53,7 @@ class StepFirst extends React.Component {
   }
 
   render() {
-    const {counties} = this.props;
+    const { counties } = this.props;
     return (
       <View>
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
@@ -77,13 +77,13 @@ class StepFirst extends React.Component {
         </View>
 
         <View style={[mainStyles.box, styles.bottomSpace]}>
-            <Text style={styles.label}>County where trash was observed: </Text>
-            <Field
-              name="county"
-              component={this.renderSelect}
-              data={counties}
-            />
-          </View>
+          <Text style={styles.label}>County where trash was observed: </Text>
+          <Field
+            name="county"
+            component={this.renderSelect}
+            data={counties}
+          />
+        </View>
 
         <View style={[mainStyles.box, styles.bottomSpace]}>
           <Field
@@ -117,13 +117,13 @@ class StepFirst extends React.Component {
 }
 
 StepFirst.defaultProps = {
-  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York']
+  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York'],
 };
 
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  counties: PropTypes.arrayOf(PropTypes.string)
+  counties: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default reduxForm({
