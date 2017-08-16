@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { View, WebView } from 'react-native';
 
-import { fetchTwitterPageUrl } from '../../actions/website';
+import { fetchFollowUsPageUrl } from '../../actions/website';
 import styles from './styles';
 
 class TwitterPage extends React.Component {
 
-  componentDidMount() {
-    this.props.actions();
+  componentWillMount() {
+    this.props.actions.fetchFollowUsPageUrl('twitter');
   }
 
   render() {
@@ -31,19 +31,21 @@ TwitterPage.defaultProps = {
 };
 
 TwitterPage.propTypes = {
-  actions: PropTypes.func.isRequired,
+  actions: PropTypes.shape({
+    fetchFollowUsPageUrl: PropTypes.func.isRequired,
+  }).isRequired,
   twitterPageUrl: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
-    twitterPageUrl: state.getIn(['twitterPage', 'url']),
+    twitterPageUrl: state.getIn(['followUsPage', 'url']),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(fetchTwitterPageUrl, dispatch),
+    actions: bindActionCreators({ fetchFollowUsPageUrl }, dispatch),
   };
 }
 

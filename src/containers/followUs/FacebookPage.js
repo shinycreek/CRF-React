@@ -4,12 +4,12 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { View, WebView } from 'react-native';
 
-import { fetchFacebookPageUrl } from '../../actions/website';
+import { fetchFollowUsPageUrl } from '../../actions/website';
 import styles from './styles';
 
 class FacebookPage extends React.Component {
-  componentDidMount() {
-    this.props.actions();
+  componentWillMount() {
+    this.props.actions.fetchFollowUsPageUrl('facebook');
   }
 
   render() {
@@ -30,19 +30,21 @@ FacebookPage.defaultProps = {
 };
 
 FacebookPage.propTypes = {
-  actions: PropTypes.func.isRequired,
+  actions: PropTypes.shape({
+    fetchFollowUsPageUrl: PropTypes.func.isRequired,
+  }).isRequired,
   facebookPageUrl: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
-    facebookPageUrl: state.getIn(['facebookPage', 'url']),
+    facebookPageUrl: state.getIn(['followUsPage', 'url']),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(fetchFacebookPageUrl, dispatch),
+    actions: bindActionCreators({ fetchFollowUsPageUrl }, dispatch),
   };
 }
 

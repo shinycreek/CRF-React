@@ -4,13 +4,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { View, WebView } from 'react-native';
 
-import { fetchInstagramPageUrl } from '../../actions/website';
+import { fetchFollowUsPageUrl } from '../../actions/website';
 import styles from './styles';
 
 class InstagramPage extends React.Component {
 
-  componentDidMount() {
-    this.props.actions();
+  componentWillMount() {
+    this.props.actions.fetchFollowUsPageUrl('instagram');
   }
 
   render() {
@@ -31,19 +31,21 @@ InstagramPage.defaultProps = {
 };
 
 InstagramPage.propTypes = {
-  actions: PropTypes.func.isRequired,
+  actions: PropTypes.shape({
+    fetchFollowUsPageUrl: PropTypes.func.isRequired,
+  }).isRequired,
   instagramPageUrl: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
-    instagramPageUrl: state.getIn(['instagramPage', 'url']),
+    instagramPageUrl: state.getIn(['followUsPage', 'url']),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(fetchInstagramPageUrl, dispatch),
+    actions: bindActionCreators({ fetchFollowUsPageUrl }, dispatch),
   };
 }
 

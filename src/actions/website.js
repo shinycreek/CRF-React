@@ -27,41 +27,15 @@ export const fetchCRF = () => (
   }
 );
 
-export const fetchFacebookPageUrl = () => (
+export const fetchFollowUsPageUrl = websiteType => (
   (dispatch) => {
-    dispatch({ type: types.START_FETCH_FACEBOOK_PAGE_URL });
-    axios.get('/api/v1/websites/facebook_page.json')
+    dispatch({ type: types.START_FETCH_FOLLOW_US_PAGE_URL });
+    axios.get('/api/v1/websites/follow_us.json', { params: { website_type: websiteType } })
     .then((response) => {
-      dispatch({ type: types.SUCCESS_FETCH_FACEBOOK_PAGE_URL, url: response.data.url });
+      dispatch({ type: types.SUCCESS_FETCH_FOLLOW_US_PAGE_URL, url: response.data.url });
     })
     .catch(() => {
-      dispatch({ type: types.ERROR_FETCH_FACEBOOK_PAGE_URL });
-    });
-  }
-);
-
-export const fetchInstagramPageUrl = () => (
-  (dispatch) => {
-    dispatch({ type: types.START_FETCH_INSTAGRAM_PAGE_URL });
-    axios.get('/api/v1/websites/instagram_page.json')
-    .then((response) => {
-      dispatch({ type: types.SUCCESS_FETCH_INSTAGRAM_PAGE_URL, url: response.data.url });
-    })
-    .catch(() => {
-      dispatch({ type: types.ERROR_FETCH_INSTAGRAM_PAGE_URL });
-    });
-  }
-);
-
-export const fetchTwitterPageUrl = () => (
-  (dispatch) => {
-    dispatch({ type: types.START_FETCH_TWITTER_PAGE_URL });
-    axios.get('/api/v1/websites/twitter_page.json')
-    .then((response) => {
-      dispatch({ type: types.SUCCESS_FETCH_TWITTER_PAGE_URL, url: response.data.url });
-    })
-    .catch(() => {
-      dispatch({ type: types.ERROR_FETCH_TWITTER_PAGE_URL });
+      dispatch({ type: types.ERROR_FETCH_FOLLOW_US_PAGE_URL });
     });
   }
 );
