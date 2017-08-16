@@ -153,7 +153,7 @@ const mainStyles = StyleSheet.create({
   },
 
   label: {
-    fontFamily: 'Akzidenz-Grotesk-B-Medium',
+    fontFamily: 'AkzidenzGroteskBQ-Medium',
     fontSize: 14,
     marginTop: 10,
     marginBottom: 4,
@@ -161,8 +161,13 @@ const mainStyles = StyleSheet.create({
   },
 
   fontAkzB: {
-    fontFamily: 'Akzidenz-Grotesk-B-Medium',
+    fontFamily: 'AkzidenzGroteskBQ-Medium',
     fontSize: 14,
+  },
+
+  mediaText: {
+    marginTop: -10,
+    left: -5,
   },
 
   // margin css
@@ -177,6 +182,11 @@ const mainStyles = StyleSheet.create({
   },
   mBottom50: {
     marginBottom: 50,
+  },
+
+  // fixes issue on ios
+  clearTextBg: {
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 
   // padding css

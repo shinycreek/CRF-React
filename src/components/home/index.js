@@ -58,8 +58,7 @@ const Home = () => (
             />
           </View>
           <View style={[styles.textContent, { flex: 1.2, marginBottom: 12 }]}>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Authority</Text>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Contacts</Text>
+            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Authority{'\n'}Contacts</Text>
           </View>
         </TouchableOpacity>
 
@@ -85,16 +84,15 @@ const Home = () => (
           onPress={() => Actions.pollutionReport()}
           style={[styles.box, styles.dodgerblue]}
         >
-          <View style={[styles.content, { flex: 1.8 }]}>
+          <View style={[styles.content, { flex: 2 }]}>
             <Image
               style={[{ height: 50, width: 30 }]}
               source={dropletLogo}
               resizeMode="cover"
             />
           </View>
-          <View style={[styles.textContent, { flex: 1.2, marginBottom: 14 }]}>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Pollution</Text>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Reporter</Text>
+          <View style={[styles.textContent, { flex: 1, marginBottom: 14 }]}>
+            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Pollution{'\n'}Reporter</Text>
           </View>
         </TouchableOpacity>
 
@@ -140,8 +138,7 @@ const Home = () => (
             />
           </View>
           <View style={[styles.textContent, { flex: 1.2, marginBottom: 12 }]}>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Recreational</Text>
-            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Releases</Text>
+            <Text style={[styles.textStyle, mainStyles.fontStyle]}>Recreational{'\n'}Releases</Text>
           </View>
         </TouchableOpacity>
       </View>

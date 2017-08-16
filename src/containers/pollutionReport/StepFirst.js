@@ -4,7 +4,9 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  Picker,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import DatePicker from 'react-native-datepicker';
@@ -40,6 +42,7 @@ class StepFirst extends React.Component {
     this.handleDateTime = this.handleDateTime.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
+    this.renderSelect = this.renderSelect.bind(this);
     this.state = {
       dateTime: moment().format(),
     };
@@ -47,6 +50,22 @@ class StepFirst extends React.Component {
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
+  }
+
+  renderSelect({ input, data }) {
+    return (
+      <View style={{ backgroundColor: '#FFF' }}>
+        <Picker
+          {...input}
+          selectedValue={input.value}
+          onValueChange={value => input.onChange(value)}
+        >
+          {data.map((name, index) => (
+            <Picker.Item label={name} value={name} key={`county${index}`} />
+          ))}
+        </Picker>
+      </View>
+    );
   }
 
   handleDateTime(dateTime, field) {
@@ -126,17 +145,19 @@ class StepFirst extends React.Component {
     const displayDate = moment(this.state.dateTime).format('MMM DD');
     const date = moment(this.state.dateTime).format('YYYY-MM-DD');
     const time = moment(this.state.dateTime).format('hh:mm A');
+    const { counties } = this.props;
+
     return (
       <View>
-        <Text style={[mainStyles.textFont, styles.bottomSpace10]}>
+        <Text style={[mainStyles.textFont, styles.bottomSpace10, mainStyles.clearTextBg]}>
           Report sediment, chemical and any other pollution in this form
           so we can help make sure authorities are notified and the pollution addressed.
         </Text>
-        <Text style={[mainStyles.textFont, styles.bottomSpace10]}>
+        <Text style={[mainStyles.textFont, styles.bottomSpace10, mainStyles.clearTextBg]}>
           Please try to document the pollution at the incident as well as
           upstream and downstream of any water impacts.
         </Text>
-        <Text style={[mainStyles.textFont]}>
+        <Text style={[mainStyles.textFont, mainStyles.clearTextBg]}>
           To report trash for a cleanup, please use the Trash Logger tool instead!
         </Text>
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace, mainStyles.mBottom50]}>
@@ -185,21 +206,44 @@ class StepFirst extends React.Component {
             <View style={{ flex: 0.1 }} />
           </View>
 
+
+          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+            <Field
+              name="pollution_address"
+              label="Address where pollution observed:"
+              component={renderInputField}
+              options={{ multiline: true, numberOfLines: 2 }}
+              style={[mainStyles.multilineInputField]}
+            />
+          </View>
+
+          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+            <Text style={styles.label}>County where pollution observed: </Text>
+            <Field
+              name="county"
+              component={this.renderSelect}
+              data={counties}
+            />
+          </View>
+
+
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Field
               name="pollution_duration"
-              label="Duration of Pollution"
+              label="How long has this been happening?"
               component={renderInputField}
-              style={[mainStyles.inputField]}
+              options={{ multiline: true, numberOfLines: 2 }}
+              style={[mainStyles.multilineInputField]}
             />
           </View>
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Field
               name="waterway_affected"
-              label="Waterway Affected:"
+              label="Waterway affected:"
               component={renderInputField}
-              style={[mainStyles.inputField]}
+              options={{ multiline: true, numberOfLines: 2 }}
+              style={[mainStyles.multilineInputField]}
             />
           </View>
 
@@ -207,6 +251,16 @@ class StepFirst extends React.Component {
             <Field
               name="describe_pollution"
               label="Describe the pollution:"
+              component={renderInputField}
+              options={{ multiline: true, numberOfLines: 2 }}
+              style={[mainStyles.multilineInputField]}
+            />
+          </View>
+
+          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+            <Field
+              name="responsible_party"
+              label="Party you believe responsible, if known"
               component={renderInputField}
               options={{ multiline: true, numberOfLines: 2 }}
               style={[mainStyles.multilineInputField]}
@@ -235,9 +289,14 @@ class StepFirst extends React.Component {
   }
 }
 
+StepFirst.defaultProps = {
+  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York'],
+};
+
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  counties: PropTypes.arrayOf(PropTypes.string),
 };
 
 function mapStateToProps(state) {

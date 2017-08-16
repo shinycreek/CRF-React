@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
 
   bottomSpace10: {
     marginBottom: 10,
+    backgroundColor: 'rgba(0,0,0,0)',
+
   },
 
   topSpace: {
