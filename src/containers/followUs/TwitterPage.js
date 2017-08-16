@@ -32,7 +32,7 @@ TwitterPage.defaultProps = {
 
 TwitterPage.propTypes = {
   actions: PropTypes.func.isRequired,
-  twitterPageUrl: PropTypes.string.isRequired,
+  twitterPageUrl: PropTypes.string,
 };
 
 function mapStateToProps(state) {

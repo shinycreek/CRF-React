@@ -31,7 +31,7 @@ FacebookPage.defaultProps = {
 
 FacebookPage.propTypes = {
   actions: PropTypes.func.isRequired,
-  facebookPageUrl: PropTypes.string.isRequired,
+  facebookPageUrl: PropTypes.string,
 };
 
 function mapStateToProps(state) {

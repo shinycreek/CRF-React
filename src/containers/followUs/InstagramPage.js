@@ -32,7 +32,7 @@ InstagramPage.defaultProps = {
 
 InstagramPage.propTypes = {
   actions: PropTypes.func.isRequired,
-  instagramPageUrl: PropTypes.string.isRequired,
+  instagramPageUrl: PropTypes.string,
 };
 
 function mapStateToProps(state) {
