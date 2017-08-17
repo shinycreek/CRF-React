@@ -26,3 +26,16 @@ export const fetchCRF = () => (
     });
   }
 );
+
+export const fetchFollowUsPageUrl = websiteType => (
+  (dispatch) => {
+    dispatch({ type: types.START_FETCH_FOLLOW_US_PAGE_URL });
+    axios.get('/api/v1/websites/follow_us.json', { params: { website_type: websiteType } })
+    .then((response) => {
+      dispatch({ type: types.SUCCESS_FETCH_FOLLOW_US_PAGE_URL, url: response.data.url });
+    })
+    .catch(() => {
+      dispatch({ type: types.ERROR_FETCH_FOLLOW_US_PAGE_URL });
+    });
+  }
+);

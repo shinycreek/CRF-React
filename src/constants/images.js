@@ -17,6 +17,9 @@ import arrowLeftLogo from '../assets/images/arrow-left.png';
 import arrowRightLogo from '../assets/images/arrow-right.png';
 import cameraLogo from '../assets/images/camera.png';
 import libraryLogo from '../assets/images/library.png';
+import facebookLogo from '../assets/images/facebook.png';
+import twitterLogo from '../assets/images/twitter.png';
+import instagramLogo from '../assets/images/instagram.png';
 
 export {
    homebgLogo,
@@ -38,4 +41,7 @@ export {
    arrowRightLogo,
    cameraLogo,
    libraryLogo,
+   facebookLogo,
+   twitterLogo,
+   instagramLogo,
  };
