@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 5,
     backgroundColor: 'white',
+    paddingLeft: 10,
   },
 
   bottomSpace: {
