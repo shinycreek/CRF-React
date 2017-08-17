@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Platform,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -17,8 +18,8 @@ import {
 
 const styles = StyleSheet.create({
   homeLogo: {
-    width: 25,
-    height: 25,
+    width: (Platform.OS === 'ios') ? 20 : 30,
+    height: (Platform.OS === 'ios') ? 20 : 30,
   },
 
   camLib: {
