@@ -17,8 +17,8 @@ import {
 
 const styles = StyleSheet.create({
   homeLogo: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
   },
 
   camLib: {
