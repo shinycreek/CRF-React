@@ -91,7 +91,7 @@ const Home = () => (
               resizeMode="cover"
             />
           </View>
-          <View style={[styles.textContent, { flex: 1, marginBottom: 12 }]}>
+          <View style={[styles.textContent, { flex: 1.2, marginBottom: 12 }]}>
             <Text style={[styles.textStyle, mainStyles.fontStyle]}>Pollution{'\n'}Reporter</Text>
           </View>
         </TouchableOpacity>
