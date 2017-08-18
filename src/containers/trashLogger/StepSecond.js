@@ -152,7 +152,7 @@ class StepSecond extends React.Component {
                   style={[styles.imageDimension, mainStyles.box]}
                 />
                 <TouchableOpacity onPress={() => this.removeSelectedImage(i)} style={{ position: 'absolute', right: 50 }}>
-                  <Text>
+                  <Text style={[mainStyles.clearTextBg]}>
                     <Icon name="window-close" size={25} color="white" />
                   </Text>
                 </TouchableOpacity>
