@@ -108,7 +108,7 @@ class PollutionReport extends Component {
         break;
       default:
         message = 'Thank you!';
-        body = 'Your report has been logged, and will be used to help us keep the waterways cleaner.';
+        body = 'Your report has been logged and will be used to help us keep the waterways cleaner.';
     }
 
     if (message) {
@@ -127,7 +127,7 @@ class PollutionReport extends Component {
       response.push(
         <Text
           key="stepName2"
-          style={[mainStyles.textFont, { marginBottom: 2, marginTop: 20 }]}
+          style={[mainStyles.textFont, mainStyles.clearTextBg, { marginBottom: 2, marginTop: 20 }]}
         >
           { body }
         </Text>);
