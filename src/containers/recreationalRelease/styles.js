@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
+  recreationalTopText: {
+    marginLeft: 30,
+    marginTop: 20,
+    width: 315
+  },
+
 });
 
 export default styles;

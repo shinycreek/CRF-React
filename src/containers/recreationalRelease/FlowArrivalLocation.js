@@ -27,7 +27,7 @@ class FlowArrivalLocation extends React.Component {
       <BackgroundImage>
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={styles.topText}>
-            <Text style={[mainStyles.colorWhite, mainStyles.clearTextBg, { marginLeft: 30, marginTop: 20, fontSize: 16 }]} >
+            <Text style={[mainStyles.textFont, mainStyles.clearTextBg, styles.recreationalTopText]} >
             Scheduled arrival and recession times below the dam:
             </Text>
           </View>
