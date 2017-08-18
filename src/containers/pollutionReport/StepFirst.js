@@ -6,7 +6,6 @@ import {
   Image,
   Picker,
 } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import DatePicker from 'react-native-datepicker';

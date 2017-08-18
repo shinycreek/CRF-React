@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   recreationalTopText: {
     marginLeft: 30,
     marginTop: 20,
-    width: 315
+    marginRight: 30,
   },
 
 });
