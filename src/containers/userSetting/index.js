@@ -32,16 +32,12 @@ const validate = (values) => {
   const state = values.get('state');
   const zip = values.get('zip');
 
-  if (!firstName) {
-    errors.first_name = 'Required';
-  } else if (!/^[A-Za-z\s]+$/.test(firstName)) {
-    errors.first_name = 'Alphabets only';
+  if (firstName.length > 0 && !/^[A-Za-z\s]+$/.test(firstName)) {
+    errors.first_name = 'Letters a-z only';
   }
 
-  if (!lastName) {
-    errors.last_name = 'Required';
-  } else if (!/^[A-Za-z\s]+$/.test(lastName)) {
-    errors.last_name = 'Alphabets only';
+  if (lastName.length > 0 && !/^[A-Za-z\s]+$/.test(lastName)) {
+    errors.last_name = 'Letters a-z only';
   }
 
   if (!email) {
@@ -50,27 +46,11 @@ const validate = (values) => {
     errors.email = 'Invalid Email';
   }
 
-  if (!phone) {
-    errors.phone = 'Required';
-  } else if (phone.length !== 12) {
+  if (phone.length > 0 && phone.length !== 12) {
     errors.phone = 'Invalid Phone Number';
   }
 
-  if (!address) {
-    errors.address = 'Required';
-  }
-
-  if (!city) {
-    errors.city = 'Required';
-  }
-
-  if (!state) {
-    errors.state = 'Required';
-  }
-
-  if (!zip) {
-    errors.zip = 'Required';
-  } else if (!/^[0-9]+$/.test(zip)) {
+  if (zip.length > 0 && !/^[0-9]+$/.test(zip)) {
     errors.zip = 'Numbers only';
   }
 

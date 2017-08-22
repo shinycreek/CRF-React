@@ -63,7 +63,7 @@ const AppNavigator = () => (
         hideNavBar={false}
         component={UserSetting}
         renderBackButton={() => renderHomeButton()}
-        title="Settings"
+        title="Contact Info"
       />
       <Scene
         key="trashLogger"
