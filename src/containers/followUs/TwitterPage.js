@@ -14,12 +14,14 @@ class TwitterPage extends React.Component {
   }
 
   render() {
-    const { twitterPageUrl } = this.props;
+    const { twitterPageUrl, loaded } = this.props;
     return (
       <View style={styles.container}>
+        { !loaded ? null :
         <WebView
           source={{ uri: twitterPageUrl }}
         />
+        }
       </View>
     );
   }
@@ -28,6 +30,7 @@ class TwitterPage extends React.Component {
 
 TwitterPage.defaultProps = {
   twitterPageUrl: '',
+  loaded: false,
 };
 
 TwitterPage.propTypes = {
@@ -35,11 +38,13 @@ TwitterPage.propTypes = {
     fetchFollowUsPageUrl: PropTypes.func.isRequired,
   }).isRequired,
   twitterPageUrl: PropTypes.string,
+  loaded: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
     twitterPageUrl: state.getIn(['followUsPage', 'url']),
+    loaded: state.getIn(['followUsPage', 'loaded']),
   };
 }
 
