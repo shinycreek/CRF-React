@@ -8,17 +8,19 @@ import { fetchFollowUsPageUrl } from '../../actions/website';
 import styles from './styles';
 
 class FacebookPage extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.fetchFollowUsPageUrl('facebook');
   }
 
   render() {
-    const { facebookPageUrl } = this.props;
+    const { facebookPageUrl, loaded } = this.props;
     return (
       <View style={styles.container}>
+        { !loaded ? null :
         <WebView
           source={{ uri: facebookPageUrl }}
         />
+        }
       </View>
     );
   }
@@ -27,6 +29,7 @@ class FacebookPage extends React.Component {
 
 FacebookPage.defaultProps = {
   facebookPageUrl: '',
+  loaded: false,
 };
 
 FacebookPage.propTypes = {
@@ -34,11 +37,13 @@ FacebookPage.propTypes = {
     fetchFollowUsPageUrl: PropTypes.func.isRequired,
   }).isRequired,
   facebookPageUrl: PropTypes.string,
+  loaded: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
     facebookPageUrl: state.getIn(['followUsPage', 'url']),
+    loaded: state.getIn(['followUsPage', 'loaded']),
   };
 }
 

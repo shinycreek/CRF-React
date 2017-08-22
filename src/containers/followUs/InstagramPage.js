@@ -9,17 +9,19 @@ import styles from './styles';
 
 class InstagramPage extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.fetchFollowUsPageUrl('instagram');
   }
 
   render() {
-    const { instagramPageUrl } = this.props;
+    const { instagramPageUrl, loaded } = this.props;
     return (
       <View style={styles.container}>
+        { !loaded ? null :
         <WebView
           source={{ uri: instagramPageUrl }}
         />
+        }
       </View>
     );
   }
@@ -28,6 +30,7 @@ class InstagramPage extends React.Component {
 
 InstagramPage.defaultProps = {
   instagramPageUrl: '',
+  loaded: false,
 };
 
 InstagramPage.propTypes = {
@@ -35,11 +38,13 @@ InstagramPage.propTypes = {
     fetchFollowUsPageUrl: PropTypes.func.isRequired,
   }).isRequired,
   instagramPageUrl: PropTypes.string,
+  loaded: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
   return {
     instagramPageUrl: state.getIn(['followUsPage', 'url']),
+    loaded: state.getIn(['followUsPage', 'loaded']),
   };
 }
 
