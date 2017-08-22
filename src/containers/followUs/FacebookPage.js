@@ -8,7 +8,7 @@ import { fetchFollowUsPageUrl } from '../../actions/website';
 import styles from './styles';
 
 class FacebookPage extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.fetchFollowUsPageUrl('facebook');
   }
 

@@ -9,7 +9,7 @@ import styles from './styles';
 
 class InstagramPage extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.actions.fetchFollowUsPageUrl('instagram');
   }
 

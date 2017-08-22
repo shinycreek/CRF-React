@@ -17,27 +17,36 @@ class CRF extends React.Component {
   }
 
   render() {
-    const { crfUrl } = this.props;
+    const { crfUrl, loaded } = this.props;
     return (
       <View style={styles.container}>
+        { !loaded ? null :
         <WebView
           source={{ uri: crfUrl }}
         />
+        }
       </View>
     );
   }
 
 }
 
+CRF.defaultProps = {
+  crfUrl: '',
+  loaded: false,
+};
+
 CRF.propTypes = {
   actions: PropTypes.func.isRequired,
   crfUrl: PropTypes.PropTypes.string,
+  loaded: PropTypes.bool,
 };
 
 
 function mapStateToProps(state) {
   return {
     crfUrl: state.getIn(['crf', 'url']),
+    loaded: state.getIn(['crf', 'loaded']),
   };
 }
 
