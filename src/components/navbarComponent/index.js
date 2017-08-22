@@ -50,7 +50,7 @@ export const renderHomeButton = () => (
 export const renderCloseButton = () => (
   <TouchableOpacity onPress={() => Actions.home()}>
     <Text>
-      <Icon name="times" size={30} color="white" />
+      <Icon name="times" size={(Platform.OS === 'ios') ? 25 : 30} color="white" />
     </Text>
   </TouchableOpacity>
 );
