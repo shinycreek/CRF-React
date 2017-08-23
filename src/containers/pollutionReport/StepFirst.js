@@ -4,16 +4,15 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Picker,
-  TextInput,
 } from 'react-native';
-import ModalPicker from 'react-native-modal-picker';
+
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { renderInputField } from '../../components/fields/';
+import renderCountyList from '../../components/pollutionReporter/CountyList';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { calendarLogo, clockLogo, locationLogo } from '../../constants/images';
@@ -43,10 +42,9 @@ class StepFirst extends React.Component {
     this.handleDateTime = this.handleDateTime.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
-    this.renderModalPicker = this.renderModalPicker.bind(this);
+
     this.state = {
       dateTime: moment().format(),
-      textInputValue: '',
     };
   }
 
@@ -76,24 +74,6 @@ class StepFirst extends React.Component {
         this.state.dateTime,
       );
     });
-  }
-
-  renderModalPicker({ input, data }) {
-    return (
-      <ModalPicker
-        data={data}
-        initValue="Please select county"
-        onChange={option => input.onChange(option.label)}
-      >
-        <TextInput
-          {...input}
-          style={[mainStyles.inputField, { color: 'black' }]}
-          editable={false}
-          placeholder="Please select county"
-          value={input.value}
-        />
-      </ModalPicker>
-    );
   }
 
   renderDatePickerField(field) {
@@ -149,9 +129,6 @@ class StepFirst extends React.Component {
     const displayDate = moment(this.state.dateTime).format('MMM DD');
     const date = moment(this.state.dateTime).format('YYYY-MM-DD');
     const time = moment(this.state.dateTime).format('hh:mm A');
-    const counties = this.props.counties.map(
-      (county, index) => ({ key: index, label: county }),
-    );
 
     return (
       <View>
@@ -225,11 +202,7 @@ class StepFirst extends React.Component {
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Text style={mainStyles.label}>County where pollution observed: </Text>
-            <Field
-              name="county"
-              component={this.renderModalPicker}
-              data={counties}
-            />
+            <Field name="county" component={renderCountyList} />
           </View>
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
@@ -294,14 +267,9 @@ class StepFirst extends React.Component {
   }
 }
 
-StepFirst.defaultProps = {
-  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York', 'Other (note in Description)'],
-};
-
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  counties: PropTypes.arrayOf(PropTypes.string),
 };
 
 function mapStateToProps(state) {
