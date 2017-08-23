@@ -5,7 +5,9 @@ import {
   TouchableOpacity,
   Image,
   Picker,
+  TextInput,
 } from 'react-native';
+import ModalPicker from 'react-native-modal-picker';
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import DatePicker from 'react-native-datepicker';
@@ -41,30 +43,15 @@ class StepFirst extends React.Component {
     this.handleDateTime = this.handleDateTime.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
-    this.renderSelect = this.renderSelect.bind(this);
+    this.renderModalPicker = this.renderModalPicker.bind(this);
     this.state = {
       dateTime: moment().format(),
+      textInputValue: '',
     };
   }
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
-  }
-
-  renderSelect({ input, data }) {
-    return (
-      <View style={{ backgroundColor: '#FFF' }}>
-        <Picker
-          {...input}
-          selectedValue={input.value}
-          onValueChange={value => input.onChange(value)}
-        >
-          {data.map((name, index) => (
-            <Picker.Item label={name} value={name} key={`county${index}`} />
-          ))}
-        </Picker>
-      </View>
-    );
   }
 
   handleDateTime(dateTime, field) {
@@ -89,6 +76,25 @@ class StepFirst extends React.Component {
         this.state.dateTime,
       );
     });
+  }
+
+  renderModalPicker({ input, data }) {
+    return (
+      <ModalPicker
+        data={data}
+        initValue="Please select county"
+        onChange={option => input.onChange(option.label)}
+        style={{ }}
+      >
+        <TextInput
+          {...input}
+          style={[mainStyles.inputField, { color: 'black' }]}
+          editable={false}
+          placeholder="Please select county"
+          value={input.value}
+        />
+      </ModalPicker>
+    );
   }
 
   renderDatePickerField(field) {
@@ -144,7 +150,9 @@ class StepFirst extends React.Component {
     const displayDate = moment(this.state.dateTime).format('MMM DD');
     const date = moment(this.state.dateTime).format('YYYY-MM-DD');
     const time = moment(this.state.dateTime).format('hh:mm A');
-    const { counties } = this.props;
+    const counties = this.props.counties.map(
+      (county, index) => ({ key: index, label: county }),
+    );
 
     return (
       <View>
@@ -217,14 +225,13 @@ class StepFirst extends React.Component {
           </View>
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
-            <Text style={styles.label}>County where pollution observed: </Text>
+            <Text style={mainStyles.label}>County where pollution observed: </Text>
             <Field
               name="county"
-              component={this.renderSelect}
+              component={this.renderModalPicker}
               data={counties}
             />
           </View>
-
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Field
