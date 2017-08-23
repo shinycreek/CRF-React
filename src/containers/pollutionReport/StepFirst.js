@@ -143,129 +143,125 @@ class StepFirst extends React.Component {
         <Text style={[mainStyles.whiteBgText, mainStyles.clearTextBg]}>
           To report trash for a cleanup, please use the Trash Logger tool instead!
         </Text>
-        <View>
 
+        <View style={[mainStyles.box, mainStyles.topSpace, mainStyles.bottomSpace]}>
 
-          <View style={[mainStyles.box, mainStyles.topSpace, mainStyles.bottomSpace]}>
-
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-              <Text style={[mainStyles.label]}>Date and Time Pollution Observed:</Text>
-            </View>
-
-            <View style={{ flex: 1, flexDirection: 'row' }}>
-              <View style={{ flex: 0.1 }} />
-              <TouchableOpacity
-                onPress={() => this.datePicker.onPressDate()}
-                style={[styles.dateTime, mainStyles.fieldBorder]}
-              >
-                <View style={[styles.displayDateTime]}>
-                  <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{displayDate}</Text>
-                </View>
-                <View style={{ position: 'absolute', left: 20 }}>
-                  <Field
-                    name="pollution_observed_at"
-                    component={this.renderDatePickerField}
-                    date={date}
-                    onDateChange={this.handleDateTime}
-                  />
-                </View>
-
-              </TouchableOpacity>
-              <View style={{ flex: 0.3 }} />
-              <TouchableOpacity
-                onPress={() => this.timePicker.onPressDate()}
-                style={[styles.dateTime, mainStyles.fieldBorder]}
-              >
-                <View style={[styles.displayDateTime]}>
-                  <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{time}</Text>
-                </View>
-                <View style={{ position: 'absolute', left: 20 }}>
-                  <Field
-                    name="pollution_observed_at"
-                    component={this.renderTimePickerField}
-                    date={time}
-                    onDateChange={this.handleDateTime}
-                  />
-                </View>
-
-              </TouchableOpacity>
-              <View style={{ flex: 0.1 }} />
-            </View>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <Text style={[mainStyles.label]}>Date and Time Pollution Observed:</Text>
           </View>
 
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View style={{ flex: 0.1 }} />
+            <TouchableOpacity
+              onPress={() => this.datePicker.onPressDate()}
+              style={[styles.dateTime, mainStyles.fieldBorder]}
+            >
+              <View style={[styles.displayDateTime]}>
+                <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{displayDate}</Text>
+              </View>
+              <View style={{ position: 'absolute', left: 20 }}>
+                <Field
+                  name="pollution_observed_at"
+                  component={this.renderDatePickerField}
+                  date={date}
+                  onDateChange={this.handleDateTime}
+                />
+              </View>
 
-          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
-            <Field
-              name="pollution_address"
-              label="Address where pollution observed:"
-              component={renderInputField}
-              options={{ multiline: true, numberOfLines: 2 }}
-              style={[mainStyles.multilineInputField]}
-            />
-          </View>
+            </TouchableOpacity>
+            <View style={{ flex: 0.3 }} />
+            <TouchableOpacity
+              onPress={() => this.timePicker.onPressDate()}
+              style={[styles.dateTime, mainStyles.fieldBorder]}
+            >
+              <View style={[styles.displayDateTime]}>
+                <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{time}</Text>
+              </View>
+              <View style={{ position: 'absolute', left: 20 }}>
+                <Field
+                  name="pollution_observed_at"
+                  component={this.renderTimePickerField}
+                  date={time}
+                  onDateChange={this.handleDateTime}
+                />
+              </View>
 
-          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
-            <Text style={mainStyles.label}>County where pollution observed: </Text>
-            <Field name="county" component={renderCountyList} />
-          </View>
-
-          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
-            <Field
-              name="pollution_duration"
-              label="How long has this been happening?"
-              component={renderInputField}
-              options={{ multiline: true, numberOfLines: 2 }}
-              style={[mainStyles.multilineInputField]}
-            />
-          </View>
-
-          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
-            <Field
-              name="waterway_affected"
-              label="Waterway affected:"
-              component={renderInputField}
-              options={{ multiline: true, numberOfLines: 2 }}
-              style={[mainStyles.multilineInputField]}
-            />
-          </View>
-
-          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
-            <Field
-              name="describe_pollution"
-              label="Describe the pollution:"
-              component={renderInputField}
-              options={{ multiline: true, numberOfLines: 2 }}
-              style={[mainStyles.multilineInputField]}
-            />
-          </View>
-
-          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
-            <Field
-              name="responsible_party"
-              label="Party you believe responsible, if known:"
-              component={renderInputField}
-              options={{ multiline: true, numberOfLines: 2 }}
-              style={[mainStyles.multilineInputField]}
-            />
-          </View>
-
-          <View style={[mainStyles.box, mainStyles.bottomSpace, { flex: 1, flexDirection: 'row' }]}>
-            <View style={[mainStyles.mBottom20, { flex: 1 }]}>
-              <Text style={mainStyles.label}>Location saved as current location.
-                {'\n'}
-                Click here to set to a different location.
-              </Text>
-            </View>
-            <View>
-              <Image
-                style={{ height: 37, width: 24 }}
-                source={locationLogo}
-                resizeMode="cover"
-              />
-            </View>
+            </TouchableOpacity>
+            <View style={{ flex: 0.1 }} />
           </View>
         </View>
 
+
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
+          <Field
+            name="pollution_address"
+            label="Address where pollution observed:"
+            component={renderInputField}
+            options={{ multiline: true, numberOfLines: 2 }}
+            style={[mainStyles.multilineInputField]}
+          />
+        </View>
+
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
+          <Text style={mainStyles.label}>County where pollution observed: </Text>
+          <Field name="county" component={renderCountyList} />
+        </View>
+
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
+          <Field
+            name="pollution_duration"
+            label="How long has this been happening?"
+            component={renderInputField}
+            options={{ multiline: true, numberOfLines: 2 }}
+            style={[mainStyles.multilineInputField]}
+          />
+        </View>
+
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
+          <Field
+            name="waterway_affected"
+            label="Waterway affected:"
+            component={renderInputField}
+            options={{ multiline: true, numberOfLines: 2 }}
+            style={[mainStyles.multilineInputField]}
+          />
+        </View>
+
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
+          <Field
+            name="describe_pollution"
+            label="Describe the pollution:"
+            component={renderInputField}
+            options={{ multiline: true, numberOfLines: 2 }}
+            style={[mainStyles.multilineInputField]}
+          />
+        </View>
+
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
+          <Field
+            name="responsible_party"
+            label="Party you believe responsible, if known:"
+            component={renderInputField}
+            options={{ multiline: true, numberOfLines: 2 }}
+            style={[mainStyles.multilineInputField]}
+          />
+        </View>
+
+        <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
+          <View style={{ flex: 0.5 }}>
+            <Text style={[mainStyles.label, { marginTop: 1 }]}>Location saved as current location.
+              {'\n'}
+              Click here to set to a different location.
+            </Text>
+          </View>
+          <View style={{ flex: 0.1 }}>
+            <Image
+              style={{ height: 37, width: 24 }}
+              source={locationLogo}
+              resizeMode="cover"
+            />
+          </View>
+        </View>
       </View>
     );
   }
