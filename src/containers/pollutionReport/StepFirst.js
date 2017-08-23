@@ -4,14 +4,15 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Picker,
 } from 'react-native';
+
 import PropTypes from 'prop-types';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { renderInputField } from '../../components/fields/';
+import renderCountyList from '../../components/pollutionReporter/CountyList';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { calendarLogo, clockLogo, locationLogo } from '../../constants/images';
@@ -41,7 +42,7 @@ class StepFirst extends React.Component {
     this.handleDateTime = this.handleDateTime.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
-    this.renderSelect = this.renderSelect.bind(this);
+
     this.state = {
       dateTime: moment().format(),
     };
@@ -49,22 +50,6 @@ class StepFirst extends React.Component {
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
-  }
-
-  renderSelect({ input, data }) {
-    return (
-      <View style={{ backgroundColor: '#FFF' }}>
-        <Picker
-          {...input}
-          selectedValue={input.value}
-          onValueChange={value => input.onChange(value)}
-        >
-          {data.map((name, index) => (
-            <Picker.Item label={name} value={name} key={`county${index}`} />
-          ))}
-        </Picker>
-      </View>
-    );
   }
 
   handleDateTime(dateTime, field) {
@@ -144,7 +129,6 @@ class StepFirst extends React.Component {
     const displayDate = moment(this.state.dateTime).format('MMM DD');
     const date = moment(this.state.dateTime).format('YYYY-MM-DD');
     const time = moment(this.state.dateTime).format('hh:mm A');
-    const { counties } = this.props;
 
     return (
       <View>
@@ -217,14 +201,9 @@ class StepFirst extends React.Component {
           </View>
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
-            <Text style={styles.label}>County where pollution observed: </Text>
-            <Field
-              name="county"
-              component={this.renderSelect}
-              data={counties}
-            />
+            <Text style={mainStyles.label}>County where pollution observed: </Text>
+            <Field name="county" component={renderCountyList} />
           </View>
-
 
           <View style={[mainStyles.mTop10, { flex: 1 }]}>
             <Field
@@ -288,14 +267,9 @@ class StepFirst extends React.Component {
   }
 }
 
-StepFirst.defaultProps = {
-  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York'],
-};
-
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  counties: PropTypes.arrayOf(PropTypes.string),
 };
 
 function mapStateToProps(state) {

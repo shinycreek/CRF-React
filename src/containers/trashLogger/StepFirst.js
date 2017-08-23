@@ -3,11 +3,12 @@ import {
   View,
   Text,
   Image,
-  Picker,
 } from 'react-native';
+
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { renderInputField } from '../../components/fields/';
+import renderCountyList from '../../components/pollutionReporter/CountyList';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { locationLogo } from '../../constants/images';
@@ -32,28 +33,9 @@ class StepFirst extends React.Component {
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
-    this.renderSelect = this.renderSelect.bind(this);
-  }
-
-  renderSelect({ input, data }) {
-    return (
-      <View style={{ backgroundColor: '#FFF' }}>
-        <Picker
-          {...input}
-          selectedValue={input.value}
-
-          onValueChange={value => input.onChange(value)}
-        >
-          {data.map((name, index) => (
-            <Picker.Item label={name} value={name} key={`county${index}`} />
-          ))}
-        </Picker>
-      </View>
-    );
   }
 
   render() {
-    const { counties } = this.props;
     return (
       <View>
         <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
@@ -77,11 +59,10 @@ class StepFirst extends React.Component {
         </View>
 
         <View style={[mainStyles.box, styles.bottomSpace]}>
-          <Text style={styles.label}>County where trash was observed: </Text>
+          <Text style={mainStyles.label}>County where trash was observed: </Text>
           <Field
             name="county"
-            component={this.renderSelect}
-            data={counties}
+            component={renderCountyList}
           />
         </View>
 
@@ -116,14 +97,9 @@ class StepFirst extends React.Component {
   }
 }
 
-StepFirst.defaultProps = {
-  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York'],
-};
-
 StepFirst.propTypes = {
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  counties: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default reduxForm({
