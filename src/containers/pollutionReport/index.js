@@ -98,7 +98,7 @@ class PollutionReport extends Component {
 
     switch (this.state.page) {
       case 1:
-        message = null;
+        message = 'Step1: Describe the Pollution';
         break;
       case 2:
         message = 'Step 2: Take a Photo';
@@ -115,7 +115,7 @@ class PollutionReport extends Component {
       response = [
         <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
           <Text
-            style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.f18]}
+            style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.bodyText2]}
           >
             { message }
           </Text>
@@ -127,7 +127,7 @@ class PollutionReport extends Component {
       response.push(
         <Text
           key="stepName2"
-          style={[mainStyles.textFont, mainStyles.clearTextBg, { marginBottom: 2, marginTop: 20 }]}
+          style={[mainStyles.whiteBgText, mainStyles.clearTextBg, { marginBottom: 2, marginTop: 20 }]}
         >
           { body }
         </Text>);

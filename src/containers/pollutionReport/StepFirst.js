@@ -132,65 +132,69 @@ class StepFirst extends React.Component {
 
     return (
       <View>
-        <Text style={[mainStyles.textFont, styles.bottomSpace10, mainStyles.clearTextBg]}>
+        <Text style={[mainStyles.whiteBgText, styles.bottomSpace10, mainStyles.clearTextBg]}>
           Report sediment, chemical and any other pollution in this form
           so we can help make sure authorities are notified and the pollution addressed.
         </Text>
-        <Text style={[mainStyles.textFont, styles.bottomSpace10, mainStyles.clearTextBg]}>
+        <Text style={[mainStyles.whiteBgText, styles.bottomSpace10, mainStyles.clearTextBg]}>
           Please try to document the pollution at the incident as well as
           upstream and downstream of any water impacts.
         </Text>
-        <Text style={[mainStyles.textFont, mainStyles.clearTextBg]}>
+        <Text style={[mainStyles.whiteBgText, mainStyles.clearTextBg]}>
           To report trash for a cleanup, please use the Trash Logger tool instead!
         </Text>
-        <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace, mainStyles.mBottom50]}>
+        <View>
 
-          <View style={{ flex: 1, flexDirection: 'row' }}>
-            <Text style={[mainStyles.label]}>Date and Time Pollution Observed:</Text>
+
+          <View style={[mainStyles.box, mainStyles.topSpace, mainStyles.bottomSpace]}>
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <Text style={[mainStyles.label]}>Date and Time Pollution Observed:</Text>
+            </View>
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <View style={{ flex: 0.1 }} />
+              <TouchableOpacity
+                onPress={() => this.datePicker.onPressDate()}
+                style={[styles.dateTime, mainStyles.fieldBorder]}
+              >
+                <View style={[styles.displayDateTime]}>
+                  <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{displayDate}</Text>
+                </View>
+                <View style={{ position: 'absolute', left: 20 }}>
+                  <Field
+                    name="pollution_observed_at"
+                    component={this.renderDatePickerField}
+                    date={date}
+                    onDateChange={this.handleDateTime}
+                  />
+                </View>
+
+              </TouchableOpacity>
+              <View style={{ flex: 0.3 }} />
+              <TouchableOpacity
+                onPress={() => this.timePicker.onPressDate()}
+                style={[styles.dateTime, mainStyles.fieldBorder]}
+              >
+                <View style={[styles.displayDateTime]}>
+                  <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{time}</Text>
+                </View>
+                <View style={{ position: 'absolute', left: 20 }}>
+                  <Field
+                    name="pollution_observed_at"
+                    component={this.renderTimePickerField}
+                    date={time}
+                    onDateChange={this.handleDateTime}
+                  />
+                </View>
+
+              </TouchableOpacity>
+              <View style={{ flex: 0.1 }} />
+            </View>
           </View>
 
-          <View style={{ flex: 1, flexDirection: 'row' }}>
-            <View style={{ flex: 0.1 }} />
-            <TouchableOpacity
-              onPress={() => this.datePicker.onPressDate()}
-              style={[styles.dateTime, mainStyles.fieldBorder]}
-            >
-              <View style={[styles.displayDateTime]}>
-                <Text style={[mainStyles.fontAkzB, mainStyles.f14]}>{displayDate}</Text>
-              </View>
-              <View style={{ position: 'absolute', left: 20 }}>
-                <Field
-                  name="pollution_observed_at"
-                  component={this.renderDatePickerField}
-                  date={date}
-                  onDateChange={this.handleDateTime}
-                />
-              </View>
 
-            </TouchableOpacity>
-            <View style={{ flex: 0.3 }} />
-            <TouchableOpacity
-              onPress={() => this.timePicker.onPressDate()}
-              style={[styles.dateTime, mainStyles.fieldBorder]}
-            >
-              <View style={[styles.displayDateTime]}>
-                <Text style={[mainStyles.fontAkzB, mainStyles.f14]}>{time}</Text>
-              </View>
-              <View style={{ position: 'absolute', left: 20 }}>
-                <Field
-                  name="pollution_observed_at"
-                  component={this.renderTimePickerField}
-                  date={time}
-                  onDateChange={this.handleDateTime}
-                />
-              </View>
-
-            </TouchableOpacity>
-            <View style={{ flex: 0.1 }} />
-          </View>
-
-
-          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
             <Field
               name="pollution_address"
               label="Address where pollution observed:"
@@ -200,12 +204,12 @@ class StepFirst extends React.Component {
             />
           </View>
 
-          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
             <Text style={mainStyles.label}>County where pollution observed: </Text>
             <Field name="county" component={renderCountyList} />
           </View>
 
-          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
             <Field
               name="pollution_duration"
               label="How long has this been happening?"
@@ -215,7 +219,7 @@ class StepFirst extends React.Component {
             />
           </View>
 
-          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
             <Field
               name="waterway_affected"
               label="Waterway affected:"
@@ -225,7 +229,7 @@ class StepFirst extends React.Component {
             />
           </View>
 
-          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
             <Field
               name="describe_pollution"
               label="Describe the pollution:"
@@ -235,17 +239,17 @@ class StepFirst extends React.Component {
             />
           </View>
 
-          <View style={[mainStyles.mTop10, { flex: 1 }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace]}>
             <Field
               name="responsible_party"
-              label="Party you believe responsible, if known"
+              label="Party you believe responsible, if known:"
               component={renderInputField}
               options={{ multiline: true, numberOfLines: 2 }}
               style={[mainStyles.multilineInputField]}
             />
           </View>
 
-          <View style={[mainStyles.mTop20, { flex: 1, flexDirection: 'row' }]}>
+          <View style={[mainStyles.box, mainStyles.bottomSpace, { flex: 1, flexDirection: 'row' }]}>
             <View style={[mainStyles.mBottom20, { flex: 1 }]}>
               <Text style={mainStyles.label}>Location saved as current location.
                 {'\n'}

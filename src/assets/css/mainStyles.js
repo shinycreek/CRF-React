@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 const mainStyles = StyleSheet.create({
   container: {
@@ -15,9 +15,22 @@ const mainStyles = StyleSheet.create({
     backgroundColor: '#D8D8D8',
     padding: 10,
   },
-  textFont: {
+  bottomSpace: {
+    marginBottom: 20,
+  },
+
+  bottomSpace10: {
+    marginBottom: 10,
+    backgroundColor: 'rgba(0,0,0,0)',
+
+  },
+
+  topSpace: {
+    marginTop: 20,
+  },
+  whiteBgText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: (Platform.OS === 'ios') ? 14 : 16,
   },
   inputField: {
     borderColor: 'gray',
@@ -34,8 +47,8 @@ const mainStyles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 5,
     backgroundColor: 'white',
-    borderRadius: 3,
     paddingLeft: 10,
+    height: (Platform.OS === 'ios') ? 45 : 50,
   },
 
   fieldBorder: {
@@ -138,12 +151,12 @@ const mainStyles = StyleSheet.create({
     fontSize: 5,
   },
 
-  f14: {
-    fontSize: 14,
+  bodyText1: {
+    fontSize: (Platform.OS === 'ios') ? 12 : 14,
   },
 
-  f18: {
-    fontSize: 18,
+  bodyText2: {
+    fontSize: (Platform.OS === 'ios') ? 16 : 18,
   },
   // end font styles
 
@@ -154,10 +167,11 @@ const mainStyles = StyleSheet.create({
 
   label: {
     fontFamily: 'AkzidenzGroteskBQ-Medium',
-    fontSize: 14,
+    fontSize: (Platform.OS === 'ios') ? 13 : 14,
     marginTop: 10,
     marginBottom: 4,
     color: 'black',
+    fontWeight: 'bold',
   },
 
   fontAkzB: {

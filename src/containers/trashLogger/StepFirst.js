@@ -38,27 +38,27 @@ class StepFirst extends React.Component {
   render() {
     return (
       <View>
-        <View style={[mainStyles.box, styles.bottomSpace, styles.topSpace]}>
+        <View style={[mainStyles.box, mainStyles.bottomSpace, mainStyles.topSpace]}>
           <Field
             name="describe_trash"
             label="Describe the trash and anything large or unique:"
             component={renderInputField}
             options={{ multiline: true, numberOfLines: 2 }}
-            style={[styles.multilineInputField]}
+            style={[mainStyles.multilineInputField]}
           />
         </View>
 
-        <View style={[mainStyles.box, styles.bottomSpace]}>
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
           <Field
             name="describe_location"
             label="Describe the location and extent of the trash:"
             component={renderInputField}
             options={{ multiline: true, numberOfLines: 2 }}
-            style={[styles.multilineInputField]}
+            style={[mainStyles.multilineInputField]}
           />
         </View>
 
-        <View style={[mainStyles.box, styles.bottomSpace]}>
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
           <Text style={mainStyles.label}>County where trash was observed: </Text>
           <Field
             name="county"
@@ -66,13 +66,13 @@ class StepFirst extends React.Component {
           />
         </View>
 
-        <View style={[mainStyles.box, styles.bottomSpace]}>
+        <View style={[mainStyles.box, mainStyles.bottomSpace]}>
           <Field
             name="adjacent_waterway"
             label="What is the name of the adjacent waterway? (If known)"
             component={renderInputField}
             options={{ multiline: true, numberOfLines: 2 }}
-            style={[styles.multilineInputField]}
+            style={[mainStyles.multilineInputField]}
           />
         </View>
 

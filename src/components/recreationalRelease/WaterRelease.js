@@ -13,6 +13,7 @@ const startsStopsContentStyle = [
   mainStyles.fWeight500,
   mainStyles.textColorLightBlue,
   mainStyles.pLeft20,
+  mainStyles.bodyText1,
 ];
 
 const startsText = waterRelease => (

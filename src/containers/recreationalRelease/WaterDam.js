@@ -28,14 +28,14 @@ class WaterDam extends React.Component {
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={styles.topText}>
             <Text
-              style={[mainStyles.textFont, mainStyles.clearTextBg, styles.recreationalTopText]}
+              style={[mainStyles.whiteBgText, mainStyles.clearTextBg, styles.recreationalTopText]}
             >
               Catawba River scheduled flow releases by dam.{'\n'}
             </Text>
           </View>
           <View style={styles.topText}>
             <Text
-              style={[mainStyles.textFont, mainStyles.clearTextBg, styles.recreationalTopText]}
+              style={[mainStyles.whiteBgText, mainStyles.clearTextBg, styles.recreationalTopText]}
             >
               Click on a dam to see arrival/recession times.
             </Text>
@@ -53,7 +53,7 @@ class WaterDam extends React.Component {
                     <TouchableOpacity onPress={() => Actions.flowArrivalLocation({ damId: dam.get('id') })}>
                       <Text
                         style={[
-                          mainStyles.f14,
+                          mainStyles.bodyText1,
                           mainStyles.bold,
                           mainStyles.pLeft20,
                           {

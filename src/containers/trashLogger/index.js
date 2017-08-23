@@ -113,7 +113,7 @@ class TrashLogger extends Component {
     const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">
         <Text
-          style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.f18]}
+          style={[mainStyles.box, styles.stepName, mainStyles.fontStyle, mainStyles.bodyText2]}
         >
           { message }
         </Text>
@@ -122,7 +122,7 @@ class TrashLogger extends Component {
 
     if (body) {
       response.push(
-        <Text key="stepName2" style={[mainStyles.textFont, mainStyles.clearTextBg, { marginBottom: 10, marginTop: 20 }]}>
+        <Text key="stepName2" style={[mainStyles.whiteBgText, mainStyles.clearTextBg, { marginBottom: 10, marginTop: 20 }]}>
           {body}
         </Text>);
     }

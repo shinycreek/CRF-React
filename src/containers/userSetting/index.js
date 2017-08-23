@@ -83,7 +83,7 @@ class UserSetting extends React.Component {
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
           <KeyboardAwareScrollView>
-            <Text style={[mainStyles.textFont, styles.bottomSpace10, mainStyles.clearTextBg]}>
+            <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.clearTextBg]}>
               Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
             </Text>
             <View style={[mainStyles.box, styles.middle]}>
