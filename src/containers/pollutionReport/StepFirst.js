@@ -295,7 +295,7 @@ class StepFirst extends React.Component {
 }
 
 StepFirst.defaultProps = {
-  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York'],
+  counties: ['Alexander', 'Avery', 'Burke', 'Caldwell', 'Catawba', 'Chester', 'Fairfield', 'Gaston', 'Iredell', 'Kershaw', 'Lancaster', 'Lincoln', 'McDowell', 'Mecklenburg', 'Richland', 'Union', 'Watagua', 'York', 'Other (note in Description)'],
 };
 
 StepFirst.propTypes = {
