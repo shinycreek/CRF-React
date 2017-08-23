@@ -108,7 +108,7 @@ class TrashLogger extends Component {
         break;
       default:
         message = 'Thank you!';
-        body = 'Your report has been logged, and will be used to help us keep the waterways cleaner.';
+        body = 'Your report has been logged and will be used to help us keep the waterways cleaner.';
     }
     const response = [
       <View style={{ flexDirection: 'row', justifyContent: 'center' }} key="stepName1">

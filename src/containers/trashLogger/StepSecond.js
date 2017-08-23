@@ -166,7 +166,7 @@ class StepSecond extends React.Component {
               You can attach up to 6 images to this Trash Log.
               {'\n'}{'\n'}
               Use your camera to take photos of the pollution you would
-              like to report, or select existing photos from your Library.
+              like to report or select existing photos from your Library.
             </Text>
           </View>
         </View>
