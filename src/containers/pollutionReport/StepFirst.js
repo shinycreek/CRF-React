@@ -84,7 +84,6 @@ class StepFirst extends React.Component {
         data={data}
         initValue="Please select county"
         onChange={option => input.onChange(option.label)}
-        style={{ }}
       >
         <TextInput
           {...input}
