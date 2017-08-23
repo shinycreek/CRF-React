@@ -38,6 +38,14 @@ class StepFirst extends React.Component {
   render() {
     return (
       <View>
+
+        <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.topSpace, mainStyles.clearTextBg]}>
+          Log trash in the river or on the bank for our next river cleanup!
+        </Text>
+        <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.clearTextBg]}>
+          To report sediment, chemical and any other pollution, please use the Pollution Reporter tool instead.
+        </Text>
+
         <View style={[mainStyles.box, mainStyles.bottomSpace, mainStyles.topSpace]}>
           <Field
             name="describe_trash"
