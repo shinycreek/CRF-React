@@ -58,7 +58,7 @@ Footer.defaultProps = {
   onPressLeft: _.noop,
   onPressRight: _.noop,
   onPressMiddle: _.noop,
-  middleButtonText: _.noop,
+  middleButtonText: '',
 };
 
 export default Footer;
