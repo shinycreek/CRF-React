@@ -25,7 +25,7 @@ class FollowUs extends React.Component {
               <Image
                 style={styles.socialMediaLogoSize}
                 source={facebookLogo}
-                resizeMode="cover"
+                resizeMode="contain"
               />
             </View>
           </TouchableOpacity>
@@ -38,7 +38,7 @@ class FollowUs extends React.Component {
               <Image
                 style={styles.socialMediaLogoSize}
                 source={instagramLogo}
-                resizeMode="cover"
+                resizeMode="contain"
               />
             </View>
           </TouchableOpacity>
@@ -51,7 +51,7 @@ class FollowUs extends React.Component {
               <Image
                 style={styles.socialMediaLogoSize}
                 source={twitterLogo}
-                resizeMode="cover"
+                resizeMode="contain"
               />
             </View>
           </TouchableOpacity>
