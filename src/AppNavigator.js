@@ -123,7 +123,7 @@ const AppNavigator = () => (
         component={FollowUs}
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
-        title="Follw Us!"
+        title="Follow Us!"
         navigationBarStyle={mainStyles.navBarFollowUsColor}
       />
       <Scene
