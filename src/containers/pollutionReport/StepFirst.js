@@ -16,6 +16,7 @@ import renderCountyList from '../../components/pollutionReporter/CountyList';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { calendarLogo, clockLogo, locationLogo } from '../../constants/images';
+import MapModal from '../../components/pollutionReporter/MapModal';
 
 const selector = formValueSelector('trashLoggerTileForm');
 
@@ -45,6 +46,7 @@ class StepFirst extends React.Component {
 
     this.state = {
       dateTime: moment().format(),
+      mapVisibility: true,
     };
   }
 
@@ -191,7 +193,6 @@ class StepFirst extends React.Component {
           </View>
         </View>
 
-
         <View style={[mainStyles.box, mainStyles.bottomSpace]}>
           <Field
             name="pollution_address"
@@ -262,6 +263,10 @@ class StepFirst extends React.Component {
             />
           </View>
         </View>
+
+        { this.state.mapVisibility &&
+          <MapModal />
+        }
       </View>
     );
   }

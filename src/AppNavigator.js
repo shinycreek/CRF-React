@@ -15,6 +15,7 @@ import FollowUs from './containers/followUs';
 import FacebookPage from './containers/followUs/FacebookPage';
 import InstagramPage from './containers/followUs/InstagramPage';
 import TwitterPage from './containers/followUs/TwitterPage';
+// import Map from './components/pollutionReporter/Map';
 import { renderRightButton, renderHomeButton, renderCloseButton } from './components/navbarComponent/';
 import SplashScreen from './containers/home/';
 import mainStyles from './assets/css/mainStyles';
@@ -150,6 +151,14 @@ const AppNavigator = () => (
         renderRightButton={() => renderRightButton()}
         navigationBarStyle={mainStyles.navBarFollowUsColor}
       />
+      {/* <Scene
+        key="setLocation"
+        hideNavBar={false}
+        component={Map}
+        renderBackButton={() => renderCloseButton()}
+        renderRightButton={() => renderRightButton()}
+        navigationBarStyle={mainStyles.navBarCRFColor}
+      /> */}
     </Scene>
   </RouterWithRedux>
 );
