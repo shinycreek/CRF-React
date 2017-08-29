@@ -132,9 +132,16 @@ class StepFirst extends React.Component {
 
     return (
       <View>
-        <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.topSpace, mainStyles.clearTextBg]}>
+        <Text
+          style={[
+            mainStyles.whiteBgText,
+            mainStyles.bottomSpace10,
+            mainStyles.topSpace,
+            mainStyles.clearTextBg,
+          ]}
+        >
           Report sediment, chemical and any other pollution in this form
-          so we can help make sure authorities are notified and the pollution addressed.
+          so we can help make sure authorities are notified and the pollution is addressed.
         </Text>
 
         <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.clearTextBg]}>
