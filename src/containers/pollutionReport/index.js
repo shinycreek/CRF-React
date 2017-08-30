@@ -26,16 +26,18 @@ class PollutionReport extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChildFormSubmit = this.handleChildFormSubmit.bind(this);
     this.handleShowRightArrow = this.handleShowRightArrow.bind(this);
+    this.updateCoordinates = this.updateCoordinates.bind(this);
+
     this.state = {
-      latitude: null,
-      longitude: null,
+      latitude: 37.78825,
+      longitude: -122.4324,
       error: null,
       page: 1,
       showRightArrow: false,
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         this.setState({
@@ -73,6 +75,10 @@ class PollutionReport extends Component {
       this.props.actions.reset('pollutionReportForm');
       this.nextPage();
     });
+  }
+
+  updateCoordinates(latitude, longitude) {
+    this.setState({ latitude, longitude });
   }
 
   handleChildFormSubmit(handleSubmit) {
@@ -127,7 +133,11 @@ class PollutionReport extends Component {
       response.push(
         <Text
           key="stepName2"
-          style={[mainStyles.whiteBgText, mainStyles.clearTextBg, { marginBottom: 2, marginTop: 20 }]}
+          style={[mainStyles.whiteBgText, mainStyles.clearTextBg,
+            { marginBottom: 2,
+              marginTop: 20,
+            },
+          ]}
         >
           { body }
         </Text>);
@@ -146,7 +156,12 @@ class PollutionReport extends Component {
           {this.stepName()}
           {page === 1 &&
             <KeyboardAwareScrollView>
-              <StepFirst handleChildFormSubmit={this.handleChildFormSubmit} />
+              <StepFirst
+                handleChildFormSubmit={this.handleChildFormSubmit}
+                latitude={this.state.latitude}
+                longitude={this.state.longitude}
+                updateCoordinates={this.updateCoordinates}
+              />
             </KeyboardAwareScrollView>
           }
           {page === 2 &&

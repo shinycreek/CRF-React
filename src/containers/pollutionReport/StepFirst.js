@@ -41,12 +41,13 @@ class StepFirst extends React.Component {
   constructor(props) {
     super(props);
     this.handleDateTime = this.handleDateTime.bind(this);
+    this.toggleMapVisibility = this.toggleMapVisibility.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
 
     this.state = {
       dateTime: moment().format(),
-      mapVisibility: true,
+      mapVisibility: false,
     };
   }
 
@@ -75,6 +76,12 @@ class StepFirst extends React.Component {
       field.input.onChange(
         this.state.dateTime,
       );
+    });
+  }
+
+  toggleMapVisibility() {
+    this.setState({
+      mapVisibility: !this.state.mapVisibility,
     });
   }
 
@@ -256,23 +263,33 @@ class StepFirst extends React.Component {
             </Text>
           </View>
           <View style={{ flex: 0.1 }}>
-            <Image
-              style={{ height: 37, width: 24 }}
-              source={locationLogo}
-              resizeMode="cover"
-            />
+            <TouchableOpacity onPress={() => this.toggleMapVisibility()}>
+              <Image
+                style={{ height: 37, width: 24 }}
+                source={locationLogo}
+                resizeMode="cover"
+              />
+            </TouchableOpacity>
           </View>
         </View>
 
-        { this.state.mapVisibility &&
-          <MapModal />
-        }
+        {/* Map View */}
+        <MapModal
+          latitude={this.props.latitude}
+          longitude={this.props.longitude}
+          updateCoordinates={this.props.updateCoordinates}
+          mapVisibility={this.state.mapVisibility}
+          toggleMapVisibility={this.toggleMapVisibility}
+        />
       </View>
     );
   }
 }
 
 StepFirst.propTypes = {
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
+  updateCoordinates: PropTypes.func.isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };

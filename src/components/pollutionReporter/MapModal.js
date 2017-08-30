@@ -1,7 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import _ from 'lodash';
+import PropTypes from 'prop-types';
 import MapView from 'react-native-maps';
-import { View, Modal, StyleSheet } from 'react-native';
+import { View, Modal, StyleSheet, Dimensions, Alert } from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.09;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const styles = StyleSheet.create({
   container: {
@@ -11,20 +17,30 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-    marginTop: 50,
   },
 });
 
 class MapModal extends React.Component {
   constructor(props) {
     super(props);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleDragMarker = this.handleDragMarker.bind(this);
+    this.updateLocationAndExit = this.updateLocationAndExit.bind(this);
   }
 
-  handleCloseModal() {
-    alert('closed');
-    // this.props.setRegion();
-    // this.props.toggleMapVisibility();
+  handleDragMarker(event) {
+    const { latitude, longitude } = event.nativeEvent.coordinate;
+    Alert.alert('Set your location', 'Do you want to use this location?',
+      [
+        { text: 'YES', onPress: () => this.updateLocationAndExit(latitude, longitude) },
+        { text: 'TRY AGAIN', onPress: () => _.noop(), style: 'cancel' },
+      ],
+      { cancelable: false },
+    );
+  }
+
+  updateLocationAndExit(lat, lng) {
+    this.props.updateCoordinates(lat, lng);
+    this.props.toggleMapVisibility();
   }
 
   render() {
@@ -33,19 +49,28 @@ class MapModal extends React.Component {
         <Modal
           animationType={'slide'}
           transparent={false}
-          visible // ={this.props.mapVisibility}
-          onRequestClose={() => this.handleCloseModal()}
+          visible={this.props.mapVisibility}
+          onRequestClose={() => this.props.toggleMapVisibility()}
         >
           <View style={styles.container}>
             <MapView
               style={styles.map}
               region={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
+                latitude: this.props.latitude,
+                longitude: this.props.longitude,
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA,
               }}
-            />
+            >
+              <MapView.Marker
+                draggable
+                onDragEnd={event => this.handleDragMarker(event)}
+                coordinate={{
+                  latitude: this.props.latitude,
+                  longitude: this.props.longitude,
+                }}
+              />
+            </MapView>
           </View>
         </Modal>
       </View>
@@ -53,11 +78,12 @@ class MapModal extends React.Component {
   }
 }
 
-// MapModal.propTypes = {
-//   region: PropTypes.instanceOf(Object).isRequired,
-//   updateRegion: PropTypes.func.isRequired,
-//   mapVisibility: PropTypes.bool.isRequired,
-//   toggleMapVisibility: PropTypes.func.isRequired,
-// };
+MapModal.propTypes = {
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
+  updateCoordinates: PropTypes.func.isRequired,
+  mapVisibility: PropTypes.bool.isRequired,
+  toggleMapVisibility: PropTypes.func.isRequired,
+};
 
 export default MapModal;
