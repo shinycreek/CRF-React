@@ -29,20 +29,22 @@ class PollutionReport extends Component {
     this.updateCoordinates = this.updateCoordinates.bind(this);
 
     this.state = {
-      latitude: 37.78825,
-      longitude: -122.4324,
+      latitude: 37.78825, // default latitude if can not get actual location.
+      longitude: -122.4324, // default longitude if can not get actual location.
       error: null,
       page: 1,
       showRightArrow: false,
+      isLocationOn: false,
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
+          isLocationOn: true,
           error: null,
         });
       },
@@ -161,6 +163,7 @@ class PollutionReport extends Component {
                 latitude={this.state.latitude}
                 longitude={this.state.longitude}
                 updateCoordinates={this.updateCoordinates}
+                isLocationOn={this.state.isLocationOn}
               />
             </KeyboardAwareScrollView>
           }

@@ -3,15 +3,16 @@ import {
   View,
   Text,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { renderInputField } from '../../components/fields/';
 import renderCountyList from '../../components/pollutionReporter/CountyList';
-import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { locationLogo } from '../../constants/images';
+import MapModal from '../../components/pollutionReporter/MapModal';
 
 const validate = (values) => {
   const errors = {};
@@ -30,9 +31,23 @@ const validate = (values) => {
 };
 
 class StepFirst extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleMapVisibility = this.toggleMapVisibility.bind(this);
+
+    this.state = {
+      mapVisibility: false,
+    };
+  }
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
+  }
+
+  toggleMapVisibility() {
+    this.setState({
+      mapVisibility: !this.state.mapVisibility,
+    });
   }
 
   render() {
@@ -78,28 +93,45 @@ class StepFirst extends React.Component {
 
         <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
           <View style={{ flex: 0.5 }}>
-            <Text style={[mainStyles.label, { marginTop: 1 }]}>Location saved as current location.
-              {'\n'}
-              Click here to set to a different location.
+            <Text style={[mainStyles.label, { marginTop: 1 }]}>
+              {
+                this.props.isLocationOn ?
+                'Trash Logger location saved as your current location. Click here to set a different location' :
+                'Enable GPS to save your current location, or click here to set the location of your Trash Logger'
+              }
             </Text>
           </View>
-          <View style={{ flex: 0.1 }}>
-            <Image
-              style={{ height: 37, width: 24 }}
-              source={locationLogo}
-              resizeMode="cover"
-            />
+          <View style={mainStyles.locationIconBox}>
+            <TouchableOpacity onPress={() => this.toggleMapVisibility()}>
+              <Image
+                style={{ height: 37, width: 24 }}
+                source={locationLogo}
+                resizeMode="cover"
+              />
+            </TouchableOpacity>
           </View>
         </View>
 
+        {/* Map View */}
+        <MapModal
+          latitude={this.props.latitude}
+          longitude={this.props.longitude}
+          updateCoordinates={this.props.updateCoordinates}
+          mapVisibility={this.state.mapVisibility}
+          toggleMapVisibility={this.toggleMapVisibility}
+        />
       </View>
     );
   }
 }
 
 StepFirst.propTypes = {
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
+  updateCoordinates: PropTypes.func.isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isLocationOn: PropTypes.bool.isRequired,
 };
 
 export default reduxForm({

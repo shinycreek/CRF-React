@@ -1,8 +1,8 @@
 import React from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import MapView from 'react-native-maps';
-import { View, Modal, StyleSheet, Dimensions, Alert } from 'react-native';
+import { View, Modal, StyleSheet, Dimensions } from 'react-native';
+import ConfirmLocationBox from './ConfirmLocationBox';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -25,25 +25,36 @@ class MapModal extends React.Component {
     super(props);
     this.handleDragMarker = this.handleDragMarker.bind(this);
     this.updateLocationAndExit = this.updateLocationAndExit.bind(this);
+    this.toggleConfirmWindow = this.toggleConfirmWindow.bind(this);
+
+    this.state = {
+      newLatitude: null,
+      newLongitude: null,
+      displayConfirmWindow: false,
+    };
   }
 
   handleDragMarker(event) {
     const { latitude, longitude } = event.nativeEvent.coordinate;
-    Alert.alert('Set your location', 'Do you want to use this location?',
-      [
-        { text: 'YES', onPress: () => this.updateLocationAndExit(latitude, longitude) },
-        { text: 'TRY AGAIN', onPress: () => _.noop(), style: 'cancel' },
-      ],
-      { cancelable: false },
-    );
+    this.setState({
+      newLatitude: latitude,
+      newLongitude: longitude,
+      displayConfirmWindow: true,
+    });
+  }
+
+  toggleConfirmWindow() {
+    this.setState({ displayConfirmWindow: !this.state.displayConfirmWindow });
   }
 
   updateLocationAndExit(lat, lng) {
     this.props.updateCoordinates(lat, lng);
+    this.toggleConfirmWindow();
     this.props.toggleMapVisibility();
   }
 
   render() {
+    const { newLatitude, newLongitude, displayConfirmWindow } = this.state;
     return (
       <View>
         <Modal
@@ -72,6 +83,16 @@ class MapModal extends React.Component {
               />
             </MapView>
           </View>
+
+          {
+            displayConfirmWindow &&
+            <ConfirmLocationBox
+              lat={newLatitude}
+              lng={newLongitude}
+              toggleConfirmWindow={this.toggleConfirmWindow}
+              updateLocationAndExit={this.updateLocationAndExit}
+            />
+          }
         </Modal>
       </View>
     );

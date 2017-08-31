@@ -257,12 +257,15 @@ class StepFirst extends React.Component {
 
         <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
           <View style={{ flex: 0.5 }}>
-            <Text style={[mainStyles.label, { marginTop: 1 }]}>Location saved as current location.
-              {'\n'}
-              Click here to set to a different location.
+            <Text style={[mainStyles.label, { marginTop: 1 }]}>
+              {
+                this.props.isLocationOn ?
+                'Pollution Report location saved as your current location. Click here to set a different location' :
+                'Enable GPS to save your current location, or click here to set the location of your Pollution Report'
+              }
             </Text>
           </View>
-          <View style={{ flex: 0.1 }}>
+          <View style={mainStyles.locationIconBox}>
             <TouchableOpacity onPress={() => this.toggleMapVisibility()}>
               <Image
                 style={{ height: 37, width: 24 }}
@@ -292,6 +295,7 @@ StepFirst.propTypes = {
   updateCoordinates: PropTypes.func.isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isLocationOn: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
