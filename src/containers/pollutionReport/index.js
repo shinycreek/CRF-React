@@ -50,7 +50,7 @@ class PollutionReport extends Component {
       },
       () => Alert.alert('Location Error', 'Please enable GPS',
         [
-          { text: 'OK', onPress: () => Actions.pop() },
+          { text: 'OK' },
         ],
         { cancelable: false }),
         { distanceFilter: 1 },
