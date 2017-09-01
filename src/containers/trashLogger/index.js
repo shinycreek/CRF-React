@@ -26,13 +26,15 @@ class TrashLogger extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChildFormSubmit = this.handleChildFormSubmit.bind(this);
     this.handleShowRightArrow = this.handleShowRightArrow.bind(this);
+    this.updateCoordinates = this.updateCoordinates.bind(this);
 
     this.state = {
-      latitude: null,
-      longitude: null,
+      latitude: 37.78825, // default latitude if can not get actual location.
+      longitude: -122.4324, // default longitude if can not get actual location.
       error: null,
       page: 1,
       showRightArrow: false,
+      isLocationOn: false,
     };
   }
 
@@ -42,12 +44,13 @@ class TrashLogger extends Component {
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
+          isLocationOn: true,
           error: null,
         });
       },
       () => Alert.alert('Location Error', 'Please enable GPS',
         [
-          { text: 'OK', onPress: () => Actions.pop() },
+          { text: 'OK' },
         ],
         { cancelable: false }),
         { distanceFilter: 1 },
@@ -82,6 +85,10 @@ class TrashLogger extends Component {
 
   handleShowRightArrow(show) {
     this.setState({ showRightArrow: show });
+  }
+
+  updateCoordinates(latitude, longitude) {
+    this.setState({ latitude, longitude });
   }
 
   nextPage() {
@@ -140,7 +147,13 @@ class TrashLogger extends Component {
           {this.stepName()}
           {page === 1 &&
             <KeyboardAwareScrollView>
-              <StepFirst handleChildFormSubmit={this.handleChildFormSubmit} />
+              <StepFirst
+                handleChildFormSubmit={this.handleChildFormSubmit}
+                latitude={this.state.latitude}
+                longitude={this.state.longitude}
+                updateCoordinates={this.updateCoordinates}
+                isLocationOn={this.state.isLocationOn}
+              />
             </KeyboardAwareScrollView>
           }
           {page === 2 &&

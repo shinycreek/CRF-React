@@ -16,6 +16,7 @@ import renderCountyList from '../../components/pollutionReporter/CountyList';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import { calendarLogo, clockLogo, locationLogo } from '../../constants/images';
+import MapModal from '../../components/pollutionReporter/MapModal';
 
 const selector = formValueSelector('trashLoggerTileForm');
 
@@ -40,11 +41,13 @@ class StepFirst extends React.Component {
   constructor(props) {
     super(props);
     this.handleDateTime = this.handleDateTime.bind(this);
+    this.toggleMapVisibility = this.toggleMapVisibility.bind(this);
     this.renderDatePickerField = this.renderDatePickerField.bind(this);
     this.renderTimePickerField = this.renderTimePickerField.bind(this);
 
     this.state = {
       dateTime: moment().format(),
+      mapVisibility: false,
     };
   }
 
@@ -73,6 +76,12 @@ class StepFirst extends React.Component {
       field.input.onChange(
         this.state.dateTime,
       );
+    });
+  }
+
+  toggleMapVisibility() {
+    this.setState({
+      mapVisibility: !this.state.mapVisibility,
     });
   }
 
@@ -195,7 +204,6 @@ class StepFirst extends React.Component {
           </View>
         </View>
 
-
         <View style={[mainStyles.box, mainStyles.bottomSpace]}>
           <Field
             name="pollution_address"
@@ -253,27 +261,45 @@ class StepFirst extends React.Component {
 
         <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
           <View style={{ flex: 0.5 }}>
-            <Text style={[mainStyles.label, { marginTop: 1 }]}>Location saved as current location.
-              {'\n'}
-              Click here to set to a different location.
+            <Text style={[mainStyles.label, { marginTop: 1 }]}>
+              {
+                this.props.isLocationOn ?
+                'Pollution Report location saved as your current location. Click here to set a different location' :
+                'Enable GPS to save your current location, or click here to set the location of your Pollution Report'
+              }
             </Text>
           </View>
-          <View style={{ flex: 0.1 }}>
-            <Image
-              style={{ height: 37, width: 24 }}
-              source={locationLogo}
-              resizeMode="cover"
-            />
+          <View style={mainStyles.locationIconBox}>
+            <TouchableOpacity onPress={() => this.toggleMapVisibility()}>
+              <Image
+                style={{ height: 37, width: 24 }}
+                source={locationLogo}
+                resizeMode="cover"
+              />
+            </TouchableOpacity>
           </View>
         </View>
+
+        {/* Map View */}
+        <MapModal
+          latitude={this.props.latitude}
+          longitude={this.props.longitude}
+          updateCoordinates={this.props.updateCoordinates}
+          mapVisibility={this.state.mapVisibility}
+          toggleMapVisibility={this.toggleMapVisibility}
+        />
       </View>
     );
   }
 }
 
 StepFirst.propTypes = {
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
+  updateCoordinates: PropTypes.func.isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isLocationOn: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {

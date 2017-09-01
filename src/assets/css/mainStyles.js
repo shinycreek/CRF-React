@@ -117,6 +117,12 @@ const mainStyles = StyleSheet.create({
     fontSize: 18,
     width: 200,
   },
+  locationIconBox: {
+    flex: 0.05,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   // font styles
   bold: {
     fontWeight: 'bold',
