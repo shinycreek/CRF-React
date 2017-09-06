@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapView from 'react-native-maps';
-import { View, Modal, StyleSheet, Dimensions } from 'react-native';
+import { View, Modal, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import ConfirmLocationBox from './ConfirmLocationBox';
+import mapStyles from './styles';
+import { closeLogo } from '../../constants/images';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
+const DEFAULT_LATITUDE = 35.218781;
+const DEFAULT_LONGITUDE = -80.828852;
 const LATITUDE_DELTA = 0.09;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
@@ -26,6 +30,8 @@ class MapModal extends React.Component {
     this.handleDragMarker = this.handleDragMarker.bind(this);
     this.updateLocationAndExit = this.updateLocationAndExit.bind(this);
     this.toggleConfirmWindow = this.toggleConfirmWindow.bind(this);
+    this.handlePressMap = this.handlePressMap.bind(this);
+    this.handleCloseMap = this.handleCloseMap.bind(this);
 
     this.state = {
       newLatitude: null,
@@ -53,8 +59,22 @@ class MapModal extends React.Component {
     this.props.toggleMapVisibility();
   }
 
+  handlePressMap(event) {
+    const coordinate = event.nativeEvent.coordinate;
+    this.setState({
+      newLatitude: coordinate.latitude,
+      newLongitude: coordinate.longitude,
+      displayConfirmWindow: true,
+    });
+  }
+
+  handleCloseMap() {
+    this.setState({ newLatitude: null, newLongitude: null }, this.props.toggleMapVisibility);
+  }
+
   render() {
     const { newLatitude, newLongitude, displayConfirmWindow } = this.state;
+    const { latitude, longitude } = this.props;
     return (
       <View>
         <Modal
@@ -66,20 +86,23 @@ class MapModal extends React.Component {
           <View style={styles.container}>
             <MapView
               style={styles.map}
+              loadingEnabled
               region={{
-                latitude: this.props.latitude,
-                longitude: this.props.longitude,
+                latitude: (newLatitude || latitude || DEFAULT_LATITUDE),
+                longitude: (newLongitude || longitude || DEFAULT_LONGITUDE),
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
               }}
+              onPress={this.handlePressMap}
             >
               <MapView.Marker
                 draggable
                 onDragEnd={event => this.handleDragMarker(event)}
                 coordinate={{
-                  latitude: this.props.latitude,
-                  longitude: this.props.longitude,
+                  latitude: (newLatitude || latitude || DEFAULT_LATITUDE),
+                  longitude: (newLongitude || longitude || DEFAULT_LONGITUDE),
                 }}
+                anchor={{ x: 0.69, y: 1 }}
               />
             </MapView>
           </View>
@@ -93,6 +116,19 @@ class MapModal extends React.Component {
               updateLocationAndExit={this.updateLocationAndExit}
             />
           }
+
+          {/* Close Button */}
+          <TouchableOpacity
+            style={mapStyles.closeMapButton}
+            onPress={() => this.handleCloseMap()}
+          >
+            <Image
+              style={[{ height: 40, width: 40 }]}
+              source={closeLogo}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+
         </Modal>
       </View>
     );
@@ -100,8 +136,8 @@ class MapModal extends React.Component {
 }
 
 MapModal.propTypes = {
-  latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
   updateCoordinates: PropTypes.func.isRequired,
   mapVisibility: PropTypes.bool.isRequired,
   toggleMapVisibility: PropTypes.func.isRequired,

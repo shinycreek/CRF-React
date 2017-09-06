@@ -24,6 +24,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
+  closeMapButton: {
+    alignSelf: 'flex-end',
+    position: 'absolute',
+    alignItems: 'center',
+  },
 });
 
 export default styles;

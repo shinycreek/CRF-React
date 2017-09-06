@@ -134,8 +134,8 @@ class StepFirst extends React.Component {
 }
 
 StepFirst.propTypes = {
-  latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
   updateCoordinates: PropTypes.func.isRequired,
   handleChildFormSubmit: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
