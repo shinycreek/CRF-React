@@ -29,8 +29,8 @@ class TrashLogger extends Component {
     this.updateCoordinates = this.updateCoordinates.bind(this);
 
     this.state = {
-      latitude: 37.78825, // default latitude if can not get actual location.
-      longitude: -122.4324, // default longitude if can not get actual location.
+      latitude: null,
+      longitude: null,
       error: null,
       page: 1,
       showRightArrow: false,
