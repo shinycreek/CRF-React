@@ -27,16 +27,13 @@ const validate = (values) => {
   const lastName = values.get('last_name');
   const email = values.get('email');
   const phone = values.get('phone');
-  const address = values.get('address');
-  const city = values.get('city');
-  const state = values.get('state');
   const zip = values.get('zip');
 
-  if (firstName.length > 0 && !/^[A-Za-z\s]+$/.test(firstName)) {
+  if (firstName && !/^[A-Za-z\s]+$/.test(firstName)) {
     errors.first_name = 'Letters a-z only';
   }
 
-  if (lastName.length > 0 && !/^[A-Za-z\s]+$/.test(lastName)) {
+  if (lastName && !/^[A-Za-z\s]+$/.test(lastName)) {
     errors.last_name = 'Letters a-z only';
   }
 
@@ -46,11 +43,11 @@ const validate = (values) => {
     errors.email = 'Invalid Email';
   }
 
-  if (phone.length > 0 && phone.length !== 12) {
+  if (phone && phone.length !== 12) {
     errors.phone = 'Invalid Phone Number';
   }
 
-  if (zip.length > 0 && !/^[0-9]+$/.test(zip)) {
+  if (zip && !/^[0-9]+$/.test(zip)) {
     errors.zip = 'Numbers only';
   }
 
@@ -83,8 +80,12 @@ class UserSetting extends React.Component {
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
           <KeyboardAwareScrollView>
-            <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.clearTextBg]}>
-              Catawba Riverkeeper does not share your information with anyone else. You can tell us about yourself below so that we can follow up with you about issues you report and to let you know more about what we are doing.
+            <Text
+              style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.clearTextBg]}
+            >
+              Catawba Riverkeeper does not share your information with anyone else.
+              You can tell us about yourself below so that we can follow up with you about
+              issues you report and to let you know more about what we are doing.
             </Text>
             <View style={[mainStyles.box, styles.middle]}>
               <View style={{ flexDirection: 'row' }}>
