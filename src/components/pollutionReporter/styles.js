@@ -27,10 +27,12 @@ const styles = StyleSheet.create({
 
   closeMapButton: {
     flex: 1,
+    flexDirection: 'row',
     paddingLeft: 10,
+    paddingBottom: 5,
     position: 'absolute',
-    alignItems: 'stretch',
-    justifyContent: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
     backgroundColor: '#656565',
   },
 });

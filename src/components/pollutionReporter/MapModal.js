@@ -127,14 +127,13 @@ class MapModal extends React.Component {
           }
 
           {/* Close Button */}
-          <TouchableOpacity
-            style={[mapStyles.closeMapButton, { height: CLOSE_NAV_HEIGHT, width }]}
-            onPress={() => this.handleCloseMap()}
-          >
-            <Text>
-              <Icon name="times" size={(Platform.OS === 'ios') ? 25 : 30} color="white" />
-            </Text>
-          </TouchableOpacity>
+          <View style={[mapStyles.closeMapButton, { height: CLOSE_NAV_HEIGHT, width }]}>
+            <TouchableOpacity onPress={() => this.handleCloseMap()}>
+              <Text>
+                <Icon name="times" size={(Platform.OS === 'ios') ? 25 : 30} color="white" />
+              </Text>
+            </TouchableOpacity>
+          </View>
         </Modal>
       </View>
     );
