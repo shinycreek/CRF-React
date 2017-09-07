@@ -26,9 +26,12 @@ const styles = StyleSheet.create({
   },
 
   closeMapButton: {
-    alignSelf: 'flex-end',
+    flex: 1,
+    paddingLeft: 10,
     position: 'absolute',
-    alignItems: 'center',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    backgroundColor: '#656565',
   },
 });
 

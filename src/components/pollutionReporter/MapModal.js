@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MapView from 'react-native-maps';
-import { View, Modal, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  View,
+  Modal,
+  Text,
+  Platform,
+  StyleSheet,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import ConfirmLocationBox from './ConfirmLocationBox';
 import mapStyles from './styles';
-import { closeLogo } from '../../constants/images';
 
 const { width, height } = Dimensions.get('window');
-const ASPECT_RATIO = width / height;
+const CLOSE_NAV_HEIGHT = 51;
+const ASPECT_RATIO = width / (height - CLOSE_NAV_HEIGHT);
 const DEFAULT_LATITUDE = 35.218781;
 const DEFAULT_LONGITUDE = -80.828852;
 const LATITUDE_DELTA = 0.09;
@@ -119,16 +128,13 @@ class MapModal extends React.Component {
 
           {/* Close Button */}
           <TouchableOpacity
-            style={mapStyles.closeMapButton}
+            style={[mapStyles.closeMapButton, { height: CLOSE_NAV_HEIGHT, width }]}
             onPress={() => this.handleCloseMap()}
           >
-            <Image
-              style={[{ height: 40, width: 40 }]}
-              source={closeLogo}
-              resizeMode="contain"
-            />
+            <Text>
+              <Icon name="times" size={(Platform.OS === 'ios') ? 25 : 30} color="white" />
+            </Text>
           </TouchableOpacity>
-
         </Modal>
       </View>
     );
