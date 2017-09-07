@@ -127,7 +127,13 @@ class MapModal extends React.Component {
           }
 
           {/* Close Button */}
-          <View style={[mapStyles.closeMapButton, { height: CLOSE_NAV_HEIGHT, width }]}>
+          <View
+            style={[mapStyles.closeMapButton, {
+              width,
+              height: CLOSE_NAV_HEIGHT,
+              paddingBottom: (Platform.OS === 'ios') ? 5 : 10,
+            }]}
+          >
             <TouchableOpacity onPress={() => this.handleCloseMap()}>
               <Text>
                 <Icon name="times" size={(Platform.OS === 'ios') ? 25 : 30} color="white" />
