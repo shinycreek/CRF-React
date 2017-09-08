@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     textAlign: 'center',
+    lineHeight: 20,
   },
 
   icon: {
