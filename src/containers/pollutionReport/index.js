@@ -48,7 +48,7 @@ class PollutionReport extends Component {
           error: null,
         });
       },
-      () => Alert.alert('Location Error', 'Please enable GPS',
+      () => Alert.alert('Pollution Reporter uses GPS to track pollution location.', 'Please enable GPS',
         [
           { text: 'OK' },
         ],

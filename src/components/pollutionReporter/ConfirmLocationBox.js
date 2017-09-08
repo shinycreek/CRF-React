@@ -11,21 +11,21 @@ class ConfirmLocationBox extends React.Component {
     return (
       <View style={[styles.confirmBoxContainer, { width }]}>
         <View style={{ marginBottom: 15 }}>
-          <Text style={{ color: '#000' }}>Do you want to use this location?</Text>
+          <Text style={{ color: '#000' }}>Use selected location?</Text>
         </View>
         <View style={styles.buttonContainer}>
           <View style={{ flex: 1, alignItems: 'center' }}>
             <Button
               onPress={() => this.props.updateLocationAndExit(lat, lng)}
-              title="YES"
+              title="Ok"
               color="#999"
             />
           </View>
 
-          <View style={{ flex: 1, alignItems: 'flex-start' }}>
+          <View style={{ flex: 1, alignItems: 'center' }}>
             <Button
               onPress={() => this.props.toggleConfirmWindow()}
-              title="TRY AGAIN"
+              title="Cancel"
               color="#999"
             />
           </View>

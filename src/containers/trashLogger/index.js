@@ -48,7 +48,7 @@ class TrashLogger extends Component {
           error: null,
         });
       },
-      () => Alert.alert('Location Error', 'Please enable GPS',
+      () => Alert.alert('Trash Logger uses GPS to track pollution location', 'Please enable GPS',
         [
           { text: 'OK' },
         ],
