@@ -29,10 +29,6 @@ const validate = (values) => {
     errors.describe_pollution = 'Required';
   }
 
-  if (!pollutionDuration) {
-    errors.pollution_duration = 'Required';
-  }
-
   return errors;
 };
 
