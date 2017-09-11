@@ -4,4 +4,4 @@ import {
 
 import App from './src/App';
 
-AppRegistry.registerComponent('CatawbaRiverkeeperApp', () => App);
+AppRegistry.registerComponent('WaterWatcher', () => App);

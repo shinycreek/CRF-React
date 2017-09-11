@@ -1,4 +1,4 @@
-package com.catawbariverkeeperapp;
+package com.waterwatcher;
 
 import android.app.Application;
 
