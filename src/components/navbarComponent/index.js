@@ -14,6 +14,7 @@ import {
   settingLogo,
   cameraLogo,
   libraryLogo,
+  infoLogo,
 } from '../../constants/images';
 
 const styles = StyleSheet.create({
@@ -69,6 +70,15 @@ export const RenderGallaryButton = ({ onClick }) => (
     <Image
       style={styles.camLib}
       source={libraryLogo}
+    />
+  </TouchableOpacity>
+);
+
+export const renderInfoButton = () => (
+  <TouchableOpacity onPress={() => Actions.contactInfo()}>
+    <Image
+      style={styles.homeLogo}
+      source={infoLogo}
     />
   </TouchableOpacity>
 );

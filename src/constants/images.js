@@ -1,4 +1,6 @@
 import homebgLogo from '../assets/images/home-logo.png';
+import greetingLogo from '../assets/images/horizontal-logo.png';
+import infoLogo from '../assets/images/info.png';
 import trashLogo from '../assets/images/trash.png';
 import airLogo from '../assets/images/air.png';
 import barsLogo from '../assets/images/bars.png';
@@ -23,6 +25,8 @@ import instagramLogo from '../assets/images/instagram.png';
 
 export {
    homebgLogo,
+   greetingLogo,
+   infoLogo,
    trashLogo,
    airLogo,
    barsLogo,
