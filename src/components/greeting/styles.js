@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
 
   skipButton: {
     borderRadius: 5,
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
     backgroundColor: '#919090',
   },
 
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     marginBottom: 20,
     fontSize: 20,
+    backgroundColor: 'rgba(0,0,0,0)',
   },
 
 });
