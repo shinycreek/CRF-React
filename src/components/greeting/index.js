@@ -13,7 +13,7 @@ const Greeting = ({ greetingVisibility, toggleGreetingVisibility }) => {
 
   return (
     <Modal
-      animationType={'fade'}
+      animationType={'slide'}
       transparent={false}
       visible={greetingVisibility}
       onRequestClose={toggleGreetingVisibility}

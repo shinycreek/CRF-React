@@ -129,7 +129,10 @@ class Home extends React.Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => Actions.crf()} style={[styles.box, styles.lightseagreen]}>
+            <TouchableOpacity
+              onPress={() => Actions.crf()}
+              style={[styles.box, styles.lightseagreen]}
+            >
               <View style={[styles.content, { flex: 2 }]}>
                 <Image
                   style={[{ height: 45, width: 50 }]}
