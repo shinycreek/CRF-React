@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Router, Scene } from 'react-native-router-flux';
 import Home from './components/home/';
+import ContactInfo from './components/greeting/ContactInfo';
 import BasinMap from './containers/basinMap/';
 import CRF from './containers/crf/';
 import UserSetting from './containers/userSetting/';
@@ -15,7 +16,7 @@ import FollowUs from './containers/followUs';
 import FacebookPage from './containers/followUs/FacebookPage';
 import InstagramPage from './containers/followUs/InstagramPage';
 import TwitterPage from './containers/followUs/TwitterPage';
-import { renderRightButton, renderHomeButton, renderCloseButton } from './components/navbarComponent/';
+import { renderRightButton, renderHomeButton, renderCloseButton, renderInfoButton } from './components/navbarComponent/';
 import SplashScreen from './containers/home/';
 import mainStyles from './assets/css/mainStyles';
 
@@ -43,6 +44,13 @@ const AppNavigator = () => (
         title="Catawba Riverkeeper"
       />
       <Scene
+        key="contactInfo"
+        component={ContactInfo}
+        hideNavBar={false}
+        renderBackButton={() => renderHomeButton()}
+        title="Info"
+      />
+      <Scene
         key="basinMap"
         hideNavBar={false}
         component={BasinMap}
@@ -63,6 +71,7 @@ const AppNavigator = () => (
         hideNavBar={false}
         component={UserSetting}
         renderBackButton={() => renderHomeButton()}
+        renderRightButton={() => renderInfoButton()}
         title="Contact Info"
       />
       <Scene
