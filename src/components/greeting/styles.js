@@ -91,6 +91,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0)',
   },
 
+  textUnderLine: {
+    textDecorationLine: 'underline',
+  },
+
 });
 
 export default styles;

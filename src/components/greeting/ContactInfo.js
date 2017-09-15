@@ -21,7 +21,7 @@ const ContactInfo = () => (
       <Text style={styles.infoTextFontStyle}>
         CRF is membership supported.{'\n'}
         <Text
-          style={[styles.infoTextFontStyle, { textDecorationLine: 'underline' }]}
+          style={[styles.infoTextFontStyle, styles.textUnderLine]}
           onPress={() => Linking.openURL('https://www.catawbariverkeeper.org/donate/')}
         >
           Click here to join today!
@@ -32,7 +32,12 @@ const ContactInfo = () => (
         App Developed by Shiny Creek{'\n'}
         45 S. French Broad Ave, Suite 175{'\n'}
         Asheville, NC 28801{'\n'}
-        http://www.shinycreek.com/
+        <Text
+          style={[styles.textUnderLine]}
+          onPress={() => Linking.openURL('http://www.shinycreek.com/')}
+        >
+          shinycreek.com
+        </Text>
       </Text>
 
       <Footer left onPressLeft={() => Actions.pop()} />
