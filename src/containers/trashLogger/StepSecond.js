@@ -36,12 +36,7 @@ class StepSecond extends React.Component {
 
   componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
-  }
-
-  componentDidUpdate(nextProps) {
-    if (nextProps.imageSelected !== this.props.imageSelected) {
-      this.props.handleShowRightArrow(this.props.imageSelected.length !== 0);
-    }
+    this.props.handleShowRightArrow(true);
   }
 
   removeSelectedImage(index) {
