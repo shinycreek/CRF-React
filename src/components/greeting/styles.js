@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
   // ========== style for Texts under textContainer ==========
   textFontStyle: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: 'Akzidenz-Grotesk BQ',
     textAlign: 'justify',
-    marginBottom: 10,
+    marginBottom: 5,
   },
 
   // ========== style for button under buttonContainer ==========
