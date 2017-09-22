@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
     marginRight: 30,
   },
 
+  textFontStyle: {
+    fontFamily: 'Akzidenz Gr',
+    color: '#00458B',
+  },
 });
 
 export default styles;

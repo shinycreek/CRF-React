@@ -15,6 +15,14 @@ import mainStyles from '../../assets/css/mainStyles';
 import styles from './styles';
 import BackgroundImage from '../../components/appBackground/';
 
+const renderNoDataText = () => (
+  <Text
+    style={[mainStyles.bodyText1, mainStyles.bold, mainStyles.pLeft20, styles.textFontStyle]}
+  >
+    No data currently available.
+  </Text>
+);
+
 class FlowArrivalLocation extends React.Component {
 
   componentDidMount() {
@@ -27,7 +35,9 @@ class FlowArrivalLocation extends React.Component {
       <BackgroundImage>
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
           <View style={styles.topText}>
-            <Text style={[mainStyles.whiteBgText, mainStyles.clearTextBg, styles.recreationalTopText]} >
+            <Text
+              style={[mainStyles.whiteBgText, mainStyles.clearTextBg, styles.recreationalTopText]}
+            >
             Scheduled arrival and recession times below the dam:
             </Text>
           </View>
@@ -38,26 +48,24 @@ class FlowArrivalLocation extends React.Component {
             ]}
           >
             <View style={{ flex: 1 }}>
-              {flowArrivalLocations.map((flowArrivalLocation, index) => (
-                <View key={`flowArrivalLocation${index}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
-                  <View style={{ flex: 1 }}>
-                    <Text
-                      style={[
-                        mainStyles.bodyText1,
-                        mainStyles.bold,
-                        mainStyles.pLeft20,
-                        {
-                          fontFamily: 'Akzidenz Gr',
-                          color: '#00458B',
-                        },
-                      ]}
-                    >
-                      {flowArrivalLocation.get('name')}
-                    </Text>
-                    <WaterArrive waterArrives={flowArrivalLocation.get('flow_arrival_recessions').toJS()} />
+              {
+                flowArrivalLocations.isEmpty() ? renderNoDataText() :
+                flowArrivalLocations.map((flowArrivalLocation, index) => (
+                  <View key={`flowArrivalLocation${index}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
+                    <View style={{ flex: 1 }}>
+                      <Text
+                        style={[
+                          mainStyles.bodyText1,
+                          mainStyles.bold,
+                          mainStyles.pLeft20,
+                          styles.textFontStyle,
+                        ]}
+                      >
+                        {flowArrivalLocation.get('name')}
+                      </Text>
+                      <WaterArrive waterArrives={flowArrivalLocation.get('flow_arrival_recessions').toJS()} />
+                    </View>
                   </View>
-
-                </View>
               ))}
             </View>
           </ScrollView>
