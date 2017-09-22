@@ -2,14 +2,14 @@ import React from 'react';
 import {
   View,
   Text,
-  Picker,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from 'apsl-react-native-button';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import validator from 'validator';
 import { bindActionCreators } from 'redux';
@@ -19,6 +19,7 @@ import mainStyles from '../../assets/css/mainStyles';
 import normalizePhone from '../../utils/normalizePhone';
 import { renderInputField } from '../../components/fields/';
 import BackgroundImage from '../../components/appBackground/';
+import { arrowLeftLogo } from '../../constants/images';
 import styles from './styles';
 
 const validate = (values) => {
@@ -171,9 +172,12 @@ class UserSetting extends React.Component {
           </KeyboardAwareScrollView>
 
           <View style={styles.footer}>
-            <View style={[styles.footerButton, { flex: 0.8 }]}>
-              <Icon name="arrow-left" size={30} color="#D8D8D8" onPress={() => Actions.pop()} />
-            </View>
+            <TouchableOpacity onPress={() => Actions.pop()} style={styles.footerButton}>
+              <Image
+                source={arrowLeftLogo}
+                style={styles.arrowLeft}
+              />
+            </TouchableOpacity>
 
             <View style={[styles.footerButton, { flex: 1 }]}>
               <Button style={{ backgroundColor: '#D8D8D8', width: 50, marginTop: 10 }} textStyle={{ fontSize: 18, color: 'black' }} onPress={handleSubmit(this.onSubmit)} >

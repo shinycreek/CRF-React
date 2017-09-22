@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 0.8,
   },
+
+  arrowLeft: {
+    width: 30,
+    marginLeft: 10,
+    resizeMode: 'contain',
+  },
 });
 
 export default styles;
