@@ -23,10 +23,14 @@ const selector = formValueSelector('trashLoggerTileForm');
 const validate = (values) => {
   const errors = {};
   const describePollution = values.get('describe_pollution');
-  const pollutionDuration = values.get('pollution_duration');
+  const county = values.get('county');
 
   if (!describePollution) {
     errors.describe_pollution = 'Required';
+  }
+
+  if (!county) {
+    errors.county = 'Required';
   }
 
   return errors;
