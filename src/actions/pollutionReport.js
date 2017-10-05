@@ -13,9 +13,15 @@ export const createPollutionReport = params => (
       .then(() => {
         dispatch({ type: types.SUCCESS_CREATE_POLLUTION_REPORT });
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch({ type: types.ERROR_CREATE_POLLUTION_REPORT });
       })
     );
   }
+);
+
+export const setDeviceLocation = (latitude, longitude, fetchLocation) => (
+  dispatch => (
+    dispatch({ type: types.UPDATE_DEVICE_LOCATION, latitude, longitude, fetchLocation })
+  )
 );

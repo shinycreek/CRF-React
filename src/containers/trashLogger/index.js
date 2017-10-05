@@ -6,9 +6,9 @@ import { bindActionCreators } from 'redux';
 import { reset } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Actions } from 'react-native-router-flux';
 import { createUserSetting, updateUserSetting } from '../../actions/userSetting';
 import { createTrashLogger } from '../../actions/trashLogger';
+import { setDeviceLocation } from '../../actions/pollutionReport';
 import StepFirst from './StepFirst';
 import StepSecond from './StepSecond';
 import StepThird from './StepThird';
@@ -31,22 +31,20 @@ class TrashLogger extends Component {
     this.state = {
       latitude: null,
       longitude: null,
-      error: null,
       page: 1,
       showRightArrow: false,
-      isLocationOn: false,
     };
   }
 
   componentDidMount() {
+    const { actions } = this.props;
     this.watchId = navigator.geolocation.watchPosition(
       (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          isLocationOn: true,
-          error: null,
-        });
+        const { latitude, longitude } = position.coords;
+        if (latitude && longitude) {
+          actions.setDeviceLocation(latitude, longitude, true);
+          navigator.geolocation.clearWatch(this.watchId);
+        }
       },
       () => Alert.alert('Trash Logger uses GPS to track pollution location', 'Please enable GPS',
         [
@@ -140,7 +138,7 @@ class TrashLogger extends Component {
   }
 
   render() {
-    const { page, handleSubmit } = this.state;
+    const { page, handleSubmit, latitude, longitude } = this.state;
     return (
       <BackgroundImage>
         <View style={[mainStyles.container, styles.container]}>
@@ -149,10 +147,10 @@ class TrashLogger extends Component {
             <KeyboardAwareScrollView>
               <StepFirst
                 handleChildFormSubmit={this.handleChildFormSubmit}
-                latitude={this.state.latitude}
-                longitude={this.state.longitude}
+                latitude={latitude || this.props.latitude}
+                longitude={longitude || this.props.longitude}
                 updateCoordinates={this.updateCoordinates}
-                isLocationOn={this.state.isLocationOn}
+                isLocationOn={this.props.fetchLocation}
               />
             </KeyboardAwareScrollView>
           }
@@ -182,19 +180,31 @@ class TrashLogger extends Component {
   }
 }
 
+TrashLogger.defaultProps = {
+  latitude: null,
+  longitude: null,
+};
+
 TrashLogger.propTypes = {
   actions: PropTypes.shape({
     createUserSetting: PropTypes.func.isRequired,
     createTrashLogger: PropTypes.func.isRequired,
     updateUserSetting: PropTypes.func.isRequired,
+    setDeviceLocation: PropTypes.func.isRequired,
     reset: PropTypes.func.isRequired,
   }).isRequired,
   userSetting: PropTypes.instanceOf(Object).isRequired,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  fetchLocation: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => (
   {
     userSetting: state.get('userSetting'),
+    latitude: state.getIn(['pollutionReport', 'latitude']),
+    longitude: state.getIn(['pollutionReport', 'longitude']),
+    fetchLocation: state.getIn(['pollutionReport', 'fetchLocation']),
   }
 );
 
@@ -204,6 +214,7 @@ const mapDispatchToProps = dispatch => (
       createUserSetting,
       updateUserSetting,
       createTrashLogger,
+      setDeviceLocation,
       reset }, dispatch),
   }
 );
