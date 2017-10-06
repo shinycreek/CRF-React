@@ -20,7 +20,6 @@ const PollutionReport = (state = initialState, action) => {
     case types.ERROR_CREATE_POLLUTION_REPORT:
       return state.merge({ submitting: false, errors: action.errors });
     case types.UPDATE_DEVICE_LOCATION:
-      console.log(action);
       return state.merge({
         latitude: action.latitude,
         longitude: action.longitude,

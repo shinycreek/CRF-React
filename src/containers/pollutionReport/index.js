@@ -26,6 +26,8 @@ class PollutionReport extends Component {
     this.handleChildFormSubmit = this.handleChildFormSubmit.bind(this);
     this.handleShowRightArrow = this.handleShowRightArrow.bind(this);
     this.updateCoordinates = this.updateCoordinates.bind(this);
+    this.fetchLocationInfo = this.fetchLocationInfo.bind(this);
+    this.setPosition = this.setPosition.bind(this);
 
     this.state = {
       latitude: null,
@@ -36,18 +38,11 @@ class PollutionReport extends Component {
   }
 
   componentDidMount() {
-    const { actions } = this.props;
     this.watchId = navigator.geolocation.watchPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        if (latitude && longitude) {
-          actions.setDeviceLocation(latitude, longitude, true);
-          navigator.geolocation.clearWatch(this.watchId);
-        }
-      },
+      (position) => { this.setPosition(position); },
       () => Alert.alert('Pollution Reporter uses GPS to track pollution location.', 'Please enable GPS',
         [
-          { text: 'OK' },
+          { text: 'OK', onPress: () => this.fetchLocationInfo() },
         ],
         { cancelable: false }),
         { distanceFilter: 1 },
@@ -56,6 +51,7 @@ class PollutionReport extends Component {
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchId);
+    clearInterval(this.intervalId);
   }
 
   onSubmit(values) {
@@ -74,6 +70,29 @@ class PollutionReport extends Component {
       this.props.actions.reset('pollutionReportForm');
       this.nextPage();
     });
+  }
+
+  setPosition(position) {
+    const { latitude, longitude } = position.coords;
+    if (latitude && longitude) {
+      this.props.actions.setDeviceLocation(latitude, longitude, true);
+      navigator.geolocation.clearWatch(this.watchId);
+      clearInterval(this.intervalId);
+    }
+  }
+
+  fetchLocationInfo() {
+    this.intervalId = setInterval(() => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => { this.setPosition(position); },
+        () => null,
+        {},
+      );
+    }, 3000);
+
+    setTimeout(() => {
+      clearInterval(this.intervalId);
+    }, 60000);
   }
 
   updateCoordinates(latitude, longitude) {
