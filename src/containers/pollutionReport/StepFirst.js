@@ -23,10 +23,14 @@ const selector = formValueSelector('trashLoggerTileForm');
 const validate = (values) => {
   const errors = {};
   const describePollution = values.get('describe_pollution');
-  const pollutionDuration = values.get('pollution_duration');
+  const county = values.get('county');
 
   if (!describePollution) {
     errors.describe_pollution = 'Required';
+  }
+
+  if (!county) {
+    errors.county = 'Required';
   }
 
   return errors;
@@ -256,24 +260,20 @@ class StepFirst extends React.Component {
         </View>
 
         <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
-          <View style={{ flex: 0.5 }}>
-            <Text style={[mainStyles.label, { marginTop: 1 }]}>
-              {
-                this.props.isLocationOn ?
-                'Pollution Report location saved as your current location. Click here to set a different location' :
-                'Enable GPS to save your current location, or click here to set the location of your Pollution Report'
-              }
-            </Text>
-          </View>
-          <View style={mainStyles.locationIconBox}>
-            <TouchableOpacity onPress={() => this.toggleMapVisibility()}>
-              <Image
-                style={{ height: 37, width: 24 }}
-                source={locationLogo}
-                resizeMode="cover"
-              />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }} onPress={() => this.toggleMapVisibility()}>
+            <View style={{ flex: 0.5 }}>
+              <Text style={[mainStyles.label, { marginTop: 1 }]}>
+                {
+                  this.props.isLocationOn ?
+                  'Pollution Report location saved as your current location. Click here to set a different location' :
+                  'Enable GPS to save your current location, or click here to set the location of your Pollution Report'
+                }
+              </Text>
+            </View>
+            <View style={mainStyles.locationIconBox}>
+              <Image style={{ height: 37, width: 24 }} source={locationLogo} resizeMode="cover" />
+            </View>
+          </TouchableOpacity>
         </View>
 
         {/* Map View */}
