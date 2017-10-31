@@ -29,10 +29,11 @@ class TrashLogger extends Component {
     this.updateCoordinates = this.updateCoordinates.bind(this);
     this.fetchLocationInfo = this.fetchLocationInfo.bind(this);
     this.setPosition = this.setPosition.bind(this);
+    const { latitude, longitude } = props;
 
     this.state = {
-      latitude: null,
-      longitude: null,
+      latitude,
+      longitude,
       page: 1,
       showRightArrow: false,
     };
@@ -77,6 +78,7 @@ class TrashLogger extends Component {
   setPosition(position) {
     const { latitude, longitude } = position.coords;
     if (latitude && longitude) {
+      this.updateCoordinates(latitude, longitude);
       this.props.actions.setDeviceLocation(latitude, longitude, true);
       clearInterval(this.intervalId);
     }
