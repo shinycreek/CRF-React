@@ -49,6 +49,17 @@ class MapModal extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { newLatitude, newLongitude, displayConfirmWindow } = this.state;
+    const { latitude, longitude } = this.props;
+    this.mapRef.animateToRegion({
+      latitude: (newLatitude || latitude || DEFAULT_LATITUDE),
+      longitude: (newLongitude || longitude || DEFAULT_LONGITUDE),
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
+    }, 1);
+  }
+
   handleDragMarker(event) {
     const { latitude, longitude } = event.nativeEvent.coordinate;
     this.setState({
@@ -94,14 +105,9 @@ class MapModal extends React.Component {
         >
           <View style={styles.container}>
             <MapView
+              ref={(ref) => { this.mapRef = ref }}
               style={styles.map}
               loadingEnabled
-              region={{
-                latitude: (newLatitude || latitude || DEFAULT_LATITUDE),
-                longitude: (newLongitude || longitude || DEFAULT_LONGITUDE),
-                latitudeDelta: LATITUDE_DELTA,
-                longitudeDelta: LONGITUDE_DELTA,
-              }}
               onPress={this.handlePressMap}
             >
               <MapView.Marker
