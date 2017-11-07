@@ -117,13 +117,16 @@ class StepFirst extends React.Component {
         </View>
 
         {/* Map View */}
-        <MapModal
-          latitude={this.props.latitude}
-          longitude={this.props.longitude}
-          updateCoordinates={this.props.updateCoordinates}
-          mapVisibility={this.state.mapVisibility}
-          toggleMapVisibility={this.toggleMapVisibility}
-        />
+        {
+          this.state.mapVisibility &&
+          <MapModal
+            latitude={this.props.latitude}
+            longitude={this.props.longitude}
+            updateCoordinates={this.props.updateCoordinates}
+            mapVisibility={this.state.mapVisibility}
+            toggleMapVisibility={this.toggleMapVisibility}
+          />
+        }
       </View>
     );
   }

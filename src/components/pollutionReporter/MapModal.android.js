@@ -146,6 +146,11 @@ class MapModal extends React.Component {
   }
 }
 
+MapModal.defaultProps = {
+  latitude: null,
+  longitude: null,
+};
+
 MapModal.propTypes = {
   latitude: PropTypes.number,
   longitude: PropTypes.number,
