@@ -112,7 +112,6 @@ const mainStyles = StyleSheet.create({
   },
   navBarTitleStyle: {
     color: 'white',
-    marginBottom: 40,
     fontFamily: 'AvenirNext-Bold',
     fontSize: 18,
     width: 200,
