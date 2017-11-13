@@ -23,6 +23,7 @@ class BasinMap extends React.Component {
         { !loaded ? null :
         <WebView
           source={{ uri: basinMapUrl }}
+          startInLoadingState
         />
         }
       </View>
