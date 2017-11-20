@@ -9,7 +9,7 @@ import BackgroundImage from '../../components/appBackground/';
 const ContactInfo = () => (
   <BackgroundImage>
     <View style={styles.infoContainer}>
-      <ScalableText style={styles.infoTextFontStyle}>Version 1.0</ScalableText>
+      <ScalableText style={styles.infoTextFontStyle}>Version 1.3.1 (build 32)</ScalableText>
 
       <ScalableText style={styles.infoTextFontStyle}>
         Catawba Riverkeeper Foundation{'\n'}
