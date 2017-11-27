@@ -53,7 +53,6 @@ class TrashLogger extends Component {
 
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchId);
-    navigator.geolocation.clearWatch(this.watchId);
     clearInterval(this.intervalId);
   }
 
@@ -80,6 +79,7 @@ class TrashLogger extends Component {
     if (latitude && longitude) {
       this.updateCoordinates(latitude, longitude);
       this.props.actions.setDeviceLocation(latitude, longitude, true);
+      navigator.geolocation.clearWatch(this.watchId);
       clearInterval(this.intervalId);
     }
   }
