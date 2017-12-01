@@ -42,7 +42,7 @@ class TrashLogger extends Component {
   componentDidMount() {
     this.watchId = navigator.geolocation.watchPosition(
       (position) => { this.setPosition(position); },
-      () => Alert.alert('Trash Logger uses GPS to track pollution location', 'Please enable GPS',
+      () => Alert.alert('Your current location will be displayed on the map and used to help locate the trash or pollution you are reporting.', 'Please enable GPS',
         [
           { text: 'OK', onPress: () => this.fetchLocationInfo() },
         ],
