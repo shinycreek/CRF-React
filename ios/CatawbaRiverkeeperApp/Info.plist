@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3.2</string>
+	<string>1.3.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>33</string>
+	<string>34</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -30,11 +30,11 @@
 		<dict/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>For capture and uploading of images</string>
+	<string>For capture and uploading of images of trash and pollution</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>For recording location of trash and pollution</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For uploading images</string>
+	<string>For uploading images of trash and pollution</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
