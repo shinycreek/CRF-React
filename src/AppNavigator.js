@@ -12,13 +12,13 @@ import AuthorityContact from './containers/authorityContact/';
 import LakeLevel from './containers/lakeLevel/';
 import WaterDam from './containers/recreationalRelease/WaterDam';
 import FlowArrivalLocation from './containers/recreationalRelease/FlowArrivalLocation';
-import FollowUs from './containers/followUs';
-import FacebookPage from './containers/followUs/FacebookPage';
-import InstagramPage from './containers/followUs/InstagramPage';
-import TwitterPage from './containers/followUs/TwitterPage';
-import { renderRightButton, renderHomeButton, renderCloseButton, renderInfoButton } from './components/navbarComponent/';
+import SwimGuide from './containers/swimGuide';
+import {
+  renderRightButton, renderHomeButton, renderCloseButton, renderInfoButton, renderBackButton,
+} from './components/navbarComponent/';
 import SplashScreen from './containers/home/';
 import mainStyles from './assets/css/mainStyles';
+import LakeNews from './containers/lakeLevel/lakeNews';
 
 const RouterWithRedux = connect()(Router);
 
@@ -127,37 +127,21 @@ const AppNavigator = () => (
         title="Recreational Releases"
       />
       <Scene
-        key="followUs"
+        key="swimGuide"
         hideNavBar={false}
-        component={FollowUs}
+        component={SwimGuide}
         renderBackButton={() => renderHomeButton()}
         renderRightButton={() => renderRightButton()}
-        title="Follow Us!"
+        title="Swim Guide"
         navigationBarStyle={mainStyles.navBarFollowUsColor}
       />
       <Scene
-        key="facebookPage"
+        key="lakeNews"
+        component={LakeNews}
         hideNavBar={false}
-        component={FacebookPage}
-        renderBackButton={() => renderCloseButton()}
+        renderBackButton={() => renderBackButton()}
         renderRightButton={() => renderRightButton()}
-        navigationBarStyle={mainStyles.navBarFollowUsColor}
-      />
-      <Scene
-        key="instagramPage"
-        hideNavBar={false}
-        component={InstagramPage}
-        renderBackButton={() => renderCloseButton()}
-        renderRightButton={() => renderRightButton()}
-        navigationBarStyle={mainStyles.navBarFollowUsColor}
-      />
-      <Scene
-        key="twitterPage"
-        hideNavBar={false}
-        component={TwitterPage}
-        renderBackButton={() => renderCloseButton()}
-        renderRightButton={() => renderRightButton()}
-        navigationBarStyle={mainStyles.navBarFollowUsColor}
+        title="Lake News"
       />
     </Scene>
   </RouterWithRedux>

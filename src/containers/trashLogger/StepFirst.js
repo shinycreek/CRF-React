@@ -8,11 +8,16 @@ import {
 
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
+import DatePicker from 'react-native-datepicker';
+import moment from 'moment';
+
+
 import { renderInputField } from '../../components/fields/';
 import renderCountyList from '../../components/pollutionReporter/CountyList';
 import mainStyles from '../../assets/css/mainStyles';
-import { locationLogo } from '../../constants/images';
+import { locationLogo, calendarLogo } from '../../constants/images';
 import MapModal from '../../components/pollutionReporter/MapModal';
+import styles from './styles';
 
 const validate = (values) => {
   const errors = {};
@@ -34,8 +39,11 @@ class StepFirst extends React.Component {
   constructor(props) {
     super(props);
     this.toggleMapVisibility = this.toggleMapVisibility.bind(this);
+    this.handleDateTime = this.handleDateTime.bind(this);
+    this.renderDatePickerField = this.renderDatePickerField.bind(this);
 
     this.state = {
+      dateTime: moment().format(),
       mapVisibility: false,
     };
   }
@@ -50,15 +58,62 @@ class StepFirst extends React.Component {
     });
   }
 
+  handleDateTime(dateTime, field) {
+    const momentObj = moment(this.state.dateTime);
+    const newDateObj = moment(dateTime);
+    momentObj.set({
+      year: newDateObj.get('year'),
+      month: newDateObj.get('month'),
+      date: newDateObj.get('date'),
+    });
+    this.setState({ dateTime: momentObj.format() }, () => {
+      field.input.onChange(
+        this.state.dateTime,
+      );
+    });
+  }
+
+  renderDatePickerField(field) {
+    return (
+      <DatePicker
+        date={field.date}
+        mode="date"
+        placeholder="select date"
+        format="YYYY-MM-DD"
+        maxDate={moment().format()}
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        iconSource={calendarLogo}
+        hideText
+        ref={(picker) => { this.datePicker = picker; }}
+        onDateChange={(d) => { this.handleDateTime(d, field); }}
+        customStyles={{
+          dateIcon: {
+            height: 20,
+            width: 20,
+          },
+        }}
+      />
+    );
+  }
+
   render() {
+    const displayDate = moment(this.state.dateTime).format('MMM DD');
+    const date = moment(this.state.dateTime).format('YYYY-MM-DD');
     return (
       <View>
 
-        <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.topSpace, mainStyles.clearTextBg]}>
+        <Text
+          style={
+          [mainStyles.whiteBgText, mainStyles.bottomSpace10,
+            mainStyles.topSpace, mainStyles.clearTextBg,
+          ]}
+        >
           Log trash in the river or on the bank for our next river cleanup!
         </Text>
         <Text style={[mainStyles.whiteBgText, mainStyles.bottomSpace10, mainStyles.clearTextBg]}>
-          To report sediment, chemical and any other pollution, please use the Pollution Reporter tool instead.
+          To report sediment, chemical and any other pollution, please use the Pollution
+          Reporter tool instead.
         </Text>
 
         <View style={[mainStyles.box, mainStyles.bottomSpace, mainStyles.topSpace]}>
@@ -70,7 +125,37 @@ class StepFirst extends React.Component {
             style={[mainStyles.multilineInputField]}
           />
         </View>
+        {/* calender starts */}
 
+        <View style={[mainStyles.box, mainStyles.topSpace, mainStyles.bottomSpace]}>
+
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <Text style={[mainStyles.label]}>Date Observed:</Text>
+            <View style={{ flex: 0, flexDirection: 'row' }}>
+              <View style={{ flex: 0.1 }} />
+              <TouchableOpacity
+                onPress={() => this.datePicker.onPressDate()}
+                style={[styles.dateTime, mainStyles.fieldBorder, { width: '80%' }]}
+              >
+                <View style={[styles.displayDateTime]}>
+                  <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{displayDate}</Text>
+                </View>
+                <View style={{ position: 'absolute', left: '4%' }}>
+                  <Field
+                    name="date_observed"
+                    component={this.renderDatePickerField}
+                    date={date}
+                    onDateChange={this.handleDateTime}
+                  />
+                </View>
+
+              </TouchableOpacity>
+              <View style={{ flex: 0.1 }} />
+            </View>
+          </View>
+        </View>
+
+        {/* calender ends */}
         <View style={[mainStyles.box, mainStyles.bottomSpace]}>
           <Field
             name="describe_location"

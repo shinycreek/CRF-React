@@ -56,7 +56,18 @@ const styles = StyleSheet.create({
     minHeight: 100,
     marginBottom: 30,
   },
+  dateTime: {
+    backgroundColor: 'white',
+    height: 40,
+    alignItems: 'center',
+    width: '80%',
+  },
 
+  displayDateTime: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 10,
+  },
 });
 
 export default styles;

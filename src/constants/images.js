@@ -22,6 +22,7 @@ import libraryLogo from '../assets/images/library.png';
 import facebookLogo from '../assets/images/facebook.png';
 import twitterLogo from '../assets/images/twitter.png';
 import instagramLogo from '../assets/images/instagram.png';
+import swimGuide from '../assets/images/swim-guide.png';
 
 export {
    homebgLogo,
@@ -48,4 +49,5 @@ export {
    facebookLogo,
    twitterLogo,
    instagramLogo,
+   swimGuide,
  };

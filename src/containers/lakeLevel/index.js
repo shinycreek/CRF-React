@@ -1,12 +1,14 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  ScrollView,
+  View, Text, ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import { isEqual } from 'lodash';
+import moment from 'moment';
+import { Actions } from 'react-native-router-flux';
+
 import { getLakeLevels } from '../../actions/lakeLevel';
 import { even } from '../../utils/extraLib';
 import mainStyles from '../../assets/css/mainStyles';
@@ -44,6 +46,9 @@ class LakeLevel extends React.Component {
               <View style={{ flex: 1 }}>
                 <Text>Target</Text>
               </View>
+              <View style={{ flex: 1 }}>
+                <Text>News</Text>
+              </View>
             </View>
 
             {lakeLevels.map((ll, index) => (
@@ -56,6 +61,18 @@ class LakeLevel extends React.Component {
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text>{ll.get('target')}</Text>
+                </View>
+                <View style={{ flex: 1 }}>
+                  {
+                    !isEqual(ll.get('news'), null)
+                      ? (
+                        <Text onPress={() => Actions.lakeNews({ lake_url: ll.get('lake_url') })} style={{ color: 'blue' }}>
+                          {moment(ll.get('news')).format('MM/DD/YYYY') }
+                        </Text>
+                    ) : (
+                      <Text>None</Text>
+                    )
+                  }
                 </View>
               </View>
             ))}

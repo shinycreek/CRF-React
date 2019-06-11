@@ -12,7 +12,7 @@ import Greeting from '../greeting';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import BackgroundImage from '../appBackground/';
-import { trashLogo, airLogo, barsLogo, dropletLogo, forwardLogo, mailLogo, mapLogo, crfLogo } from '../../constants/images';
+import { trashLogo, airLogo, barsLogo, dropletLogo, swimGuide, mailLogo, mapLogo, crfLogo } from '../../constants/images';
 
 class Home extends React.Component {
   constructor(props) {
@@ -145,19 +145,19 @@ class Home extends React.Component {
             </TouchableOpacity>
 
             <TouchableOpacity
-              onPress={() => Actions.followUs()}
+              onPress={() => Actions.swimGuide()}
               style={[styles.box, styles.followUs]}
             >
               <View style={[styles.box, styles.followUs]}>
                 <View style={[styles.content, { flex: 2 }]}>
                   <Image
-                    style={[{ height: 40, width: 60 }]}
-                    source={forwardLogo}
+                    style={[{ height: 60, width: 60 }]}
+                    source={swimGuide}
                     resizeMode="cover"
                   />
                 </View>
                 <View style={[styles.textContent, { flex: 1 }]}>
-                  <Text style={[styles.textStyle, mainStyles.fontStyle]}>Follow Us!</Text>
+                  <Text style={[styles.textStyle, mainStyles.fontStyle]}>Swim Guide</Text>
                 </View>
               </View>
             </TouchableOpacity>

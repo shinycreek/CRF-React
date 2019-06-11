@@ -15,6 +15,7 @@ import {
   cameraLogo,
   libraryLogo,
   infoLogo,
+  arrowLeftLogo,
 } from '../../constants/images';
 
 const styles = StyleSheet.create({
@@ -79,6 +80,15 @@ export const renderInfoButton = () => (
     <Image
       style={styles.homeLogo}
       source={infoLogo}
+    />
+  </TouchableOpacity>
+);
+
+export const renderBackButton = () => (
+  <TouchableOpacity onPress={() => Actions.pop()}>
+    <Image
+      style={styles.homeLogo}
+      source={arrowLeftLogo}
     />
   </TouchableOpacity>
 );
