@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.shinycreek.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.3.3</string>
+	<string>2.0.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>34</string>
+	<string>37</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -31,8 +31,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>For capture and uploading of images of trash and pollution</string>
+	<key>NSLocationAlwaysUsageDescription </key>
+	<string>To get user's current location in order to contact with area supervisor for trash logger and pollution report</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>For recording location of trash and pollution</string>
+	<string>To get user's current location in order to contact with area supervisor for trash logger and pollution report</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>For uploading images of trash and pollution</string>
 	<key>UIAppFonts</key>

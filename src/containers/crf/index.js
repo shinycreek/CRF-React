@@ -23,6 +23,7 @@ class CRF extends React.Component {
         { !loaded ? null :
         <WebView
           source={{ uri: crfUrl }}
+          startInLoadingState
         />
         }
       </View>
