@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Image,
+  ImageBackground,
 } from 'react-native';
 
 import { homebgLogo } from '../../constants/images';
@@ -10,12 +10,12 @@ class BackgroundImage extends Component {
   render() {
     // const { source, children, style, ...props } = this.props;
     return (
-      <Image
+      <ImageBackground
         source={homebgLogo}
         style={styles.backgroundImage}
       >
         {this.props.children}
-      </Image>
+      </ImageBackground>
     );
   }
 }

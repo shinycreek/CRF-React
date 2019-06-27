@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
+import { isEqual } from 'lodash';
 import { getFlowArrivalLocation } from '../../actions/recreationalRelease';
 import WaterArrive from '../../components/recreationalRelease/WaterArrive';
 import Footer from '../../components/footer/';
@@ -31,6 +32,7 @@ class FlowArrivalLocation extends React.Component {
 
   render() {
     const { flowArrivalLocations } = this.props;
+    console.log('flowArrivalLocations----', flowArrivalLocations);
     return (
       <BackgroundImage>
         <View style={[mainStyles.container, mainStyles.marginFromNav]}>
@@ -49,7 +51,7 @@ class FlowArrivalLocation extends React.Component {
           >
             <View style={{ flex: 1 }}>
               {
-                flowArrivalLocations.isEmpty() ? renderNoDataText() :
+                isEqual(flowArrivalLocations.length, 0) ? renderNoDataText() :
                 flowArrivalLocations.map((flowArrivalLocation, index) => (
                   <View key={`flowArrivalLocation${index}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
                     <View style={{ flex: 1 }}>
@@ -61,9 +63,9 @@ class FlowArrivalLocation extends React.Component {
                           styles.textFontStyle,
                         ]}
                       >
-                        {flowArrivalLocation.get('name')}
+                        {flowArrivalLocation.name}
                       </Text>
-                      <WaterArrive waterArrives={flowArrivalLocation.get('flow_arrival_recessions').toJS()} />
+                      <WaterArrive waterArrives={flowArrivalLocation.flow_arrival_recessions} />
                     </View>
                   </View>
               ))}

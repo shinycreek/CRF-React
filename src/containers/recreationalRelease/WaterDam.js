@@ -48,9 +48,9 @@ class WaterDam extends React.Component {
           >
             <View style={{ flex: 1 }}>
               {dams.map(dam => (
-                <View key={`dam${dam.get('id')}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
+                <View key={`dam${dam.id}`} style={[mainStyles.mBottom20, { flex: 1, flexDirection: 'row' }]}>
                   <View style={{ flex: 1 }}>
-                    <TouchableOpacity onPress={() => Actions.flowArrivalLocation({ damId: dam.get('id') })}>
+                    <TouchableOpacity onPress={() => Actions.flowArrivalLocation({ damId: dam.id })}>
                       <Text
                         style={[
                           mainStyles.bodyText1,
@@ -62,10 +62,10 @@ class WaterDam extends React.Component {
                           },
                         ]}
                       >
-                        {dam.get('name')}
+                        {dam.name}
                       </Text>
                     </TouchableOpacity>
-                    <WaterRelease waterReleases={dam.get('water_releases').toJS()} />
+                    <WaterRelease waterReleases={dam.water_releases} />
                   </View>
 
                 </View>

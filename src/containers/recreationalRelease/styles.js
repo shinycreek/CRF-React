@@ -2,13 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
     flex: 1,
+    marginTop: 50,
     padding: 20,
   },
 
   topText: {
-    flex: 0.18,
+    flex: 0,
     flexDirection: 'row',
   },
 

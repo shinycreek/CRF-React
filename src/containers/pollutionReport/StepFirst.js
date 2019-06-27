@@ -261,7 +261,7 @@ class StepFirst extends React.Component {
 
         <View style={[mainStyles.box, { marginBottom: 50, flexDirection: 'row' }]}>
           <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }} onPress={() => this.toggleMapVisibility()}>
-            <View style={{ flex: 0.5 }}>
+            <View style={{ flex: 1 }}>
               <Text style={[mainStyles.label, { marginTop: 1 }]}>
                 {
                   this.props.isLocationOn ?

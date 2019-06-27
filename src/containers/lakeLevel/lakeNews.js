@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, WebView } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import { WebView } from 'react-native-webview';
 
 import styles from './styles';
 

@@ -70,15 +70,10 @@ const mainStyles = StyleSheet.create({
   },
   marginFromNav: {
     flex: 1,
-    marginTop: 50,
   },
   navBar: {
-    flex: 1,
-    flexDirection: 'row',
-    height: 40,
-    paddingBottom: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingBottom: 10,
+    paddingTop: 10,
     backgroundColor: '#5534B4',
     borderBottomColor: '#5534B4',
   },
