@@ -140,7 +140,7 @@ class StepFirst extends React.Component {
                 <View style={[styles.displayDateTime]}>
                   <Text style={[mainStyles.fontAkzB, mainStyles.bodyText1]}>{displayDate}</Text>
                 </View>
-                <View style={{ position: 'absolute', left: '4%' }}>
+                <View style={{ position: 'absolute', left: '1%' }}>
                   <Field
                     name="date_observed"
                     component={this.renderDatePickerField}
