@@ -6,13 +6,14 @@ import {
   Image,
   AsyncStorage,
 } from 'react-native';
-
+import { isEqual } from 'lodash';
 import { Actions } from 'react-native-router-flux';
 import Greeting from '../greeting';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
 import BackgroundImage from '../appBackground/';
 import { trashLogo, airLogo, barsLogo, dropletLogo, swimGuide, mailLogo, mapLogo, crfLogo } from '../../constants/images';
+import { locationPermission } from '../../utils/permissionManager';
 
 class Home extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class Home extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await locationPermission();
     AsyncStorage.getItem('alreadyLaunched').then((value) => {
       if (!value) {
         AsyncStorage.setItem('alreadyLaunched', 'true');
@@ -39,7 +41,20 @@ class Home extends React.Component {
     this.setState({ firstLaunch: !this.state.firstLaunch });
   }
 
+  handlePermission = async (screen) => {
+    const isLocationEnabled = await locationPermission();
+    console.log('isLocationEnabled---', isLocationEnabled);
+    if (isLocationEnabled) {
+      if (isEqual(screen, 'trash')) {
+        Actions.trashLogger();
+      } else {
+        Actions.pollutionReport();
+      }
+    }
+  }
+
   render() {
+    const { isLocationEnabled } = this.state;
     return (
       <BackgroundImage>
         <Greeting
@@ -51,7 +66,7 @@ class Home extends React.Component {
 
           <View style={{ flex: 1, padding: 10 }}>
             <TouchableOpacity
-              onPress={() => Actions.trashLogger()}
+              onPress={() => this.handlePermission('trash')}
               style={[styles.box, styles.mediumpurple]}
             >
               <View style={[styles.content, { flex: 2 }]}>
@@ -114,7 +129,7 @@ class Home extends React.Component {
 
           <View style={{ flex: 1, padding: 10 }}>
             <TouchableOpacity
-              onPress={() => Actions.pollutionReport()}
+              onPress={() => this.handlePermission('pollution')}
               style={[styles.box, styles.dodgerblue]}
             >
               <View style={[styles.content, { flex: 2 }]}>

@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   },
   mainView: {
     flex: 1,
-    marginTop: 50,
   },
 });
 

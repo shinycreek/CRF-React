@@ -17,6 +17,7 @@ import { bindActionCreators } from 'redux';
 import { RenderCameraButton, RenderGallaryButton } from '../../components/navbarComponent';
 import styles from './styles';
 import mainStyles from '../../assets/css/mainStyles';
+import { cameraPermission, storagePermission } from '../../utils/permissionManager';
 
 const selector = formValueSelector('trashLoggerTileForm');
 const width = Dimensions.get('window').width;
@@ -34,9 +35,11 @@ class StepSecond extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
     this.props.handleShowRightArrow(true);
+    await storagePermission();
+    await storagePermission();
   }
 
   removeSelectedImage(index) {
@@ -51,7 +54,8 @@ class StepSecond extends React.Component {
     });
   }
 
-  selectPhotoTapped(field) {
+  selectPhotoTapped = async (field) => {
+    const permission = await cameraPermission();
     const options = {
       quality: 1.0,
       maxWidth: 500,
@@ -67,7 +71,8 @@ class StepSecond extends React.Component {
     }
   }
 
-  selectCameraTapped(field) {
+  selectCameraTapped = async (field) => {
+    const permission = await cameraPermission();
     const options = {
       quality: 1.0,
       maxWidth: 500,

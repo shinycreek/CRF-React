@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import {
   View,
-  WebView,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 import { fetchCRF } from '../../actions/website';
 import styles from './styles';

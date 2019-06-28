@@ -84,6 +84,7 @@ class MapModal extends React.Component {
   render() {
     const { newLatitude, newLongitude, displayConfirmWindow } = this.state;
     const { latitude, longitude } = this.props;
+    console.log('props-------', this.props);
     return (
       <View>
         <Modal

@@ -54,20 +54,20 @@ class LakeLevel extends React.Component {
             {lakeLevels.map((ll, index) => (
               <View key={`lakeLevelRow${index}`} style={even(index) ? mainStyles.row1 : mainStyles.row2}>
                 <View style={{ flex: 3 }}>
-                  <Text>{ll.get('lake_name')}</Text>
+                  <Text>{ll.lake_name}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text>{ll.get('level')}</Text>
+                  <Text>{ll.level}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text>{ll.get('target')}</Text>
+                  <Text>{ll.target}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
                   {
-                    !isEqual(ll.get('news'), null)
+                    !isEqual(ll.news, null)
                       ? (
-                        <Text onPress={() => Actions.lakeNews({ lake_url: ll.get('lake_url') })} style={{ color: 'blue' }}>
-                          {moment(ll.get('news')).format('MM/DD/YYYY') }
+                        <Text onPress={() => Actions.lakeNews({ lake_url: ll.lake_url })} style={{ color: 'blue' }}>
+                          {moment(ll.news).format('MM/DD/YYYY') }
                         </Text>
                     ) : (
                       <Text>None</Text>

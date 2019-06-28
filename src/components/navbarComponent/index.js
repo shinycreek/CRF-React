@@ -22,8 +22,13 @@ const styles = StyleSheet.create({
   homeLogo: {
     width: (Platform.OS === 'ios') ? 20 : 30,
     height: (Platform.OS === 'ios') ? 20 : 30,
+    marginRight: 15,
+    marginLeft: 15,
   },
-
+  closeLogo: {
+    fontSize: (Platform.OS === 'ios') ? 25 : 30,
+    marginLeft: 15,
+  },
   camLib: {
     width: 40,
     marginRight: 10,
@@ -51,9 +56,7 @@ export const renderHomeButton = () => (
 
 export const renderCloseButton = () => (
   <TouchableOpacity onPress={() => Actions.home()}>
-    <Text>
-      <Icon name="times" size={(Platform.OS === 'ios') ? 25 : 30} color="white" />
-    </Text>
+    <Icon name="times" style={styles.closeLogo} color="white" />
   </TouchableOpacity>
 );
 

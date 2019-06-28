@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Router, Scene } from 'react-native-router-flux';
 import Home from './components/home/';
@@ -38,8 +39,7 @@ const AppNavigator = () => (
       <Scene
         key="home"
         component={Home}
-        hideNavBar={false}
-        renderBackButton={() => null}
+        renderBackButton={() => <View />}
         renderRightButton={() => renderRightButton()}
         title="Catawba Riverkeeper"
       />
