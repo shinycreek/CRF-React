@@ -26,7 +26,7 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
-    await locationPermission();
+    // await locationPermission();
     AsyncStorage.getItem('alreadyLaunched').then((value) => {
       if (!value) {
         AsyncStorage.setItem('alreadyLaunched', 'true');
@@ -42,19 +42,18 @@ class Home extends React.Component {
   }
 
   handlePermission = async (screen) => {
-    const isLocationEnabled = await locationPermission();
-    console.log('isLocationEnabled---', isLocationEnabled);
-    if (isLocationEnabled) {
-      if (isEqual(screen, 'trash')) {
-        Actions.trashLogger();
-      } else {
-        Actions.pollutionReport();
+    await locationPermission((isLocationEnabled) => {
+      if (isLocationEnabled) {
+        if (isEqual(screen, 'trash')) {
+          Actions.trashLogger();
+        } else {
+          Actions.pollutionReport();
+        }
       }
-    }
+    });    
   }
 
   render() {
-    const { isLocationEnabled } = this.state;
     return (
       <BackgroundImage>
         <Greeting

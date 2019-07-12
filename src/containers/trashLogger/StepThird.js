@@ -36,8 +36,8 @@ class StepThird extends React.Component {
 
   render() {
     const { userSettingRecord } = this.props;
-    const phone = userSettingRecord ? userSettingRecord.get('phone') : undefined;
-    const email = userSettingRecord ? userSettingRecord.get('email') : undefined;
+    const phone = userSettingRecord ? userSettingRecord.phone : undefined;
+    const email = userSettingRecord ? userSettingRecord.email : undefined;
     return (
       <View>
         <Text style={[mainStyles.whiteBgText, mainStyles.clearTextBg, { marginBottom: 10, marginTop: 20 }]}>

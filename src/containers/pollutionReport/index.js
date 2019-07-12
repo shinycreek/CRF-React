@@ -56,12 +56,12 @@ class PollutionReport extends Component {
   }
 
   onSubmit(values) {
-    const phone = values.get('phone');
-    const email = values.get('email');
-    const record = this.props.userSetting.get('record');
-    const phoneId = this.props.userSetting.get('phoneId');
+    const phone = values.phone;
+    const email = values.email;
+    const record = this.props.userSetting.record;
+    const phoneId = this.props.userSetting.phoneId;
     const { latitude, longitude } = this.state;
-    const formValues = values.merge({ latitude, longitude, phone_id: phoneId }).toJS();
+    const formValues = values.merge({ latitude, longitude, phone_id: phoneId });
 
     if ((!record || record.size === 0) && (email || phone)) {
       this.props.actions.createUserSetting({ phone_id: phoneId, email, phone });

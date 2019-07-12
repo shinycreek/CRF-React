@@ -38,8 +38,6 @@ class StepSecond extends React.Component {
   async componentDidMount() {
     this.props.handleChildFormSubmit(this.props.handleSubmit);
     this.props.handleShowRightArrow(true);
-    await storagePermission();
-    await storagePermission();
   }
 
   removeSelectedImage(index) {
@@ -55,7 +53,7 @@ class StepSecond extends React.Component {
   }
 
   selectPhotoTapped = async (field) => {
-    const permission = await cameraPermission();
+    const permission = await storagePermission();
     const options = {
       quality: 1.0,
       maxWidth: 500,
