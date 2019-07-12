@@ -11,12 +11,11 @@ export const locationPermission = async (callback) => {
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        return true;
+        callback(true);
       } else {
-        return false;
+        callback(false);
       }
     } catch (err) {
-      console.warn(err);
       return false;
     }
   } else {

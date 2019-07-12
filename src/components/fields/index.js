@@ -3,6 +3,7 @@ import {
   View,
   Text,
   TextInput,
+  Platform,
 } from 'react-native';
 
 import PropTypes from 'prop-types';
@@ -10,18 +11,20 @@ import mainStyles from '../../assets/css/mainStyles';
 import styles from './styles';
 
 export const renderInputField = ({
-  input: { onChange, ...restInput }, style, meta: { touched, error }, options, label,
+  input: { onChange, name, value, ...restInput }, style, meta: { touched, error }, options, label,
 }) => {
   const arrStyles = [style];
   if (touched && error) {
     arrStyles.push(mainStyles.inputError);
   }
+  console.log(restInput)
   return (
     <View>
       <Text style={[mainStyles.label]}>{label}</Text>
       <TextInput
+        name={name}
+        value={value}
         onChangeText={onChange}
-        {...restInput}
         style={arrStyles}
         underlineColorAndroid="transparent"
         {...options}
